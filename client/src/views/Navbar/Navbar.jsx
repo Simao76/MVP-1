@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Logo from "../../assets/images/mvp_logo_full.png";
 import NavigationItems from "./NavigationItems/NavigationItems";
-import { getTeam as getTeamService } from "../../services/teams";
+import {
+  getTeam as getTeamService,
+  getPlayer as getPlayerService
+} from "../../services/teams";
 import "./navbar.scss";
 
 class Navbar extends Component {
@@ -24,11 +27,12 @@ class Navbar extends Component {
 
   async handleFormSubmission(e) {
     e.preventDefault();
-    console.log("form submission");
     const { search } = this.state;
     try {
-      const team = await getTeamService({ search });
-      //this.props.history.push(`/${search}`);
+      const results = await getTeamService({ search });
+      const searchFor = this.state.search;
+      this.props.getSearch(results);
+      this.props.history.push(`/search/${searchFor}`);
     } catch (error) {
       console.log(error);
     }
@@ -56,4 +60,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
