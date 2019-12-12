@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./views/Home/Home";
 import Navbar from "./views/Navbar/Navbar";
@@ -10,29 +10,38 @@ import Formula1 from "./views/Sports/Formula1/Formula1";
 import Fighting from "./views/Sports/Fighting/Fighting";
 import "./App.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header>
-        <Navbar />
-      </header>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ""
+    };
+  }
 
-      <main>
-        <Switch>
-          <Route path="/football" component={Football} />
-          <Route path="/basketball" component={Basketball} />
-          <Route path="/tennis" component={Tennis} />
-          <Route path="/formula1" component={Formula1} />
-          <Route path="/fighting" component={Fighting} />
-          <Route path="/" component={Home} />
-        </Switch>
-      </main>
+  render() {
+    return (
+      <div className="App">
+        <header>
+          <Navbar />
+        </header>
 
-      <footer>
-        <Footer />
-      </footer>
-    </div>
-  );
+        <main>
+          <Switch>
+            <Route path="/football" component={Football} />
+            <Route path="/basketball" component={Basketball} />
+            <Route path="/tennis" component={Tennis} />
+            <Route path="/formula1" component={Formula1} />
+            <Route path="/fighting" component={Fighting} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </main>
+
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    );
+  }
 }
 
 export default App;

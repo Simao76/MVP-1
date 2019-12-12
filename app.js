@@ -17,6 +17,7 @@ const indexRouter = require("./routes/index");
 const authRouter = require("./routes/authentication");
 require("./configs/passport");
 const cors = require("cors");
+const teamsRouter = require("./routes/teams");
 
 const app = express();
 
@@ -70,6 +71,7 @@ app.use(bindUserToViewLocals);
 
 app.use("/", indexRouter);
 app.use("/api", authRouter);
+app.use("/", teamsRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
