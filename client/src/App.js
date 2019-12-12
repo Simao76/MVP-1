@@ -11,6 +11,7 @@ import Fighting from "./views/Sports/Fighting/Fighting";
 import Signup from "./views/auth/Signup";
 import SearchResults from "./views/Search/SearchResults";
 import "./App.scss";
+import Login from "./views/auth/Login";
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,12 @@ class App extends Component {
               path="/signup"
               render={() => <Signup getUser={this.getTheUser} />}
             />
+            <Route
+              exact
+              path="/login"
+              render={() => <Login getUser={this.getTheUser} />}
+            />
+
             <Route path="/football" component={Football} />
             <Route path="/basketball" component={Basketball} />
             <Route path="/tennis" component={Tennis} />

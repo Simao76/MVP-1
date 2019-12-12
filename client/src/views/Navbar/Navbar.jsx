@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import Logo from "../../assets/images/mvp_logo_full.png";
 import NavigationItems from "./NavigationItems/NavigationItems";
+import SessionBtn from "./SessionBtn/SessionBtn";
 import {
   getTeam as getTeamService,
   getPlayer as getPlayerService
@@ -37,6 +38,12 @@ class Navbar extends Component {
       console.log(error);
     }
   }
+  logoutUser = () => {
+    this.service.logout().then(() => {
+      this.setState({ loggedInUser: null });
+      this.props.getUser(null);
+    });
+  };
 
   render() {
     return (
@@ -54,7 +61,7 @@ class Navbar extends Component {
           ></input>
           <button>Submit</button>
         </form>
-        {this.props.userState && <button>logout</button>}
+        <SessionBtn userState={this.props.userState} />
       </nav>
     );
   }
