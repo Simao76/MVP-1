@@ -1,10 +1,10 @@
-'use strict';
+/* "use strict";
 
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
-const User = require('./models/user');
-const bcryptjs = require('bcryptjs');
+const User = require("./models/user");
+const bcryptjs = require("bcryptjs");
 
 passport.serializeUser((user, callback) => {
   callback(null, user._id);
@@ -12,42 +12,46 @@ passport.serializeUser((user, callback) => {
 
 passport.deserializeUser((id, callback) => {
   User.findById(id)
-  .then(user => {
-    callback(null, user);
-  })
-  .catch(error => {
-    callback(error);
-  });
+    .then(user => {
+      callback(null, user);
+    })
+    .catch(error => {
+      callback(error);
+    });
 });
 
 passport.use(
-  'local-sign-up',
-  new LocalStrategy({
-    usernameField: 'email',
-    passReqToCallback: true
-  }, (req, email, password, callback) => {
-    const name = req.body.name;
-    bcryptjs
-      .hash(password, 10)
-      .then(hash => {
-        return User.create({
-          name,
-          email,
-          passwordHash: hash
+  "local-sign-up",
+  new LocalStrategy(
+    {
+      usernameField: "email",
+      passReqToCallback: true
+    },
+    (req, email, password, callback) => {
+      const name = req.body.name;
+      bcryptjs
+        .hash(password, 10)
+        .then(hash => {
+          return User.create({
+            name,
+            email,
+            passwordHash: hash
+          });
+        })
+        .then(user => {
+          //req.session.user = user._id;
+          callback(null, user);
+        })
+        .catch(error => {
+          callback(error);
         });
-      })
-      .then(user => {
-        callback(null, user);
-      })
-      .catch(error => {
-        callback(error);
-      });
-  })
+    }
+  )
 );
 
 passport.use(
-  'local-sign-in',
-  new LocalStrategy({ usernameField: 'email' }, (email, password, callback) => {
+  "local-sign-in",
+  new LocalStrategy({ usernameField: "email" }, (email, password, callback) => {
     let user;
     User.findOne({
       email
@@ -60,7 +64,7 @@ passport.use(
         if (passwordMatchesHash) {
           callback(null, user);
         } else {
-          callback(new Error('WRONG_PASSWORD'));
+          callback(new Error("WRONG_PASSWORD"));
         }
       })
       .catch(error => {
@@ -68,4 +72,4 @@ passport.use(
       });
   })
 );
-
+ */
