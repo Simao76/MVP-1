@@ -11,9 +11,10 @@ const bcrypt = require("bcryptjs");
 
 authRoutes.post("/signup", (req, res, next) => {
   const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
-
-  if (!username || !password) {
+  console.log(username, email, password);
+  if (!username || !password || !email) {
     res.status(400).json({ message: "Provide username and password" });
     return;
   }
@@ -21,13 +22,14 @@ authRoutes.post("/signup", (req, res, next) => {
   if (password.length < 7) {
     res.status(400).json({
       message:
-        "Please make your password at least 8 characters long for security purposes."
+        "Please make your password at least 7 characters long for security purposes."
     });
     return;
   }
 
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
+      console.log(err);
       res.status(500).json({ message: "Username check went bad." });
       return;
     }
@@ -42,11 +44,13 @@ authRoutes.post("/signup", (req, res, next) => {
 
     const aNewUser = new User({
       username: username,
+      email: email,
       password: hashPass
     });
 
     aNewUser.save(err => {
       if (err) {
+        console.log(err);
         res
           .status(400)
           .json({ message: "Saving user to database went wrong." });
@@ -57,6 +61,8 @@ authRoutes.post("/signup", (req, res, next) => {
       // .login() here is actually predefined passport method
       req.login(aNewUser, err => {
         if (err) {
+          console.log(err);
+
           res.status(500).json({ message: "Login after signup went bad." });
           return;
         }
@@ -72,6 +78,8 @@ authRoutes.post("/signup", (req, res, next) => {
 authRoutes.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, theUser, failureDetails) => {
     if (err) {
+      console.log(err);
+
       res
         .status(500)
         .json({ message: "Something went wrong authenticating user" });
@@ -88,6 +96,8 @@ authRoutes.post("/login", (req, res, next) => {
     // save user in session
     req.login(theUser, err => {
       if (err) {
+        console.log(err);
+
         res.status(500).json({ message: "Session save went bad." });
         return;
       }
