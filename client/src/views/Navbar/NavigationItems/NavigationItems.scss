@@ -1,0 +1,36 @@
+.navigationItems {
+  ul {
+      list-style: none;
+      margin: 0 1rem;
+      padding: 0;
+      display: flex; 
+  }
+
+  .navigation-link {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+  
+      &:hover,
+      &:active,
+      &.active {
+          background-color: yellow;
+      }
+  }
+
+  li {
+      padding: 0.5rem;
+  }
+
+  a {   
+      color: blue;
+      text-decoration: none;
+
+      &:hover,
+      &:active,
+      &.active {
+      background-color: yellow;        
+      }
+  }
+}

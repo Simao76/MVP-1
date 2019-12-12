@@ -1,11 +1,14 @@
 import React from 'react';
-import Logo from "../../assets/images/mvp_logo_full.png";
+import { Link } from 'react-router-dom';
+import Logo from '../../assets/images/mvp_logo_full.png';
+import NavigationItems from './NavigationItems/NavigationItems'
 import './navbar.scss';
 
 const Navbar = () => {
   return (
     <nav>
-        <img src={Logo} alt="logo"/>
+        <Link to="/"><img src={Logo} alt="logo" /></Link>
+        <NavigationItems />
     </nav>
   )
 }
