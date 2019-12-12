@@ -2,15 +2,16 @@ import axios from "axios";
 
 
 const teamService = axios.create({
-  baseURL: '/'
+  baseURL: 'https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t='
 });
 
 export const getTeam = async data => {
   try {
-    //console.log(data.search)
-    
-    const response = await teamService.get(``, data);
-    return response.data.user;
+    let searchFor = data.search
+    console.log(searchFor)
+    const response = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${searchFor}`, searchFor);
+    console.log(response.data)
+    return response.data;
   } catch (error) {
     throw error;
   }
