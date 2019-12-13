@@ -15,9 +15,15 @@ class Football extends Component {
     if (leagues) {
       filteredLeagues = leagues.filter(el => {
         if (
+          el.strLeague === "UEFA Champions League" ||
+          el.strLeague === "UEFA Europa League" ||
           el.strLeague === "English Premier League" ||
           el.strLeague === "German Bundesliga" ||
-          el.strLeague === "Italian Serie A"
+          el.strLeague === "Italian Serie A" ||
+          el.strLeague === "French Ligue 1" ||
+          el.strLeague === "Spanish La Liga" ||
+          el.strLeague === "Portuguese Primeira Liga" ||
+          el.strLeague === "Brazilian Brasileirao"
         ) {
           return true;
         }
@@ -31,7 +37,7 @@ class Football extends Component {
 
         {filteredLeagues &&
           filteredLeagues.map(item => (
-            <div key={item.idPlayer}>
+            <div key={item.idLeague}>
               <img
                 src={item.strThumb}
                 alt={item.strPlayer}
