@@ -1,126 +1,126 @@
-"use strict";
+'use strict'
 
-//const { Router } = require("express");
-const express = require("express");
-const authRoutes = express.Router();
+const { Router } = require("express");
+const router = new Router();
 
-const passport = require("passport");
-/* const router = new Router(); */
-const User = require("../models/user");
-const bcrypt = require("bcryptjs");
+const User = require("./../models/user");
+const bcryptjs = require("bcryptjs");
 
-authRoutes.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
-  console.log(username, email, password);
-  if (!username || !password || !email) {
-    res.status(400).json({ message: "Provide username and password" });
-    return;
+const generateId = length => {
+  const characters =
+    "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  let token = "";
+  for (let i = 0; i < length; i++) {
+    token += characters[Math.floor(Math.random() * characters.length)];
   }
+  return token;
+};
 
-  if (password.length < 7) {
-    res.status(400).json({
-      message:
-        "Please make your password at least 7 characters long for security purposes."
-    });
-    return;
-  }
-
-  User.findOne({ username }, (err, foundUser) => {
-    if (err) {
-      console.log(err);
-      res.status(500).json({ message: "Username check went bad." });
-      return;
-    }
-
-    if (foundUser) {
-      res.status(400).json({ message: "Username taken. Choose another one." });
-      return;
-    }
-
-    const salt = bcrypt.genSaltSync(10);
-    const hashPass = bcrypt.hashSync(password, salt);
-
-    const aNewUser = new User({
-      username: username,
-      email: email,
-      password: hashPass
-    });
-
-    aNewUser.save(err => {
-      if (err) {
-        console.log(err);
-        res
-          .status(400)
-          .json({ message: "Saving user to database went wrong." });
-        return;
-      }
-
-      // Automatically log in user after sign up
-      // .login() here is actually predefined passport method
-      req.login(aNewUser, err => {
-        if (err) {
-          console.log(err);
-
-          res.status(500).json({ message: "Login after signup went bad." });
-          return;
-        }
-
-        // Send the user's information to the frontend
-        // We can use also: res.status(200).json(req.user);
-        res.status(200).json(aNewUser);
-      });
-    });
-  });
+/*
+router.get("/success", (req, res, next) => {
+  res.render("success");
+  //console.log(req.user);
 });
 
-authRoutes.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, theUser, failureDetails) => {
-    if (err) {
-      console.log(err);
-
-      res
-        .status(500)
-        .json({ message: "Something went wrong authenticating user" });
-      return;
-    }
-
-    if (!theUser) {
-      // "failureDetails" contains the error messages
-      // from our logic in "LocalStrategy" { message: '...' }.
-      res.status(401).json(failureDetails);
-      return;
-    }
-
-    // save user in session
-    req.login(theUser, err => {
-      if (err) {
-        console.log(err);
-
-        res.status(500).json({ message: "Session save went bad." });
-        return;
-      }
-
-      // We are now logged in (that's why we can also send req.user)
-      res.status(200).json(theUser);
+ router.get("/confirm/:token", (req, res, next) => {
+  const token = req.params.token;
+  User.findOneAndUpdate({
+      confirmationCode: token
+    }, {
+      status: "Active"
+    })
+    .then(user => {
+      console.log(req.session.passport)
+      req.session.passport.user = user;
+      res.redirect("/success");
+    })
+    .catch(err => {
+      next(err)
     });
-  })(req, res, next);
+}); */
+
+
+//SET PASSPORT
+const passport = require('passport');
+
+router.post(
+  "/sign-up",
+  passport.authenticate("sign-up"),
+  (req, res, next) => {
+    const user = req.user;
+    res.json({ user });
+  }
+);
+
+router.post(
+  "/sign-in",
+  passport.authenticate("sign-in"),
+  (req, res, next) => {
+    const user = req.user;
+    res.json({ user });
+  }
+);
+
+/* router.post('/sign-up', async (req, res, next) => {
+  const { name, email, password } = req.body;
+  try {
+    const confirmToken = generateId(30);
+    const hash = await bcryptjs.hash(password, 10);
+    const user = await User.create({
+      name,
+      email,
+      passwordHash: hash,
+      confirmationCode: confirmToken
+    });
+    req.session.user = user._id;
+    res.json({ user });
+  } catch (error) {
+    next(error);
+  }
+}); */
+
+
+/* router.get('/sign-in', (req, res, next) => {
+  res.render('./auth/sign-in');
 });
 
-authRoutes.post("/logout", (req, res, next) => {
-  // req.logout() is defined by passport
+router.post(
+  '/sign-in',
+  passport.authenticate('sign-in', {
+    successRedirect: `/profile`,
+    failureRedirect: './auth/sign-in'
+  })
+); */
+
+/* router.get('/sign-up', (req, res, next) => {
+  res.render('./auth/sign-up');
+}); */
+
+
+//GOOGLE SIGNUP/IN
+router.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', "email"]
+  }));
+
+router.get('/auth/google/redirect',
+  passport.authenticate('google', {
+    successRedirect: '/',
+    failureRedirect: './auth/sign-up'
+  })
+);
+
+// SIGNOUT
+router.post("/sign-out", (req, res, next) => {
   req.logout();
-  res.status(200).json({ message: "Log out success!" });
+  res.json({});
 });
 
-authRoutes.get("/loggedin", (req, res, next) => {
-  // req.isAuthenticated() is defined by passport
-  if (req.isAuthenticated()) {
-    res.status(200).json(req.user);
-    return;
-  }
-  res.status(403).json({ message: "Unauthorized" });
+const routeGuard = require("../middleware/route-guard");
+
+router.get("/profile", routeGuard, (req, res, next) => {
+  //console.log(req.params)
+  res.redirect(`/user/${req.user.username}`);
 });
 
-module.exports = authRoutes;
+module.exports = router;

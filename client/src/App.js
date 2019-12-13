@@ -52,27 +52,14 @@ class App extends Component {
 
         <main>
           <Switch>
-            <Route
-              exact
-              path="/signup"
-              render={() => <Signup getUser={this.getTheUser} />}
-            />
-            <Route
-              exact
-              path="/login"
-              render={() => <Login getUser={this.getTheUser} />}
-            />
-
+            <Route path="/signup" render={() => <Signup getUser={this.getTheUser} />} />
+            <Route path="/login" render={() => <Login getUser={this.getTheUser} />} />
             <Route path="/football" component={Football} />
             <Route path="/basketball" component={Basketball} />
             <Route path="/tennis" component={Tennis} />
             <Route path="/formula1" component={Formula1} />
             <Route path="/fighting" component={Fighting} />
-            <Route
-              path="/search/:name"
-              exact
-              render={() => <SearchResults search={this.state.search} />}
-            />
+            <Route path="/search/:name" exact render={() => <SearchResults search={this.state.search} />} />
             <Route path="/" component={Home} />
           </Switch>
         </main>
