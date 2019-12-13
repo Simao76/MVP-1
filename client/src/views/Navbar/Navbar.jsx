@@ -30,9 +30,12 @@ class Navbar extends Component {
     e.preventDefault();
     const { search } = this.state;
     try {
-      const results = await getTeamService({ search });
+      const teams = await getTeamService({ search });
+      const players = await getPlayerService({ search });
       const searchFor = this.state.search;
-      this.props.getSearch(results);
+      
+      
+      this.props.getSearch(teams, players);
       this.props.history.push(`/search/${searchFor}`);
     } catch (error) {
       console.log(error);

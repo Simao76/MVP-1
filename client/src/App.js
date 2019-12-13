@@ -17,7 +17,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
+      search: {
+        teams: "",
+        players: ""
+      },
       loggedInUser: null
     };
   }
@@ -27,14 +30,17 @@ class App extends Component {
       loggedInUser: userObj
     });
   };
-  searchResults = data => {
+  searchResults = (teams, players) => {
     this.setState({
-      search: data
+      search: {
+        teams: teams,
+        players: players
+      }
     });
   };
 
   render() {
-    console.log(this.state.loggedInUser);
+    //console.log(this.state.loggedInUser);
     return (
       <div className="App">
         <header>
