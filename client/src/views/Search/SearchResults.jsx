@@ -19,6 +19,7 @@ const SearchResults = props => {
         || el.strSport === "Tennis") {
         return true;
       };
+      return true
     });
   };
 
@@ -33,6 +34,7 @@ const SearchResults = props => {
       || el.strSport === "Tennis") {
         return true;
       };
+      return true
     });
   }
 

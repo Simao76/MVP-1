@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
+    name: {
       type: String,
       /* required: true, */
       //unique: true,
@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "/images/logo_round.png"
     },
-    password: {
+    passwordHash: {
       type: String
       //required: true
     },
