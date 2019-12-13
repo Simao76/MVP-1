@@ -10,11 +10,13 @@ const SessionBtn = props => (
           <li>Signup</li>
         </span>
       </NavLink>
+
       <NavLink to="/login">
         <span className="navigation-links">
           <li>Login</li>
         </span>
       </NavLink>
+
       {props.userState && (
         <NavLink to="/logout">
           <span className="navigation-links">

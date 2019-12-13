@@ -12,6 +12,7 @@ import Signup from "./views/auth/Signup";
 import SearchResults from "./views/Search/SearchResults";
 import "./App.scss";
 import Login from "./views/auth/Login";
+import { getFootball as getFootballService } from "./services/Sports";
 
 class App extends Component {
   constructor(props) {
@@ -21,10 +22,22 @@ class App extends Component {
         teams: "",
         players: ""
       },
+      sports: "",
       loggedInUser: null
     };
   }
 
+  async componentDidMount() {
+    try {
+      const footballLeagues = await getFootballService();
+      console.log(footballLeagues);
+      this.setState({
+        sports: footballLeagues
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
   getTheUser = userObj => {
     this.setState({
       loggedInUser: userObj
@@ -63,7 +76,10 @@ class App extends Component {
               render={() => <Login getUser={this.getTheUser} />}
             />
 
-            <Route path="/football" component={Football} />
+            <Route
+              path="/football"
+              render={() => <Football sports={this.state.sports} />}
+            />
             <Route path="/basketball" component={Basketball} />
             <Route path="/tennis" component={Tennis} />
             <Route path="/formula1" component={Formula1} />
