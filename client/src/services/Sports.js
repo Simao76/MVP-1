@@ -25,7 +25,7 @@ const apiService = axios.create({
 
 export const getFootball = async () => {
   try {
-    const response = await apiService.get("/api/league/list");
+    const response = await apiService.get("/listleagues");
     return response.data.leagues;
   } catch (error) {
     throw error;

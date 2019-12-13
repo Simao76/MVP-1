@@ -7,8 +7,11 @@ class Football extends Component {
       footballLeagues: ""
     };
   }
+
+  // componentDidMount() (relacionado com o getfootball)
+
   render() {
-    console.log(this.props);
+    /*  console.log(this.props);
     let leagues = this.props.sports.leagues;
 
     let filteredLeagues;
@@ -28,23 +31,19 @@ class Football extends Component {
           return true;
         }
       });
-    }
+    } */
 
-    console.log(filteredLeagues);
+    const leagues = this.props.sports;
     return (
       <div>
         <h1>Football</h1>
 
-        {filteredLeagues &&
-          filteredLeagues.map(item => (
+        {leagues &&
+          leagues.map(item => (
             <div key={item.idLeague}>
-              <img
-                src={item.strThumb}
-                alt={item.strPlayer}
-                title={item.strPlayer}
-              ></img>
+              <img src={item.badge} alt={item.name} title={item.name}></img>
               <button>Like</button>
-              <p>{item.strPlayer}</p>
+              <p>{item.description}</p>
             </div>
           ))}
       </div>
