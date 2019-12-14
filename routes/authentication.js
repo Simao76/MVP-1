@@ -61,6 +61,13 @@ router.post(
   }
 );
 
+router.post('/sign-out', (req, res, next) => {
+  req.session.destroy();
+  res.json({});
+});
+
+
+
 /* router.post('/sign-up', async (req, res, next) => {
   const { name, email, password } = req.body;
   try {
@@ -118,9 +125,19 @@ router.post("/sign-out", (req, res, next) => {
 
 const routeGuard = require("../middleware/route-guard");
 
-router.get("/profile", routeGuard, (req, res, next) => {
-  //console.log(req.params)
-  res.redirect(`/user/${req.user.username}`);
+router.get("/user-information", async (req, res, next) => {
+  const userId = await req.user;  
+  if (!userId) {
+    res.json({});
+  } else {
+    try {
+      const user = await User.findById(userId);
+      if (!user) throw new Error("Signed in user not found");
+      res.json({ user });
+    } catch (error) {
+      next(error);
+    }
+  }
 });
 
 module.exports = router;

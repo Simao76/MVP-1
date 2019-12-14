@@ -1,20 +1,61 @@
 import axios from "axios";
 
-class AuthService {
+/* class AuthService {
   constructor() {
     let service = axios.create({
       baseURL: "http://localhost:3020",
       withCredentials: true
     });
     this.service = service;
-  }
+  } */
 
-  signup = (username, email, password) => {
+const AuthenticationService = axios.create({
+  baseURL: 'http://localhost:3020'
+});
+
+/*   signup = (username, email, password) => {
     return this.service
       .post("/sign-up", { username, email, password })
       .then(response => response.data);
-  };
+  }; */
 
+export const signUp = async data => {
+  try {
+    const response = await AuthenticationService.post(`/sign-up`, data);
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const signIn = async data => {
+  try {
+    const response = await AuthenticationService.post(`/sign-in`, data);
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const signOut = async () => {
+  try {
+    await AuthenticationService.post(`/sign-out`);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const loadUserInformation = async () => {
+  try {
+    const response = await AuthenticationService.get(`/user-information`);
+    console.log(response.data.user)
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/* 
   loggedin = () => {
     return this.service.get("/loggedin").then(response => response.data);
   };
@@ -27,7 +68,7 @@ class AuthService {
 
   logout = () => {
     return this.service.post("/logout", {}).then(response => response.data);
-  };
-}
+  }; */
+//}
 
-export default AuthService;
+//export default AuthService;

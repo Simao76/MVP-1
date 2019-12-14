@@ -4,8 +4,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const bcryptjs = require("bcryptjs");
-//const nodemailer = require('nodemailer');
-
+const nodemailer = require('nodemailer');
 
 const generateId = length => {
   const characters =
@@ -17,30 +16,25 @@ const generateId = length => {
   return token;
 };
 
-/* let transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
     user: process.env.EMAIL,
     pass: process.env.PASSWORD
   }
-}); */
+});
 
-/* const sendMail = user => {
+const sendMail = user => {
   transporter.sendMail({
     from: `MVP Sports <MAIL>`,
     to: `${user.email}`,
     subject: "Email verification",
-    text: "Please verify your email address by clicking this link in order to get full access to Wat2Watch",
-    // html: `
-    //   <p>Welcome to MVP Sports</p>
-    //<p><a href="http://localhost:3000/confirm/${user.confirmationCode}">Please verify your email address by clicking this link in order to get full access to Wat2Watch</a></p>`
-
-    // html: `
-    // <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.owensvalleyhistory.com%2Fat_the_movies22%2Fthemovies01.png&f=1&nofb=1" width="200px"/>
-    // <p><a href="http://localhost:3000/confirm/${user.confirmationCode}">Please verify your email address by clicking this link</a></p>`
+    html: `
+    <p>Welcome to MVP Sports</p>
+    <img src="https://res.cloudinary.com/dgi1gs0ob/image/upload/t_media_lib_thumb/v1576320837/MVP/mvp_logo_round_oxsplh.png" alt="mvp"/>
+    <p><a href="http://localhost:3000/confirmation/${user.confirmationCode}">Please verify your email address by clicking this link</a></p>`
   });
-} */
-
+}
 
 
 passport.serializeUser((user, callback) => {
@@ -79,6 +73,8 @@ passport.use(
         })
         .then(user => {
           console.log(user)
+          console.log(user.email)
+          sendMail(user)
           callback(null, user);
         })
         .catch(error => {
@@ -90,7 +86,8 @@ passport.use(
 
 passport.use(
   "sign-in",
-  new LocalStrategy({ usernameField: "email"  }, (email, password, callback) => {
+  new LocalStrategy({ usernameField: "email" }, (email, password, callback) => {
+    console.log('sign-in local strategy')
     let user;
     User.findOne({
       email

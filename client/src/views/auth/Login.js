@@ -1,51 +1,55 @@
 import React, { Component } from "react";
-import AuthService from "../../services/auth/auth-service";
-import { Link } from "react-router-dom";
+import { signIn as signInService } from '../../services/auth/auth-service';
+import { Link, withRouter } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
-    this.service = new AuthService();
+    this.state = { 
+      email: "", 
+      password: "" 
+    };
+    this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const username = this.state.username;
-    const password = this.state.password;
-    this.service
-      .login(username, password)
-      .then(response => {
-        this.setState({ username: "", password: "" });
-        this.props.getUser(response);
-      })
-      .catch(error => console.log(error));
+  async formSubmitHandler(e) { 
+    e.preventDefault();
+    const { email, password } = this.state;
+    try {
+      const user = await signInService({ email, password });
+      this.props.changeAuthenticationStatus(user);
+      this.props.history.push(`/profile/${user.name}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  formChangeHandler = e => {    
+    this.setState({ 
+      [e.target.name]: e.target.value 
+    });
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-          <label>Username:</label>
+        <form onSubmit={this.formSubmitHandler}>
+          <label>email:</label>
           <input
             type="text"
-            name="username"
-            value={this.state.username}
-            onChange={e => this.handleChange(e)}
+            name="email"
+            value={this.state.email}
+            required
+            onChange={e => this.formChangeHandler(e)}
           />
           <label>Password:</label>
           <input
             name="password"
             value={this.state.password}
-            onChange={e => this.handleChange(e)}
+            required
+            onChange={e => this.formChangeHandler(e)}
           />
-
-          <input type="submit" value="Login" />
+          <button type="submit">Login</button>
         </form>
         <p>
           Don't have account?
@@ -56,4 +60,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

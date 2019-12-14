@@ -1,78 +1,76 @@
 import React, { Component } from "react";
-import AuthService from "../../services/auth/auth-service";
-import { Link } from "react-router-dom";
+import { signUp as signUpService } from '../../services/auth/auth-service';
+import { Link, withRouter } from "react-router-dom";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", email: "", password: "" };
-    this.service = new AuthService();
+    this.state = { 
+      username: "", 
+      email: "", 
+      password: "" 
+    };   
+    this.formSubmitHandler = this.formSubmitHandler.bind(this);
   }
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    const username = this.state.username;
-    const password = this.state.password;
-    const email = this.state.email;
+  async formSubmitHandler(e) {    
+    e.preventDefault();
+    const { username, email, password } = this.state;
+    try {
+      const user = await signUpService({ username, email, password });
+      this.props.changeAuthenticationStatus(user);
+      this.props.history.push(`/profile/${user.name}`);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log("handleFormSubmit", this.state)
+  }
 
-    this.service
-      .signup(username, email, password)
-
-      .then(response => {
-        this.setState({
-          username: "",
-          email: "",
-          password: ""
-        });
-        this.props.getUser(response);
-        this.props.history.push("/");
-      })
-      .catch(error => console.log(error));
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  formChangeHandler = e => {
+    //const { name, value } = event.target;
+    this.setState({ 
+      [e.target.name]: e.target.value 
+    });
+    //console.log("handleChange", e.target.value )
   };
 
   render() {
-    console.log(this.props)
+    console.log(this.props.user)
     return (
       <div>
-        <form onSubmit={this.handleFormSubmit}>
+        <form onSubmit={this.formSubmitHandler}>
           <label>Username:</label>
           <input
             type="text"
             name="username"
             value={this.state.username}
-            onChange={e => this.handleChange(e)}
+            required
+            onChange={e => this.formChangeHandler(e)}
           />
-
           <label>Email</label>
           <input
             type="text"
             name="email"
             value={this.state.email}
-            onChange={e => this.handleChange(e)}
+            required
+            onChange={e => this.formChangeHandler(e)}
           />
-
           <label>Password:</label>
           <input
             name="password"
             value={this.state.password}
-            onChange={e => this.handleChange(e)}
+            required
+            onChange={e => this.formChangeHandler(e)}
           />
-
-          <input type="submit" value="Signup" />
+          <button type="submit">Sign Up</button>
         </form>
-
         <p>
           Already have account?
-          <Link to={"/"}> Login</Link>
+          <Link to={"/login"}> Login</Link>
         </p>
       </div>
     );
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

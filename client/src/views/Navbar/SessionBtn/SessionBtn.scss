@@ -1,0 +1,36 @@
+.session-buttons {
+    
+  ul {
+      height: 8vh;      
+      list-style: none;
+      margin: 0 1rem;
+      padding: 0;
+      display: flex;
+  }
+
+  .session-link { 
+      height: 56px;     
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+  }
+
+  li {
+      padding: 0.5rem;
+  }
+
+  a {   
+      color: #000000;;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px solid green;  
+      }
+
+      &:active,
+      &.active {
+        background-color: lightgray;        
+        border-bottom: 1px solid red;        
+      }
+  }
+}
