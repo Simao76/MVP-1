@@ -48,7 +48,7 @@ export const signOut = async () => {
 export const loadUserInformation = async () => {
   try {
     const response = await AuthenticationService.get(`/user-information`);
-    console.log(response.data.user)
+    //console.log(response.data.user)
     return response.data.user;
   } catch (error) {
     throw error;

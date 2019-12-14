@@ -16,7 +16,8 @@ const relevantLeagueIds = [
   "French Ligue 1",
   "Spanish La Liga",
   "Portuguese Primeira Liga",
-  "Brazilian Brasileirao"
+  "Brazilian Brasileirao",
+  "Argentinian Primera Division"
 ];
 
 // Search teams from API
@@ -46,7 +47,7 @@ const listLeagueDetails = async leagueIds => {
   return leagueDetails;
 };
 
-const League = require("./models/league");
+const League = require("../models/league");
 
 const loadAllData = async () => {
   const leagues = await listAllLeagues();

@@ -13,7 +13,7 @@ import Login from "./views/auth/Login";
 import Confirmation from "./views/auth/Confirmation";
 
 import UserProfile from "./views/UserProfile/userProfile";
-//import { getFootball as getFootballService } from "./services/Sports";
+import { getFootball as getFootballService } from "./services/Sports";
 import { loadUserInformation as loadUserInformationService } from './services/auth/auth-service';
 import SearchResults from "./views/Search/SearchResults";
 import "./App.scss";
@@ -38,12 +38,12 @@ class App extends Component {
   async componentDidMount() {
     try {
       const user = await loadUserInformationService();
-      //const footballLeagues = await getFootballService();
-      //console.log(footballLeagues);
+      const footballLeagues = await getFootballService();
+      console.log(footballLeagues);
       this.setState({
-        user,
+        //user,
         loaded: true,
-        //sports: footballLeagues
+        sports: footballLeagues
       });
     } catch (error) {
       console.log(error);

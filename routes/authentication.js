@@ -61,6 +61,20 @@ router.post(
   }
 );
 
+/* // GOOGLE SIGNUP/IN
+router.get('/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', "email"]
+  }));
+
+router.get('/auth/google/redirect',
+  passport.authenticate('google', (req, res, next) => {
+    const user = req.user;
+    res.json({ user });
+  })
+); */
+
+// LOGOUT
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();
   res.json({});
