@@ -15,7 +15,7 @@ const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js")
 /* const passportConfigure = require('./passport-configuration.js'); */
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/authentication");
-
+const leaguesRouter = require("./routes/leagues");
 const cors = require("cors");
 const teamsRouter = require("./routes/teams");
 
@@ -69,8 +69,8 @@ app.use(
 app.use(bindUserToViewLocals);
 
 // Passport
-require('./passport-configuration');
-const passport = require('passport');
+require("./passport-configuration");
+const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -79,10 +79,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
 app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", teamsRouter);
+app.use("/", leaguesRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
