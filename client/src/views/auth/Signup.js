@@ -61,7 +61,7 @@ class Signup extends Component {
             value={this.state.password}
             required
             onChange={e => this.formChangeHandler(e)}
-          />
+          />          
           <button type="submit">Sign Up</button>
         </form>
         <p>
