@@ -2,16 +2,14 @@
 
 const { Router } = require("express");
 const router = new Router();
-const League = require("./../models/league");
+const Formula = require("../models/formula1");
 //require("../apiServices/load-leagues");
 
-
-
-router.get("/listleagues", (req, res, next) => {
+router.get("/listformula", (req, res, next) => {
   //console.log('BE leagues.js list leagues')
-  League.find()
+  Formula.find()
     .then(leagues => {
-      console.log("leagues.js", leagues)
+      //console.log(leagues)
       res.json({ leagues });
     })
     .catch(err => {

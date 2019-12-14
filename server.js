@@ -42,8 +42,12 @@ const onError = error => {
   }
 };
 
-const onListening = server => {
-  const { port } = server.address();
+const loadLeagues = require("./apiServices/load-leagues");
+
+const onListening = async server => {
+  const { port } = server.address();  
+  await loadLeagues.populateDB();
+  //console.log(loadLeagues)
   debug(`Node server listening on ${ port }`);
   if (process.env.NODE_ENV === 'development') debug(`Visit http://localhost:3000 while developing`);
 };

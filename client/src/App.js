@@ -13,7 +13,10 @@ import Login from "./views/auth/Login";
 import Confirmation from "./views/auth/Confirmation";
 
 import UserProfile from "./views/UserProfile/userProfile";
-import { getFootball as getFootballService } from "./services/Sports";
+import { 
+  getFootball as getFootballService, 
+  getBasketball as getBasketballService 
+} from "./services/Sports";
 import { loadUserInformation as loadUserInformationService } from './services/auth/auth-service';
 import SearchResults from "./views/Search/SearchResults";
 import "./App.scss";
@@ -28,7 +31,10 @@ class App extends Component {
         teams: "",
         players: ""
       },
-      sports: "",
+      sports: {
+        football: "",
+        basketball: ""
+      },
       loggedInUser: null
     };
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(this);
@@ -39,11 +45,15 @@ class App extends Component {
     try {
       const user = await loadUserInformationService();
       const footballLeagues = await getFootballService();
-      console.log(footballLeagues);
+      const basketballLeagues = await getBasketballService();
+      //console.log(footballLeagues);
       this.setState({
-        //user,
+        user,
         loaded: true,
-        sports: footballLeagues
+        sports: {
+          football: footballLeagues,
+          basketball: basketballLeagues
+        } 
       });
     } catch (error) {
       console.log(error);
@@ -77,15 +87,14 @@ class App extends Component {
         <header>
           <Navbar user={this.state.user} changeAuthenticationStatus={this.changeAuthenticationStatus} getSearch={this.searchResults} />
         </header>
-
         <main>
           <Switch>
             <Route path="/profile/:name" exact render={props => <UserProfile {...props} user={this.state.user} />} />
             <Route path="/confirmation/:token" exact render={props => <Confirmation {...props} user={this.state.user} />} />
             <Route path="/signup" render={props => <Signup {...props} changeAuthenticationStatus={this.changeAuthenticationStatus} user={this.state.user}/>} />
             <Route path="/login" render={() => <Login changeAuthenticationStatus={this.changeAuthenticationStatus} user={this.state.user} />} />
-            <Route path="/football" render={() => <Football sports={this.state.sports} />} />
-            <Route path="/basketball" component={Basketball} />
+            <Route path="/football" render={() => <Football sports={this.state.sports.football} />} />
+            <Route path="/basketball" render={() => <Basketball sports={this.state.sports.basketball} />} />
             <Route path="/tennis" component={Tennis} />
             <Route path="/formula1" component={Formula1} />
             <Route path="/fighting" component={Fighting} />

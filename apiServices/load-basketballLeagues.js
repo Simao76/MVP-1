@@ -3,27 +3,28 @@ const mongoose = require("mongoose");
 const URI = process.env.MONGODB_URI;
 const axios = require("axios");
 
-const footballService = axios.create({
+const basketballService = axios.create({
   baseURL: "https://www.thesportsdb.com/api/v1/json/1"
 });
 
 const relevantLeagueIds = [
-  "UEFA Champions League",
-  "UEFA Europa League",
-  "English Premier League",
-  "German Bundesliga",
-  "Italian Serie A",
-  "French Ligue 1",
-  "Spanish La Liga",
-  "Portuguese Primeira Liga",
-  "Brazilian Brasileirao",
-  "Argentinian Primera Division"
+  "NBA",
+  "WNBA",
+  "Spanish Liga ACB",
+  //"Italian Lega Basket",
+  //"British Basketball League",
+  //"Greek Basket League",
+  //"German BBL",
+  //"Euroleague Basketball",
+  //"EuroCup Basketball",
+  //"Basketball Champions League",
+  //"FIBA Basketball World Cup"
 ];
 
 // Search teams from API
 const listAllLeagues = async () => {
   try {
-    const response = await footballService.get(`/all_leagues.php`);
+    const response = await basketballService.get(`/all_leagues.php`);
     const leagues = response.data.leagues;
     const filteredLeagues = leagues.filter(el =>
       relevantLeagueIds.includes(el.strLeague)
@@ -38,7 +39,7 @@ const listAllLeagues = async () => {
 const listLeagueDetails = async leagueIds => {
   let leagueDetails = [];
   for (let id of leagueIds) {
-    const response = await footballService.get(`/lookupleague.php`, {
+    const response = await basketballService.get(`/lookupleague.php`, {
       params: { id: id }
     });
     const details = response.data.leagues[0];
@@ -47,7 +48,7 @@ const listLeagueDetails = async leagueIds => {
   return leagueDetails;
 };
 
-const League = require("../models/league");
+const League = require("../models/basketballLeague");
 
 const loadAllData = async () => {
   const leagues = await listAllLeagues();
@@ -62,11 +63,10 @@ const loadAllData = async () => {
       sport: item.strSport
     };
   });
-  await League.deleteMany({});
   const leagueDocuments = await League.create(formatedLeagues);
   console.log(leagueDocuments);
 };
-/* 
+
 (async () => {
   try {
     await mongoose.connect(URI, {
@@ -80,19 +80,6 @@ const loadAllData = async () => {
     console.log(error);
     process.exit(1);
   } finally {
-    process.exit(0);    
-  } 
-})(); 
-
-*/
-
-const populateDB = async () => {
-  try {
-    await loadAllData();
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
+    process.exit(0);
   }
-}
-
-module.exports.populateDB = populateDB;
+})();

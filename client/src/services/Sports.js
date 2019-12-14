@@ -33,3 +33,14 @@ export const getFootball = async () => {
     throw error;
   }
 };
+
+export const getBasketball = async () => {
+  try {
+    console.log("get basketball")
+    const response = await apiService.get("/listbasketballleagues");
+    //console.log("get basketball - response", response.data.leagues)
+    return response.data.leagues;
+  } catch (error) {
+    throw error;
+  }
+};

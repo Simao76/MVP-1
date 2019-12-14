@@ -8,16 +8,7 @@ const footballService = axios.create({
 });
 
 const relevantLeagueIds = [
-  "UEFA Champions League",
-  "UEFA Europa League",
-  "English Premier League",
-  "German Bundesliga",
-  "Italian Serie A",
-  "French Ligue 1",
-  "Spanish La Liga",
-  "Portuguese Primeira Liga",
-  "Brazilian Brasileirao",
-  "Argentinian Primera Division"
+  "Motorsport",
 ];
 
 // Search teams from API
@@ -62,11 +53,10 @@ const loadAllData = async () => {
       sport: item.strSport
     };
   });
-  await League.deleteMany({});
   const leagueDocuments = await League.create(formatedLeagues);
   console.log(leagueDocuments);
 };
-/* 
+
 (async () => {
   try {
     await mongoose.connect(URI, {
@@ -80,19 +70,6 @@ const loadAllData = async () => {
     console.log(error);
     process.exit(1);
   } finally {
-    process.exit(0);    
-  } 
-})(); 
-
-*/
-
-const populateDB = async () => {
-  try {
-    await loadAllData();
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
+    process.exit(0);
   }
-}
-
-module.exports.populateDB = populateDB;
+})();
