@@ -18,7 +18,7 @@ const userProfile = props => {
           <h1>User profile</h1>
           <p>{props.user.name}</p>
           <p>{props.user.email}</p>
-          <img src={props.user.profilePic} className="profilePic"></img>   
+          <img src={props.user.profilePic} className="profilePic" alt="profile"></img>   
         </div>
       )}   
     </div>

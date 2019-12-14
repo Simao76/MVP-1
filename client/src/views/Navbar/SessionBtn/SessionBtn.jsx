@@ -23,7 +23,7 @@ const SessionBtn = props => {
         )}
 
         {props.user && (
-          <NavLink to="/logout">
+          <NavLink to="/" onClick={props.signOut}>
             <span className="session-link">
               <li>Logout</li>
             </span>
