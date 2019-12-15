@@ -1,35 +1,33 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
-
-class Football extends Component {
+class Motorsports extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      football: ""
+      formula: ""
     };
   }
 
-  async componentDidMount() {   
-    const footballLeagues = await getSportService("Soccer");
+  async componentDidMount() {  
+    const formula1 = await getSportService("Motorsport");
     this.setState({
-      football: footballLeagues
-    });
-  };
+      formula: formula1
+    })
+    //console.log(this.state)
+  }  
 
-  render() {
-    //console.log(this.props.history.location.pathname);
-    const leagues = this.state.football; 
+  render() {    
+    const formula1 = this.state.formula;  
+    
     return (
       <div className="card-container">
-        {leagues &&
-          leagues.map(item => (
+        {formula1 &&
+          formula1.map(item => (
             <LeagueCard
               key={item.idLeague}
-              id={item.idLeague}
               src={item.badge}
               alt={item.name}
               title={item.name}        
@@ -37,7 +35,7 @@ class Football extends Component {
           ))}                 
       </div>
     );
-  };
-};
+  } 
+}
 
-export default withRouter(Football);
+export default Motorsports;

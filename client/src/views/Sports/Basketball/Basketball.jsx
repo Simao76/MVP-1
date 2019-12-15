@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-//import { getBasketball as getFootballService } from "../../../services/Sports";
 import { getSport as getSportService } from "../../../services/Sports";
+import LeagueCard from "../../../components/leagueCard/leagueCard";
+import "../sports.scss";
 
 class Basketball extends Component {
   constructor(props) {
@@ -20,18 +21,18 @@ class Basketball extends Component {
   render() {
     const leagues = this.state.basketball;    
     return (
-      <div>
-        <h1>Basketball</h1>
+      <div className="card-container">
         {leagues &&
           leagues.map(item => (
-            <div key={item.idLeague}>
-              <img src={item.badge} alt={item.name} title={item.name}></img>
-              <button>Like</button>
-              <p>{item.description}</p>
-            </div>
-        ))}
+            <LeagueCard
+              key={item.idLeague}
+              src={item.badge}
+              alt={item.name}
+              title={item.name}        
+            />            
+          ))}                 
       </div>
-    ); 
+    );
   } 
 }
 
