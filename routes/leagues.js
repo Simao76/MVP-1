@@ -11,7 +11,7 @@ router.get("/listleagues", (req, res, next) => {
   //console.log('BE leagues.js list leagues')
   League.find()
     .then(leagues => {
-      console.log("leagues.js", leagues)
+      //console.log("leagues.js", leagues)
       res.json({ leagues });
     })
     .catch(err => {

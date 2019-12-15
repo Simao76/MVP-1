@@ -1,7 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
+//import { getBasketball as getFootballService } from "../../../services/Sports";
+import { getSport as getSportService } from "../../../services/Sports";
 
-const Basketball = props => {
-    const leagues = props.sports;
+class Basketball extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      basketball: ""
+    };
+  }
+
+  async componentDidMount() {   
+    const basketballLeagues = await getSportService("Basketball");
+    this.setState({
+      basketball: basketballLeagues
+    })
+  }  
+
+  render() {
+    const leagues = this.state.basketball;    
     return (
       <div>
         <h1>Basketball</h1>
@@ -12,9 +29,10 @@ const Basketball = props => {
               <button>Like</button>
               <p>{item.description}</p>
             </div>
-          ))}
+        ))}
       </div>
-    );  
+    ); 
+  } 
 }
 
 export default Basketball;

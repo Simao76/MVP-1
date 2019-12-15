@@ -17,7 +17,23 @@ const relevantLeagueIds = [
   "Spanish La Liga",
   "Portuguese Primeira Liga",
   "Brazilian Brasileirao",
-  "Argentinian Primera Division"
+  "Argentinian Primera Division",
+  "NBA",
+  "WNBA",
+  "Spanish Liga ACB",
+  "Italian Lega Basket",
+  "British Basketball League",
+  "Greek Basket League",
+  "German BBL",
+  "Euroleague Basketball",
+  "EuroCup Basketball",
+  "Basketball Champions League",
+  "FIBA Basketball World Cup",
+  "Formula 1",
+  "UFC",
+  "WWE",
+  "Boxing",
+  "ATP World Tour"
 ];
 
 // Search teams from API
@@ -28,6 +44,7 @@ const listAllLeagues = async () => {
     const filteredLeagues = leagues.filter(el =>
       relevantLeagueIds.includes(el.strLeague)
     );
+    //console.log("listAllLeages", filteredLeagues)
     return filteredLeagues;
   } catch (error) {
     console.log(error);

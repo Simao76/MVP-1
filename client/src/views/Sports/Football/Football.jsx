@@ -1,14 +1,21 @@
 import React, { Component } from "react";
+//import { getFootball as getFootballService } from "../../../services/Sports";
+import { getSport as getSportService } from "../../../services/Sports";
 
 class Football extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      footballLeagues: ""
+      football: ""
     };
   }
 
-  // componentDidMount() (relacionado com o getfootball)
+  async componentDidMount() {   
+    const footballLeagues = await getSportService("Soccer");
+    this.setState({
+      football: footballLeagues
+    })
+  }
 
   render() {
     /*  console.log(this.props);
@@ -33,7 +40,7 @@ class Football extends Component {
       });
     } */
 
-    const leagues = this.props.sports;
+    const leagues = this.state.football;
     return (
       <div>
         <h1>Football</h1>
