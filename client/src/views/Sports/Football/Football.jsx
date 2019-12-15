@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { helpers } from "handlebars";
 
 class Football extends Component {
   constructor(props) {
@@ -11,10 +12,10 @@ class Football extends Component {
   // componentDidMount() (relacionado com o getfootball)
 
   render() {
-    /*  console.log(this.props);
-    let leagues = this.props.sports.leagues;
+    console.log(this.props);
+    /* let leagues = this.props.sports.leagues; */
 
-    let filteredLeagues;
+    /*   let filteredLeagues;
     if (leagues) {
       filteredLeagues = leagues.filter(el => {
         if (
@@ -31,13 +32,12 @@ class Football extends Component {
           return true;
         }
       });
-    } */
-
+    }
+ */
     const leagues = this.props.sports;
     return (
       <div>
         <h1>Football</h1>
-
         {leagues &&
           leagues.map(item => (
             <div key={item.idLeague}>

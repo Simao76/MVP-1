@@ -3,7 +3,7 @@
 const { Router } = require("express");
 const router = new Router();
 const League = require("./../models/league");
-//require("../apiServices/load-leagues");
+require("../apiServices/load-leagues");
 
 router.get("/listleagues", (req, res, next) => {
   //console.log('BE leagues.js list leagues')
