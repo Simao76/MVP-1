@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Home from "./views/Home/Home";
-import Navbar from "./views/Navbar/Navbar";
-import Footer from "./views/Footer/Footer";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import Football from "./views/Sports/Football/Football";
 import Basketball from "./views/Sports/Basketball/Basketball";
 import Tennis from "./views/Sports/Tennis/Tennis";
-import Formula1 from "./views/Sports/Formula1/Formula1";
+import Motorsports from "./views/Sports/Motorsports/Motorsports";
 import Fighting from "./views/Sports/Fighting/Fighting";
 import Signup from "./views/auth/Signup";
 import Login from "./views/auth/Login";
@@ -14,6 +14,7 @@ import Confirmation from "./views/auth/Confirmation";
 import UserProfile from "./views/UserProfile/userProfile";
 import { loadUserInformation as loadUserInformationService } from './services/auth/auth-service';
 import SearchResults from "./views/Search/SearchResults";
+import SingleLeague from "./views/Sports/SingleLeague/SingleLeague"
 import "./App.scss";
 
 class App extends Component {
@@ -75,6 +76,11 @@ class App extends Component {
 
         <main>
           <Switch>
+            <Route path="/football/:id" render={props => <SingleLeague {...props} user={this.state.user} />} />
+            <Route path="/basketball/:id" component = {SingleLeague} />
+            <Route path="/tennis/:id" component = {SingleLeague} />
+            <Route path="/motorsports/:id" component = {SingleLeague} />
+            <Route path="/fighting/:id" component = {SingleLeague} />
             <Route path="/profile/:name" exact render={props => <UserProfile {...props} user={this.state.user} />} />
             <Route path="/confirmation/:token" exact render={props => <Confirmation {...props} user={this.state.user} />} />
             <Route path="/signup" render={props => <Signup {...props} changeAuthenticationStatus={this.changeAuthenticationStatus} user={this.state.user}/>} />
@@ -82,7 +88,7 @@ class App extends Component {
             <Route path="/football" render={() => <Football />} />
             <Route path="/basketball" render={() => <Basketball />} />
             <Route path="/tennis" component={Tennis} />
-            <Route path="/formula1" component={Formula1} />
+            <Route path="/motorsports" component={Motorsports} />
             <Route path="/fighting" component={Fighting} />
             <Route path="/search/:name" exact render={() => <SearchResults search={this.state.search} />} />
             <Route path="/" component={Home} />

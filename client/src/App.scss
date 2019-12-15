@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+}
+
 .App {
   display: flex;
   min-height: 100vh;
@@ -11,6 +15,7 @@
   text-align: center;
 
   main {
+    width: 100%;
     flex: 1;
   }
 }

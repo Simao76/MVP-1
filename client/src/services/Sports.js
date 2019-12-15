@@ -23,6 +23,39 @@ const apiService = axios.create({
   withCredentials: true
 });
 
+export const getSport = async sport => {
+  try {
+    const response = await apiService.get("/listleagues");
+    const filterSport = response.data.leagues.filter(el => {
+      if (el.sport === sport) {
+        return true
+      }
+      
+    })
+    return filterSport
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getTeamsInALeague = async league => {
+  try {
+    const response = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=${league}`);
+    //console.log(response.data.teams)
+    return response.data.teams
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
+/* https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League */
+
+
+
+
+
 /* export const getFootball = async () => {
   try {
     //console.log("get football")
@@ -55,23 +88,7 @@ export const getBasketball = async () => {
   }
 }; */
 
-
-export const getSport = async sport => {
-  try {
-    const response = await apiService.get("/listleagues");
-    const filterSport = response.data.leagues.filter(el => {
-      if (el.sport === sport) {
-        return true
-      }
-      
-    })
-    return filterSport
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getFormula = async sport => {
+/* export const getFormula = async sport => {
   try {
     const response = await apiService.get("/listleagues");
     console.log(response)
@@ -79,4 +96,4 @@ export const getFormula = async sport => {
   } catch (error) {
     throw error;
   }
-};
+}; */

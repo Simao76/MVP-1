@@ -3,27 +3,29 @@ import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
-class Basketball extends Component {
+class Motorsports extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      basketball: ""
+      formula: ""
     };
   }
 
-  async componentDidMount() {   
-    const basketballLeagues = await getSportService("Basketball");
+  async componentDidMount() {  
+    const formula1 = await getSportService("Motorsport");
     this.setState({
-      basketball: basketballLeagues
+      formula: formula1
     })
+    //console.log(this.state)
   }  
 
-  render() {
-    const leagues = this.state.basketball;    
+  render() {    
+    const formula1 = this.state.formula;  
+    
     return (
       <div className="card-container">
-        {leagues &&
-          leagues.map(item => (
+        {formula1 &&
+          formula1.map(item => (
             <LeagueCard
               key={item.idLeague}
               src={item.badge}
@@ -36,4 +38,4 @@ class Basketball extends Component {
   } 
 }
 
-export default Basketball;
+export default Motorsports;
