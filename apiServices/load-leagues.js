@@ -17,7 +17,23 @@ const relevantLeagueIds = [
   "Spanish La Liga",
   "Portuguese Primeira Liga",
   "Brazilian Brasileirao",
-  "Argentinian Primera Division"
+  "Argentinian Primera Division",
+  "NBA",
+  "WNBA",
+  "Spanish Liga ACB",
+  "Italian Lega Basket",
+  "British Basketball League",
+  "Greek Basket League",
+  "German BBL",
+  "Euroleague Basketball",
+  "EuroCup Basketball",
+  "Basketball Champions League",
+  "FIBA Basketball World Cup",
+  "Formula 1",
+  "UFC",
+  "WWE",
+  "Boxing",
+  "ATP World Tour"
 ];
 
 // Search teams from API
@@ -28,6 +44,7 @@ const listAllLeagues = async () => {
     const filteredLeagues = leagues.filter(el =>
       relevantLeagueIds.includes(el.strLeague)
     );
+    //console.log("listAllLeages", filteredLeagues)
     return filteredLeagues;
   } catch (error) {
     console.log(error);
@@ -62,10 +79,11 @@ const loadAllData = async () => {
       sport: item.strSport
     };
   });
+  await League.deleteMany({});
   const leagueDocuments = await League.create(formatedLeagues);
   console.log(leagueDocuments);
 };
-
+/* 
 (async () => {
   try {
     await mongoose.connect(URI, {
@@ -79,6 +97,19 @@ const loadAllData = async () => {
     console.log(error);
     process.exit(1);
   } finally {
-    process.exit(0);
+    process.exit(0);    
+  } 
+})(); 
+
+*/
+
+const populateDB = async () => {
+  try {
+    await loadAllData();
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
   }
-})();
+}
+
+module.exports.populateDB = populateDB;

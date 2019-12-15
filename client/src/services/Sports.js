@@ -23,12 +23,59 @@ const apiService = axios.create({
   withCredentials: true
 });
 
-export const getFootball = async () => {
+/* export const getFootball = async () => {
   try {
     //console.log("get football")
     const response = await apiService.get("/listleagues");
-    //console.log("get football - response", response.data.leagues)
-    return response.data.leagues;
+    const filterFootball = response.data.leagues.filter(el => {
+      if (el.sport === "Soccer") {
+        return true
+      }
+    });
+    //console.log("get football - response", filterFootball)
+    return filterFootball;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getBasketball = async () => {
+  try {
+    console.log("get basketball")
+    const response = await apiService.get("/listleagues");
+    const filterBasketball = response.data.leagues.filter(el => {
+      if (el.sport === "Basketball") {
+        return true
+      }
+    });
+    console.log("get basketball - response", filterBasketball)
+    return filterBasketball;
+  } catch (error) {
+    throw error;
+  }
+}; */
+
+
+export const getSport = async sport => {
+  try {
+    const response = await apiService.get("/listleagues");
+    const filterSport = response.data.leagues.filter(el => {
+      if (el.sport === sport) {
+        return true
+      }
+      
+    })
+    return filterSport
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getFormula = async sport => {
+  try {
+    const response = await apiService.get("/listleagues");
+    console.log(response)
+    return response
   } catch (error) {
     throw error;
   }
