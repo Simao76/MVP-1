@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-require('dotenv').config();
+require("dotenv").config();
 
-const debug = require('debug')('mvp:server');
-const app = require('./app');
-const mongoose = require('mongoose');
+const debug = require("debug")("mvp:server");
+const app = require("./app");
+const mongoose = require("mongoose");
 
 const PORT = parseInt(process.env.PORT, 10);
 const URI = process.env.MONGODB_URI;
@@ -12,31 +12,31 @@ const URI = process.env.MONGODB_URI;
 const terminate = error => {
   if (error) debug(error);
   const exitCode = error && error instanceof Error ? 1 : 0;
-  debug('Terminating node app.');
+  debug("Terminating node app.");
   mongoose.disconnect().finally(() => {
-    debug('Disconnected from database.');
+    debug("Disconnected from database.");
     process.exit(exitCode);
   });
 };
 
-process.on('SIGINT', () => terminate());
-process.on('SIGTERM', () => terminate());
-process.on('uncaughtException', error => {
-  debug('There was an uncaught exception.');
+process.on("SIGINT", () => terminate());
+process.on("SIGTERM", () => terminate());
+process.on("uncaughtException", error => {
+  debug("There was an uncaught exception.");
   terminate(error);
 });
-process.on('unhandledRejection', error => {
-  debug('There was an unhandled promise rejection.');
+process.on("unhandledRejection", error => {
+  debug("There was an unhandled promise rejection.");
   terminate(error);
 });
 
 const onError = error => {
   const { syscall, port, code } = error;
-  if (syscall === 'listen' && code === 'EADDRINUSE') {
+  if (syscall === "listen" && code === "EADDRINUSE") {
     console.error(`Port ${port} is already in use`);
     process.exit(1);
   } else {
-    console.error('There was an unknown error.');
+    console.error("There was an unknown error.");
     debug(error);
     throw error;
   }
@@ -45,20 +45,24 @@ const onError = error => {
 // Check with Zé ! ----------------------------------------------------------------------------------
 const loadLeagues = require("./apiServices/load-leagues");
 
+const loadTeams = require("./apiServices/load-teams");
+
 const onListening = async server => {
-  const { port } = server.address();  
-  await loadLeagues.populateDB();
+  const { port } = server.address();
+  /*  await loadLeagues.populateDB();  */
+  await loadTeams.populateDB();
   //console.log(loadLeagues)
-  debug(`Node server listening on ${ port }`);
-  if (process.env.NODE_ENV === 'development') debug(`Visit http://localhost:3000 while developing`);
+  debug(`Node server listening on ${port}`);
+  if (process.env.NODE_ENV === "development")
+    debug(`Visit http://localhost:3000 while developing`);
 };
 
 const initiate = () => {
-  app.set('port', PORT);
+  app.set("port", PORT);
 
   const server = app.listen(PORT);
-  server.on('error', error => onError(error));
-  server.on('listening', () => onListening(server));
+  server.on("error", error => onError(error));
+  server.on("listening", () => onListening(server));
 };
 
 mongoose
@@ -68,11 +72,11 @@ mongoose
     useUnifiedTopology: true
   })
   .then(() => {
-    debug(`Database connected to URI "${ URI }"`);
+    debug(`Database connected to URI "${URI}"`);
     initiate();
   })
   .catch(error => {
-    console.error(`There was an error connecting the database to URI "${ URI }"`);
+    console.error(`There was an error connecting the database to URI "${URI}"`);
     debug(error);
     process.exit(1);
   });
