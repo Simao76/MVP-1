@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
@@ -7,27 +8,28 @@ class Motorsports extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formula: ""
+      motorsport: ""
     };
   }
 
   async componentDidMount() {  
-    const formula1 = await getSportService("Motorsport");
+    const motorsport = await getSportService("Motorsport");
     this.setState({
-      formula: formula1
+      motorsport: motorsport
     })
     //console.log(this.state)
   }  
 
   render() {    
-    const formula1 = this.state.formula;  
+    const motorsport = this.state.motorsport;  
     
     return (
       <div className="card-container">
-        {formula1 &&
-          formula1.map(item => (
+        {motorsport &&
+          motorsport.map(item => (
             <LeagueCard
               key={item.idLeague}
+              id={item.idLeague}
               src={item.badge}
               alt={item.name}
               title={item.name}        
@@ -38,4 +40,4 @@ class Motorsports extends Component {
   } 
 }
 
-export default Motorsports;
+export default withRouter(Motorsports);

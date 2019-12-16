@@ -21,6 +21,7 @@ class Football extends Component {
   };
 
   render() {
+    //console.log(this.state.football)
     //console.log(this.props.history.location.pathname);
     const leagues = this.state.football; 
     return (
@@ -28,6 +29,7 @@ class Football extends Component {
         {leagues &&
           leagues.map(item => (
             <LeagueCard
+              {...this.props}
               key={item.idLeague}
               id={item.idLeague}
               src={item.badge}

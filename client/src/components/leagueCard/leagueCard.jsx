@@ -4,13 +4,13 @@ import LikeBtn from "../Buttons/likeBtn";
 import "./leagueCard.scss";
 
 const leagueCard = props => {
-  //console.log(props.key)
+  //console.log(props)
   return (
     <div className="league-card">
-      <Link to={`${props.history.location.pathname}/${props.title}`}>
-        <img src={props.src} alt={props.alt} title={props.title}></img>     
+      <Link to={`${props.history.location.pathname}/${props.id}`}>      
+        <img src={props.src} alt={props.alt} title={props.title}></img> 
       </Link>
-      <LikeBtn />
+      <LikeBtn {...props}/>
     </div>
   )
 }

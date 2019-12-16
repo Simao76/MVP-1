@@ -30,7 +30,7 @@ export const getSport = async sport => {
       if (el.sport === sport) {
         return true
       }
-      
+      return false
     })
     return filterSport
   } catch (error) {
@@ -48,11 +48,19 @@ export const getTeamsInALeague = async league => {
   }
 };
 
-
-
-/* https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League */
-
-
+export const getEvents = async id => {
+  try {
+    let response = [];
+    const responseLast = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=${id}`);
+    response.push(responseLast.data.events);
+    const responseNext = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${id}`);
+    response.push(responseNext.data.events);
+    //console.log(response);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
 
 
