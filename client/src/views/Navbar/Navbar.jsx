@@ -8,7 +8,6 @@ import {
   getTeam as getTeamService,
   getPlayer as getPlayerService
 } from "../../services/Seach";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./navbar.scss";
 
 class Navbar extends Component {
@@ -61,7 +60,7 @@ class Navbar extends Component {
           <img src={Logo} alt="logo" />
         </Link>
         <NavigationItems />
-        <form onSubmit={this.formSubmissionHandler} className="search-form">
+        <form onSubmit={this.formSubmissionHandler}>
           <input
             type="search"
             name="search"
@@ -72,7 +71,6 @@ class Navbar extends Component {
         </form>
         <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
         {/* <button onClick={this.signOutHandler}>Logout</button> */}
-        <div className="burger-menu"><FontAwesomeIcon icon="bars"/></div>
       </nav>
     );
   }

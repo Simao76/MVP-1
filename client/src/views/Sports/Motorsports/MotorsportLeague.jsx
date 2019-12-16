@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { getEvents as getEventsService } from '../../../services/Sports';
 
-class SingleLeague extends Component {
+class MotorsportLeague extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,29 +30,27 @@ class SingleLeague extends Component {
   render() { 
     const events = this.state.events
     //console.log(this.props.match)
-    console.log(events)
     
     return (
       <div>
-        <div>
-          <h3>Latest games</h3>
+      <div>
+          <h3>Latest events</h3>
             {events[0] && events[0].map(el => (
               <Fragment key={el.idEvent}>
-                <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>                
-                <div>                  
-                </div>          
+                <div><p>{el.strEvent}</p></div>
+                <div><p>{el.dateEvent}</p></div>
+                <div><p>{el.strCountry}</p></div>
+                <div><p>{el.strCity}</p></div>
+                <div><p>{el.strCircuit}</p></div>
               </Fragment>
             ))}
         </div>
         <div>
-          <h3>Next games</h3>
+          <h3>Next events</h3>
             {events[1] && events[1].map(el => (
               <Fragment key={el.idEvent}>
-              <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>
-                <div>                  
-                </div>          
+                <div><p>{el.strEvent}</p></div>     
+                <div><p>{el.strDescriptionEN}</p></div>     
               </Fragment>
             ))}
         </div>
@@ -61,4 +59,4 @@ class SingleLeague extends Component {
   }
 }
 
-export default withRouter(SingleLeague);
+export default withRouter(MotorsportLeague);

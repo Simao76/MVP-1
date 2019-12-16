@@ -29,34 +29,32 @@ class SingleLeague extends Component {
 
   render() { 
     const events = this.state.events
-    //console.log(this.props.match)
-    console.log(events)
+    console.log(this.state.events)
     
     return (
       <div>
         <div>
-          <h3>Latest games</h3>
-            {events[0] && events[0].map(el => (
-              <Fragment key={el.idEvent}>
-                <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>                
-                <div>                  
-                </div>          
-              </Fragment>
-            ))}
+        <h3>Latest events</h3>
+          {events[0] && events[0].map(el => (
+            <Fragment key={el.idEvent}>
+              <div><p>{el.strEvent}</p></div>  
+              <div><p>{el.strDescriptionEN}</p></div>        
+              <img src={el.strThumb} alt=""/>
+            </Fragment>
+          ))}
         </div>
         <div>
-          <h3>Next games</h3>
+          <h3>Upcoming games</h3>
             {events[1] && events[1].map(el => (
               <Fragment key={el.idEvent}>
-              <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>
-                <div>                  
-                </div>          
+                <div><p>{el.strEvent}</p></div>
+                <div><p>{el.strDescriptionEN}</p></div>         
+               
               </Fragment>
             ))}
         </div>
       </div>
+      
     )
   }
 }

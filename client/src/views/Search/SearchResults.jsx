@@ -40,7 +40,6 @@ const SearchResults = props => {
 
   return (
     <div>
-      <h1>Search results</h1>
       {
         filteredPlayers && (
           filteredPlayers.map(item => (

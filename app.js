@@ -16,7 +16,7 @@ const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js")
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/authentication");
 const leaguesRouter = require("./routes/leagues");
-const basketballLeaguesRouter = require("./routes/basketballLeagues");
+/* const basketballLeaguesRouter = require("./routes/basketballLeagues"); */
 const cors = require("cors");
 const teamsRouter = require("./routes/teams");
 
@@ -84,7 +84,7 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", teamsRouter);
 app.use("/", leaguesRouter);
-app.use("/", basketballLeaguesRouter);
+/* app.use("/", basketballLeaguesRouter); */
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

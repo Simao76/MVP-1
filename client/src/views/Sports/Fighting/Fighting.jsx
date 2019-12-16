@@ -16,7 +16,7 @@ class Fighting extends Component {
     this.setState({
       fighting: fighting
     })
-    console.log(this.state)
+    //console.log(this.state)
   }  
 
   render() {    
@@ -27,6 +27,7 @@ class Fighting extends Component {
           fighting.map(item => (
             <LeagueCard
               key={item.idLeague}
+              id={item.idLeague}
               src={item.badge}
               alt={item.name}
               title={item.name}        

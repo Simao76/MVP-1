@@ -1,6 +1,7 @@
 import React from 'react';
 
-const LikeBtn = () => {
+const LikeBtn = props => {
+  //console
   return (
     <button>Like</button>
   )

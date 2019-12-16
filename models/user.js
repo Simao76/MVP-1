@@ -42,9 +42,8 @@ const userSchema = new mongoose.Schema(
       unique: true
     },
     teamsFollowing: {
-      type: Number,
-      default: 0,
-      min: 0
+      type: mongoose.Types.ObjectId,
+      ref: 'List'
     }
     /*   playersFollowing: {
     type: Number,
