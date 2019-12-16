@@ -20,12 +20,11 @@ const getTeamsInALeague = async () => {
   }
 };
 
-/* 
 const Team = require("../models/teams");
 
 const loadAllData = async () => {
   const teams = await getTeamsInALeague();
-  
+
   const formatedTeams = teams.map(item => {
     return {
       idTeam: item.idTeam,
@@ -41,8 +40,8 @@ const loadAllData = async () => {
   const teamDocuments = await Team.create(formatedTeams);
   console.log(teamDocuments);
 };
-/* 
-(async () => {
+
+/* (async () => {
   try {
     await mongoose.connect(URI, {
       useNewUrlParser: true,
@@ -58,8 +57,7 @@ const loadAllData = async () => {
     process.exit(0);    
   } 
 })(); 
-
-*/
+ */
 
 const populateDB = async () => {
   try {

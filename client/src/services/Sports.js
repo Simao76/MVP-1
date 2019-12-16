@@ -28,11 +28,11 @@ export const getSport = async sport => {
     const response = await apiService.get("/listleagues");
     const filterSport = response.data.leagues.filter(el => {
       if (el.sport === sport) {
-        return true
+        return true;
       }
-      return false
-    })
-    return filterSport
+      return false;
+    });
+    return filterSport;
   } catch (error) {
     throw error;
   }
@@ -40,9 +40,11 @@ export const getSport = async sport => {
 
 export const getTeamsInALeague = async league => {
   try {
-    const response = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=${league}`);
+    const response = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=${league}`
+    );
     //console.log(response.data.teams)
-    return response.data.teams
+    return response.data.teams;
   } catch (error) {
     throw error;
   }
@@ -51,9 +53,13 @@ export const getTeamsInALeague = async league => {
 export const getEvents = async id => {
   try {
     let response = [];
-    const responseLast = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=${id}`);
+    const responseLast = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=${id}`
+    );
     response.push(responseLast.data.events);
-    const responseNext = await axios.get(`https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${id}`);
+    const responseNext = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventsnextleague.php?id=${id}`
+    );
     response.push(responseNext.data.events);
     //console.log(response);
     return response;
@@ -62,7 +68,26 @@ export const getEvents = async id => {
   }
 };
 
+export const getEventsByTeamId = async id => {
+  try {
+    let response = [];
+    const responseNext = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${id}`
+    );
+    console.log(responseNext.data.events);
+    response.push(responseNext.data.events);
 
+    const responseLast = await axios.get(
+      `https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${id}`
+    );
+    response.push(responseLast.data.results);
+    console.log(responseLast.data.results);
+
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
 
 /* export const getFootball = async () => {
   try {

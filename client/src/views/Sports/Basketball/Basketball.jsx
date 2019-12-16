@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { getSport as getSportService } from "../../../services/Sports";
+import { getEventsByTeamId } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
@@ -12,15 +13,17 @@ class Basketball extends Component {
     };
   }
 
-  async componentDidMount() {   
+  async componentDidMount() {
+    const teamEvents = await getEventsByTeamId("135626");
+    console.log(teamEvents);
     const basketballLeagues = await getSportService("Basketball");
     this.setState({
       basketball: basketballLeagues
-    })
-  }  
+    });
+  }
 
   render() {
-    const leagues = this.state.basketball;    
+    const leagues = this.state.basketball;
     return (
       <div className="card-container">
         {leagues &&
@@ -31,12 +34,12 @@ class Basketball extends Component {
               id={item.idLeague}
               src={item.badge}
               alt={item.name}
-              title={item.name}       
-            />            
-          ))}                 
+              title={item.name}
+            />
+          ))}
       </div>
     );
-  } 
+  }
 }
 
 export default withRouter(Basketball);
