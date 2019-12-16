@@ -4,7 +4,6 @@ import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
-
 class Football extends Component {
   constructor(props) {
     super(props);
@@ -13,17 +12,17 @@ class Football extends Component {
     };
   }
 
-  async componentDidMount() {   
+  async componentDidMount() {
     const footballLeagues = await getSportService("Soccer");
     this.setState({
       football: footballLeagues
     });
-  };
+  }
 
   render() {
     //console.log(this.state.football)
     //console.log(this.props.history.location.pathname);
-    const leagues = this.state.football; 
+    const leagues = this.state.football;
     return (
       <div className="card-container">
         {leagues &&
@@ -34,12 +33,12 @@ class Football extends Component {
               id={item.idLeague}
               src={item.badge}
               alt={item.name}
-              title={item.name}        
-            />            
-          ))}                 
+              title={item.name}
+            />
+          ))}
       </div>
     );
-  };
-};
+  }
+}
 
 export default withRouter(Football);
