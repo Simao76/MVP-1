@@ -89,7 +89,7 @@ const loadAllData = async () => {
   //const teamMap = teamsByLeague.map(item => item);
   //console.log("teams by league", teamMap);
   //console.log("check if all here",teamsByLeague.length)
-  /* const formatedLeagues = leagueDetails.map(item => {
+  const formatedLeagues = leagueDetails.map(item => {
     return {
       idLeague: item.idLeague,
       name: item.strLeague,
@@ -97,7 +97,7 @@ const loadAllData = async () => {
       badge: item.strBadge,
       sport: item.strSport
     };
-  });*/
+  });
 
   /*
     let formated;
@@ -106,7 +106,7 @@ const loadAllData = async () => {
   */
     let newArr = []
     const formatedTeams = teamsByLeague.forEach(el => el.map(item => newArr.push ( {
-      idLeague: item.strLeague,
+      idLeague: item.idLeague,
       name: item.strTeam,
       alternateName: item.strAlternate,
       idTeam: item.idTeam,
@@ -115,12 +115,13 @@ const loadAllData = async () => {
       league: item.strLeague,
       stadium: item.strStadium,
       stadiumDescription: item.stadiumDescription,
+      badge: item.strTeamBadge,
       followersCount: 0
     }
   )))
   console.log("formated teams", newArr)
-  //await League.deleteMany({});
-  //const leagueDocuments = await League.create(formatedLeagues);
+  await League.deleteMany({});
+  const leagueDocuments = await League.create(formatedLeagues);
   await Team.deleteMany({});
   const teamDocuments = await Team.create(newArr);
   //console.log(leagueDocuments);

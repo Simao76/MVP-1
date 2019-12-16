@@ -39,6 +39,9 @@ const teamSchema = new mongoose.Schema(
     stadiumDescription: {
       type: String
     },
+    badge: {
+      type: String,
+    },
     followersCount: {
       type: Number,
       default: 0,

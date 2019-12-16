@@ -38,6 +38,24 @@ export const getSport = async sport => {
   }
 };
 
+export const getTeams = async id => {
+  try {
+    const response = await apiService.get("/listteams");
+    const filterLeague = response.data.teams.filter(el => {
+      if (el.idLeague === id) {
+        return true;
+      }
+      return false;
+    });
+    //console.log(filterLeague)
+    return filterLeague;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+
 export const getTeamsInALeague = async league => {
   try {
     const response = await axios.get(

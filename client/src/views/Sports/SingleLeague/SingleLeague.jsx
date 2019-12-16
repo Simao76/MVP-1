@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
-import { getEvents as getEventsService } from '../../../services/Sports';
+import { getEvents as getEventsService,  getTeams as getTeamsService  } from '../../../services/Sports';
 
 class SingleLeague extends Component {
   constructor(props) {
@@ -13,10 +13,11 @@ class SingleLeague extends Component {
 
   async componentDidMount() {
     try {
-      //const getTeams = await getTeamsService(this.props.match.params.id)
+      const getTeams = await getTeamsService(this.props.match.params.id)
+      console.log(getTeams)
       const getEvents = await getEventsService(this.props.match.params.id)
       this.setState({
-        //teams: getTeams
+        teams: getTeams,
         events: getEvents
       })
       //console.log(this.state.events)
@@ -28,13 +29,21 @@ class SingleLeague extends Component {
   }   
 
   render() { 
-    const events = this.state.events
-    //console.log(this.props.match)
-    console.log(events)
+    const events = this.state.events;
+    const teams = this.state.teams;
+    //console.log(this.state.teams)
+    //console.log(events)
     
     return (
       <div>
         <div>
+          {teams && teams.map(item => ( 
+            <div key={item.idTeam}>
+              <img src={item.badge} alt=""/>
+              <p>{item.name}</p>
+            </div>
+          ))}
+
           <h3>Latest games</h3>
             {events[0] && events[0].map(el => (
               <Fragment key={el.idEvent}>

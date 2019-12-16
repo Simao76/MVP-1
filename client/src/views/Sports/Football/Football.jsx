@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { getSport as getSportService } from "../../../services/Sports";
-import { getEventsByTeamId } from "../../../services/Sports";
+import { getSport as getSportService} from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
@@ -14,8 +13,6 @@ class Football extends Component {
   }
 
   async componentDidMount() {
-    const teamEvents = await getEventsByTeamId("137569");
-    console.log(teamEvents);
     const footballLeagues = await getSportService("Soccer");
     this.setState({
       football: footballLeagues
