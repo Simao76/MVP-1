@@ -18,7 +18,8 @@ const leagueSchema = new mongoose.Schema(
     },
     badge: {
       type: String
-    }
+    },
+    teams: {}
   },
   {
     timestamps: true
