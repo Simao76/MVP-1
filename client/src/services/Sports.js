@@ -92,14 +92,14 @@ export const getEventsByTeamId = async id => {
     const responseNext = await axios.get(
       `https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=${id}`
     );
-    console.log(responseNext.data.events);
+    //console.log(responseNext.data.events);
     response.push(responseNext.data.events);
 
     const responseLast = await axios.get(
       `https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${id}`
     );
     response.push(responseLast.data.results);
-    console.log(responseLast.data.results);
+    //console.log(responseLast.data.results);
 
     return response;
   } catch (error) {

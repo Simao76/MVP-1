@@ -4,7 +4,7 @@ import LikeBtn from "../Buttons/likeBtn";
 import "./leagueCard.scss";
 
 const leagueCard = props => {
-  //console.log(props)
+//  console.log(props)
   return (
     <div className="league-card">
       <Link to={`${props.history.location.pathname}/${props.id}`}>      
