@@ -24,6 +24,9 @@ const teamSchema = new mongoose.Schema(
     intFormedYear: {
       type: String
     },
+    description: {
+      type: String
+    },
     sport: {
       type: String
     },
@@ -39,8 +42,20 @@ const teamSchema = new mongoose.Schema(
     stadiumDescription: {
       type: String
     },
+    stadiumLocation: {
+      type: String
+    },
     badge: {
-      type: String,
+      type: String
+    },
+    jersey: {
+      type: String
+    },
+    banner: {
+      type: String
+    },
+    website: {
+      type: String
     },
     followersCount: {
       type: Number,

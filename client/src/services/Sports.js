@@ -54,7 +54,21 @@ export const getTeams = async id => {
   }
 };
 
-
+export const getOneTeam = async id => {
+  try {
+    const response = await apiService.get("/listteams");
+    const filterTeam = response.data.teams.filter(el => {
+      if (el.idTeam === id) {
+        return true;
+      }
+      return false;
+    });
+    //console.log(filterTeam)
+    return filterTeam;
+  } catch (error) {
+    throw error;
+  }
+}
 
 export const getTeamsInALeague = async league => {
   try {

@@ -106,6 +106,15 @@ class App extends Component {
             />
             
             <Route path="/football" render={() => <Football />} />
+
+            <Route
+            path="/basketball/:id/:id"
+            render={props => (
+              <SingleTeam {...props} user={this.state.user} />
+            )}
+            />
+            
+
             <Route
               path="/basketball/:id"
               render={props => (

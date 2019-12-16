@@ -112,10 +112,15 @@ const loadAllData = async () => {
       idTeam: item.idTeam,
       intFormedYear: item.intFormedYear,
       sport: item.strSport,
+      description: item. strDescriptionEN,
       league: item.strLeague,
       stadium: item.strStadium,
-      stadiumDescription: item.stadiumDescription,
+      stadiumDescription: item.strStadiumDescription,
+      stadiumLocation: item.strStadiumLocation,
       badge: item.strTeamBadge,
+      jersey: item.strTeamJersey,
+      banner: item.strTeamBanner,
+      website: item.strWebsite,
       followersCount: 0
     }
   )))
