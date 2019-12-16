@@ -3,7 +3,7 @@
 const { Router } = require("express");
 const router = new Router();
 
-const Team = require("./../models/teams");
+const Team = require("../models/team");
 require("../apiServices/load-teams");
 
 router.get("/listteams", (req, res, next) => {

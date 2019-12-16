@@ -1,4 +1,4 @@
-"use strict";
+/* "use strict";
 
 const { Router } = require("express");
 const router = new Router();
@@ -17,4 +17,4 @@ router.get("/listbasketballleagues", (req, res, next) => {
     });
 });
 
-module.exports = router;
+module.exports = router; */

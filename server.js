@@ -45,12 +45,12 @@ const onError = error => {
 // Check with Zé ! ----------------------------------------------------------------------------------
 const loadLeagues = require("./apiServices/load-leagues");
 
-const loadTeams = require("./apiServices/load-teams");
+//const loadTeams = require("./apiServices/load-teams");
 
 const onListening = async server => {
   const { port } = server.address();
-  /*  await loadLeagues.populateDB();  */
-  await loadTeams.populateDB();
+    await loadLeagues.populateDB();  
+  //await loadTeams.populateDB();
   //console.log(loadLeagues)
   debug(`Node server listening on ${port}`);
   if (process.env.NODE_ENV === "development")
