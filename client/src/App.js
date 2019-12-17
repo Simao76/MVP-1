@@ -18,14 +18,16 @@ import SearchResults from "./views/Search/SearchResults";
 import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
 //import FootballLeague from "./views/Sports/Football/FootballLeague";
 //import BasketballLeague from "./views/Sports/Basketball/BasketballLeague";
-import TennisLeague from "./views/Sports/Tennis/TennisLeague";
-import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
-import FighthingLeague from "./views/Sports/Fighting/FighthingLeague";
-import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import TennisLeague from './views/Sports/Tennis/TennisLeague';
+import MotorsportLeague from './views/Sports/Motorsports/MotorsportLeague';
+import FighthingLeague from './views/Sports/Fighting/FighthingLeague';
+import SingleTeam from './views/Sports/SingleTeam/SingleTeam';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBars);
+library.add(
+  faBars,
+  faSearch);
 
 class App extends Component {
   constructor(props) {

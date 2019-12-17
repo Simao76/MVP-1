@@ -8,15 +8,15 @@ const SessionBtn = props => {
       <ul>
         {!props.user && (
           <Fragment>
-            <NavLink to="/signup">
-              <span className="session-link">
-                <li>Signup</li>
-              </span>
-            </NavLink>
-
             <NavLink to="/login">
               <span className="navigation-link">
                 <li>Login</li>
+              </span>
+            </NavLink>
+
+            <NavLink to="/signup">
+              <span className="session-link">
+                <li>Signup</li>
               </span>
             </NavLink>
           </Fragment>

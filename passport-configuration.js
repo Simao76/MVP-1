@@ -55,11 +55,12 @@ passport.use(
   "sign-up",  
   new LocalStrategy({    
       //usernameField: "email",
+      //username: "email",
       passReqToCallback: true
     },
     (req, name, password, callback) => {
       const confirmToken = generateId(30);
-      let userObject = {};
+      //let userObject = {};
       //const name = req.body.name;      
       bcryptjs
         .hash(password, 10)

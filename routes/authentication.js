@@ -57,6 +57,7 @@ router.post(
   passport.authenticate("sign-in"),
   (req, res, next) => {
     const user = req.user;
+    console.log(user)
     res.json({ user });
   }
 );

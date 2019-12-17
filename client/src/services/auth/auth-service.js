@@ -10,7 +10,7 @@ import axios from "axios";
   } */
 
 const AuthenticationService = axios.create({
-  baseURL: 'http://localhost:3020'
+  baseURL: ''
 });
 
 /*   signup = (username, email, password) => {
@@ -31,6 +31,7 @@ export const signUp = async data => {
 export const signIn = async data => {
   try {
     const response = await AuthenticationService.post(`/sign-in`, data);
+    console.log(response)
     return response.data.user;
   } catch (error) {
     throw error;
