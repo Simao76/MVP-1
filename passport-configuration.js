@@ -59,9 +59,7 @@ passport.use(
       passReqToCallback: true
     },
     (req, name, password, callback) => {
-      const confirmToken = generateId(30);
-      //let userObject = {};
-      //const name = req.body.name;      
+      const confirmToken = generateId(30);    
       bcryptjs
         .hash(password, 10)
         .then(hash => {

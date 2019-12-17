@@ -16,8 +16,6 @@ import UserProfile from "./views/UserProfile/userProfile";
 import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
 import SearchResults from "./views/Search/SearchResults";
 import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
-//import FootballLeague from "./views/Sports/Football/FootballLeague";
-//import BasketballLeague from "./views/Sports/Basketball/BasketballLeague";
 import TennisLeague from './views/Sports/Tennis/TennisLeague';
 import MotorsportLeague from './views/Sports/Motorsports/MotorsportLeague';
 import FighthingLeague from './views/Sports/Fighting/FighthingLeague';
@@ -42,8 +40,7 @@ class App extends Component {
       sports: "",
       loggedInUser: null
     };
-    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
-      this
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(      this
     );
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
   }
@@ -58,7 +55,7 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-    //console.log(this.state.user)
+    console.log(this.state.user)
   }
 
   changeAuthenticationStatus(user) {
@@ -81,7 +78,6 @@ class App extends Component {
   };
 
   render() {
-    //console.log(this.state.loggedInUser);
     return (
       <div className="App">
         <header>
@@ -108,6 +104,10 @@ class App extends Component {
               path="/football"
               render={() => <Football user={this.state.user} />}
             />
+            <Route
+            path="/basketball/:id/:id"
+            render={props => <SingleTeam {...props} user={this.state.user} />}
+          />
             <Route
               path="/basketball/:id"
               render={props => (

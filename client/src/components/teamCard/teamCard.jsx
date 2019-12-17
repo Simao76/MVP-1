@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import LikeBtn from "../Buttons/likeBtn";
-import "./leagueCard.scss";
+import "./teamCard.scss";
 
-const leagueCard = props => {
-  //console.log("LeagueCard", props);
+const teamCard = props => {
+  //console.log("Team card", props);
   return (
     <div className="league-card">
       <Link to={`${props.history.location.pathname}/${props.id}`}>
@@ -15,4 +15,4 @@ const leagueCard = props => {
   );
 };
 
-export default withRouter(leagueCard);
+export default withRouter(teamCard);

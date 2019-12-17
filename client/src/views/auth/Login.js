@@ -44,6 +44,7 @@ class Login extends Component {
           />
           <label>Password:</label>
           <input
+            type="password"
             name="password"
             value={this.state.password}
             required
