@@ -21,6 +21,7 @@ import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
 import TennisLeague from "./views/Sports/Tennis/TennisLeague";
 import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
 import FighthingLeague from "./views/Sports/Fighting/FighthingLeague";
+import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -91,6 +92,10 @@ class App extends Component {
 
         <main>
           <Switch>
+            <Route
+              path="/football/:id/:id"
+              render={props => <SingleTeam {...props} user={this.state.user} />}
+            />
             <Route
               path="/football/:id"
               render={props => (

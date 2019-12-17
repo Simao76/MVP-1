@@ -15,7 +15,7 @@ class Basketball extends Component {
 
   async componentDidMount() {
     const teamEvents = await getEventsByTeamId("135626");
-    console.log(teamEvents);
+    //console.log(teamEvents);
     const basketballLeagues = await getSportService("Basketball");
     this.setState({
       basketball: basketballLeagues
