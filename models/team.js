@@ -18,7 +18,7 @@ const teamSchema = new mongoose.Schema(
     },
     idTeam: {
       //from TheSportsDB
-      type: String,
+      type: String
       //required: true
     },
     intFormedYear: {
@@ -40,7 +40,7 @@ const teamSchema = new mongoose.Schema(
       type: String
     },
     badge: {
-      type: String,
+      type: String
     },
     followersCount: {
       type: Number,

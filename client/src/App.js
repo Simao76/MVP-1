@@ -97,14 +97,20 @@ class App extends Component {
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            <Route path="/football" render={() => <Football />} />
+            <Route
+              path="/football"
+              render={() => <Football user={this.state.user} />}
+            />
             <Route
               path="/basketball/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            <Route path="/basketball" render={() => <Basketball />} />
+            <Route
+              path="/basketball"
+              render={() => <Basketball user={this.state.user} />}
+            />
             <Route
               path="/tennis/:id"
               render={props => (

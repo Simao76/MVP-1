@@ -12,32 +12,33 @@ class Motorsports extends Component {
     };
   }
 
-  async componentDidMount() {  
+  async componentDidMount() {
     const motorsport = await getSportService("Motorsport");
     this.setState({
       motorsport: motorsport
-    })
+    });
     //console.log(this.state)
-  }  
+  }
 
-  render() {    
-    const motorsport = this.state.motorsport;  
-    
+  render() {
+    const motorsport = this.state.motorsport;
+
     return (
       <div className="card-container">
         {motorsport &&
           motorsport.map(item => (
             <LeagueCard
+              mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}
               src={item.badge}
               alt={item.name}
-              title={item.name}        
-            />            
-          ))}                 
+              title={item.name}
+            />
+          ))}
       </div>
     );
-  } 
+  }
 }
 
 export default withRouter(Motorsports);

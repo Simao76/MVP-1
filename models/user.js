@@ -41,10 +41,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: true
     },
-    teamsFollowing: {
-      type: mongoose.Types.ObjectId,
-      ref: 'List'
-    }
+    _myTeams: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Team"
+      }
+    ]
     /*   playersFollowing: {
     type: Number,
     default: 0,

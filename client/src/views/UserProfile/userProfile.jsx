@@ -1,9 +1,9 @@
-import React from 'react';
-import './userProfile.scss';
+import React from "react";
+import "./userProfile.scss";
 
 const userProfile = props => {
-  console.log(props.user, props.history)
-/*   let user;
+  console.log(props.user, props.history);
+  /*   let user;
   props.user ? user = props.user : user = `You don't have permission to see this page` */
   return (
     <div>
@@ -18,11 +18,16 @@ const userProfile = props => {
           <h1>User profile</h1>
           <p>{props.user.name}</p>
           <p>{props.user.email}</p>
-          <img src={props.user.profilePic} className="profilePic" alt="profile"></img>   
+          <img
+            src={props.user.profilePic}
+            className="profilePic"
+            alt="profile"
+          ></img>
+          <h4>Following:</h4>
         </div>
-      )}   
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default userProfile;

@@ -19,7 +19,7 @@ const leaguesRouter = require("./routes/leagues");
 /* const basketballLeaguesRouter = require("./routes/basketballLeagues"); */
 const cors = require("cors");
 const teamsRouter = require("./routes/teams");
-
+const userRouter = require("./routes/user");
 const app = express();
 
 app.set("views", join(__dirname, "views"));
@@ -84,6 +84,7 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use("/", teamsRouter);
 app.use("/", leaguesRouter);
+app.use("/user", userRouter);
 /* app.use("/", basketballLeaguesRouter); */
 
 // Catch missing routes and forward to error handler
