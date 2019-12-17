@@ -68,7 +68,7 @@ class Navbar extends Component {
             value={this.state.search}
             onChange={this.onChangeHandler}
           ></input>
-          <button>Submit</button>
+          <button><FontAwesomeIcon icon="search"/></button>
         </form>
         <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
         {/* <button onClick={this.signOutHandler}>Logout</button> */}

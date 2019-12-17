@@ -13,8 +13,8 @@ class MotorsportLeague extends Component {
 
   async componentDidMount() {
     try {
-      //const getTeams = await getTeamsService(this.props.match.params.id)
-      const getEvents = await getEventsService(this.props.match.params.id)
+      //const getTeam = await getTeamsService(this.props.match.params.id);
+      const getEvents = await getEventsService(this.props.match.params.id);
       this.setState({
         //teams: getTeams
         events: getEvents

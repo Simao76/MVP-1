@@ -23,9 +23,11 @@ import MotorsportLeague from './views/Sports/Motorsports/MotorsportLeague';
 import FighthingLeague from './views/Sports/Fighting/FighthingLeague';
 import SingleTeam from './views/Sports/SingleTeam/SingleTeam';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faBars);
+library.add(
+  faBars,
+  faSearch);
 
 class App extends Component {
   constructor(props) {
