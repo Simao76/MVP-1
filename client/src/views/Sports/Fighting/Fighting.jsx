@@ -11,31 +11,32 @@ class Fighting extends Component {
     };
   }
 
-  async componentDidMount() {  
+  async componentDidMount() {
     const fighting = await getSportService("Fighting");
     this.setState({
       fighting: fighting
-    })
+    });
     //console.log(this.state)
-  }  
+  }
 
-  render() {    
-    const fighting = this.state.fighting;    
+  render() {
+    const fighting = this.state.fighting;
     return (
       <div className="card-container">
         {fighting &&
           fighting.map(item => (
             <LeagueCard
+              mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}
               src={item.badge}
               alt={item.name}
-              title={item.name}        
-            />            
-          ))}                 
+              title={item.name}
+            />
+          ))}
       </div>
     );
-  } 
+  }
 }
 
 export default Fighting;

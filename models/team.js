@@ -18,7 +18,7 @@ const teamSchema = new mongoose.Schema(
     },
     idTeam: {
       //from TheSportsDB
-      type: String,
+      type: String
       //required: true
     },
     intFormedYear: {

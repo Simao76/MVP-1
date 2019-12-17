@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import './App.scss';
-import Home from './views/Home/Home';
-import Navbar from './components/Navbar/Navbar';
-import Footer from './components/Footer/Footer';
-import Football from './views/Sports/Football/Football';
-import Basketball from './views/Sports/Basketball/Basketball';
-import Tennis from './views/Sports/Tennis/Tennis';
-import Motorsports from './views/Sports/Motorsports/Motorsports';
-import Fighting from './views/Sports/Fighting/Fighting';
-import Signup from './views/auth/Signup';
-import Login from './views/auth/Login';
-import Confirmation from './views/auth/Confirmation';
-import UserProfile from './views/UserProfile/userProfile';
-import { loadUserInformation as loadUserInformationService } from './services/auth/auth-service';
-import SearchResults from './views/Search/SearchResults';
-import SingleLeague from './views/Sports/SingleLeague/SingleLeague';
+import React, { Component } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
+import "./App.scss";
+import Home from "./views/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
+import Football from "./views/Sports/Football/Football";
+import Basketball from "./views/Sports/Basketball/Basketball";
+import Tennis from "./views/Sports/Tennis/Tennis";
+import Motorsports from "./views/Sports/Motorsports/Motorsports";
+import Fighting from "./views/Sports/Fighting/Fighting";
+import Signup from "./views/auth/Signup";
+import Login from "./views/auth/Login";
+import Confirmation from "./views/auth/Confirmation";
+import UserProfile from "./views/UserProfile/userProfile";
+import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
+import SearchResults from "./views/Search/SearchResults";
+import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
 //import FootballLeague from "./views/Sports/Football/FootballLeague";
 //import BasketballLeague from "./views/Sports/Basketball/BasketballLeague";
 import TennisLeague from './views/Sports/Tennis/TennisLeague';
@@ -36,10 +36,10 @@ class App extends Component {
       user: null,
       loaded: false,
       search: {
-        teams: '',
-        players: ''
+        teams: "",
+        players: ""
       },
-      sports: '',
+      sports: "",
       loggedInUser: null
     };
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
@@ -94,11 +94,9 @@ class App extends Component {
 
         <main>
           <Switch>
-          <Route
-            path="/football/:id/:id"
-            render={props => (
-              <SingleTeam {...props} user={this.state.user} />
-            )}
+            <Route
+              path="/football/:id/:id"
+              render={props => <SingleTeam {...props} user={this.state.user} />}
             />
             <Route
               path="/football/:id"
@@ -106,24 +104,20 @@ class App extends Component {
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            
-            <Route path="/football" render={() => <Football />} />
-
             <Route
-            path="/basketball/:id/:id"
-            render={props => (
-              <SingleTeam {...props} user={this.state.user} />
-            )}
+              path="/football"
+              render={() => <Football user={this.state.user} />}
             />
-            
-
             <Route
               path="/basketball/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            <Route path="/basketball" render={() => <Basketball />} />
+            <Route
+              path="/basketball"
+              render={() => <Basketball user={this.state.user} />}
+            />
             <Route
               path="/tennis/:id"
               render={props => (

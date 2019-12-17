@@ -30,6 +30,7 @@ class Basketball extends Component {
           leagues.map(item => (
             <LeagueCard
               {...this.props}
+              mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}
               src={item.badge}
