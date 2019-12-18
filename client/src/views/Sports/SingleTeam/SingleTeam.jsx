@@ -30,7 +30,7 @@ class SingleTeam extends Component {
   render() {
     const events = this.state.events;
     const team = this.state.team;
-    console.log(team);
+    //console.log(team);
     return (
       <div>
         {team &&

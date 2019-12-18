@@ -77,13 +77,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
+        {/* <header> */}
           <Navbar
             user={this.state.user}
             changeAuthenticationStatus={this.changeAuthenticationStatus}
             getSearch={this.searchResults}
           />
-        </header>
+       { /* </header> */}
         <main>
           <Switch>
             <Route
