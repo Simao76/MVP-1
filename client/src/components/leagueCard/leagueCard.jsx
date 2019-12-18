@@ -9,12 +9,6 @@ class leagueCard extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    let isFollowing;
-    //const userFollowing = this.props.user.myTeams.map(item => item)
-    //let user = this.props.user._myTeams;
-    //console.log(this.props.user_myTeams)
-  }
   render() {
     return (
       <div className="league-card">

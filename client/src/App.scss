@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
-html {
-  width: 100%;
+html {  
+  margin-left: calc(100vw - 100%); 
+}
+
+body {
+  max-width: 1160px;
+  margin: 0 auto;
 }
 
 .App {

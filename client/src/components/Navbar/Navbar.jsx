@@ -41,6 +41,9 @@ class Navbar extends Component {
     } catch (error) {
       console.log(error);
     }
+    this.setState({
+      search: ""
+    })
   }
 
   async signOutHandler() {
@@ -61,21 +64,29 @@ class Navbar extends Component {
           <img src={Logo} alt="logo" />
         </Link>
         <NavigationItems />
-        <form onSubmit={this.formSubmissionHandler} className="search-form">
-          <input
-            type="search"
-            name="search"
-            value={this.state.search}
-            onChange={this.onChangeHandler}
-          ></input>
-          <button><FontAwesomeIcon icon="search"/></button>
-        </form>
-        <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
+        <div className="spacer"></div>
+        <div className="otherLinks">        
+          <div className="search">
+            <form onSubmit={this.formSubmissionHandler} className="searchBox">
+              <input className="searchInput"
+                type="search"
+                name="search"
+                value={this.state.search}
+                placeholder="search clubs or players"
+                onChange={this.onChangeHandler}
+              ></input>
+              {/* <button><FontAwesomeIcon icon="search"/></button> */}
+            </form>        
+          </div>
+          <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
+        </div>
         {/* <button onClick={this.signOutHandler}>Logout</button> */}
         <div className="burger-menu"><FontAwesomeIcon icon="bars"/></div>
       </nav>
     );
   }
 }
+
+
 
 export default withRouter(Navbar);
