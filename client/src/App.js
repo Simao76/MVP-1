@@ -23,6 +23,8 @@ import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import SingleTeamMotorsports from "./views/Sports/SingleTeam/SingleTeamMotorsports";
+import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighting";
 
 library.add(faBars, faSearch, faThumbsUp, faThumbsDown);
 
@@ -119,19 +121,36 @@ class App extends Component {
               )}
             />
             <Route path="/tennis" component={Tennis} />
+
+            <Route
+              path="/motorsports/:id/:id"
+              render={props => (
+                <SingleTeamMotorsports {...props} user={this.state.user} />
+              )}
+            />
+
             <Route
               path="/motorsports/:id"
               render={props => (
-                <MotorsportLeague {...props} user={this.state.user} />
+                <SingleLeague {...props} user={this.state.user} />
               )}
             />
             <Route path="/motorsports" component={Motorsports} />
+
+            <Route
+              path="/fighting/:id/:id"
+              render={props => <SingleTeam {...props} user={this.state.user} />}
+            />
+
             <Route
               path="/fighting/:id"
               render={props => (
-                <FighthingLeague {...props} user={this.state.user} />
+                <SingleLeagueFighting {...props} user={this.state.user} />
               )}
             />
+
+            <Route path="/fighting" component={Fighting} />
+
             <Route
               path="/profile/:name"
               exact

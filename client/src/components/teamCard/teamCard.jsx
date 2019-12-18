@@ -11,6 +11,7 @@ const teamCard = props => {
       <Link to={`${props.history.location.pathname}/${props.id}`}>
         <img src={props.src} alt={props.alt} title={props.title}></img>
       </Link>
+      <p>{props.title}</p>
       <LikeBtn {...props} />
       <DislikeBtn {...props} />
     </div>

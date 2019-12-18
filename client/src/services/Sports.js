@@ -64,7 +64,6 @@ export const getOneTeam = async id => {
   }
 }; */
 
-
 export const getEvents = async id => {
   try {
     let response = [];
@@ -84,6 +83,8 @@ export const getEvents = async id => {
 };
 
 export const getEventsByTeamId = async id => {
+  console.log(id);
+
   try {
     let response = [];
     const responseNext = await axios.get(
@@ -96,7 +97,7 @@ export const getEventsByTeamId = async id => {
       `https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=${id}`
     );
     response.push(responseLast.data.results);
-    //console.log(responseLast.data.results);
+    /*   console.log(responseLast.data.results); */
 
     return response;
   } catch (error) {

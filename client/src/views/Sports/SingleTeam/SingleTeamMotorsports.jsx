@@ -4,7 +4,7 @@ import { getOneTeam as geTeamService } from "../../../services/Sports";
 import { getEventsByTeamId } from "../../../services/Sports";
 //import LikeBtn from '../../../components/Buttons/likeBtn';
 
-class SingleTeam extends Component {
+class SingleTeamMotorsports extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,7 +105,7 @@ class SingleTeam extends Component {
                 </div>
 
                 <div id="Stadium info">
-                  <h2>Stadium</h2>
+                  <h2>Headquarters</h2>
                   <div>
                     <h4>Name: {item.stadium}</h4>
                   </div>
@@ -129,4 +129,4 @@ class SingleTeam extends Component {
   }
 }
 
-export default withRouter(SingleTeam);
+export default withRouter(SingleTeamMotorsports);
