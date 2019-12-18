@@ -7,7 +7,7 @@ export default function LikeBtn(props) {
   const adddingfollowers = () => {
     const teamsId = props.mongooseId;
     const userId = props.user._id;
-    console.log("USERID", userId);
+    /* console.log("USERID", userId); */
     addfollower(teamsId, userId);
   };
   return (

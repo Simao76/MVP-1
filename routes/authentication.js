@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 const { Router } = require("express");
 const router = new Router();
@@ -39,28 +39,19 @@ router.get("/success", (req, res, next) => {
     });
 }); */
 
-
 //SET PASSPORT
-const passport = require('passport');
+const passport = require("passport");
 
-router.post(
-  "/sign-up",
-  passport.authenticate("sign-up"),
-  (req, res, next) => {
-    const user = req.user;
-    res.json({ user });
-  }
-);
+router.post("/sign-up", passport.authenticate("sign-up"), (req, res, next) => {
+  const user = req.user;
+  res.json({ user });
+});
 
-router.post(
-  "/sign-in",
-  passport.authenticate("sign-in"),
-  (req, res, next) => {
-    const user = req.user;
-    console.log(user)
-    res.json({ user });
-  }
-);
+router.post("/sign-in", passport.authenticate("sign-in"), (req, res, next) => {
+  const user = req.user;
+  console.log(user);
+  res.json({ user });
+});
 
 /* // GOOGLE SIGNUP/IN
 router.get('/auth/google',
@@ -76,12 +67,10 @@ router.get('/auth/google/redirect',
 ); */
 
 // LOGOUT
-router.post('/sign-out', (req, res, next) => {
+router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });
-
-
 
 /* router.post('/sign-up', async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -101,7 +90,6 @@ router.post('/sign-out', (req, res, next) => {
   }
 }); */
 
-
 /* router.get('/sign-in', (req, res, next) => {
   res.render('./auth/sign-in');
 });
@@ -118,17 +106,19 @@ router.post(
   res.render('./auth/sign-up');
 }); */
 
-
 //GOOGLE SIGNUP/IN
-router.get('/auth/google',
-  passport.authenticate('google', {
-    scope: ['profile', "email"]
-  }));
+router.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"]
+  })
+);
 
-router.get('/auth/google/redirect',
-  passport.authenticate('google', {
-    successRedirect: '/',
-    failureRedirect: './auth/sign-up'
+router.get(
+  "/auth/google/redirect",
+  passport.authenticate("google", {
+    successRedirect: "/",
+    failureRedirect: "./auth/sign-up"
   })
 );
 
@@ -141,7 +131,7 @@ router.post("/sign-out", (req, res, next) => {
 const routeGuard = require("../middleware/route-guard");
 
 router.get("/user-information", async (req, res, next) => {
-  const userId = await req.user;  
+  const userId = req.user;
   if (!userId) {
     res.json({});
   } else {

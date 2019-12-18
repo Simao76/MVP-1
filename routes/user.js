@@ -6,7 +6,8 @@ const User = require("../models/user");
 
 router.patch("/follow/:teamId", async (req, res, next) => {
   const teamId = req.params.teamId;
-  const userId = req.session.user;
+  const userId = req.user;
+  console.log(req.session, req.user, teamId, userId);
   //const userId = req.body.userId;
   //const userId = req.user;
 

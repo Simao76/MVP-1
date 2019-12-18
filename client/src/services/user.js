@@ -7,6 +7,7 @@ const UserService = axios.create({
 export const addfollower = async (teamId, userId) => {
   try {
     await UserService.patch(`/follow/${teamId}`, userId);
+    console.log(teamId, userId);
   } catch (error) {
     console.log(error);
     throw error;

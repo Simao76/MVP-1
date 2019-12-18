@@ -11,7 +11,7 @@ const mongoose = require("mongoose");
 
 const sassMiddleware = require("node-sass-middleware");
 const serveFavicon = require("serve-favicon");
-const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
+// const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 /* const passportConfigure = require("./passport-configuration.js"); */
 const indexRouter = require("./routes/index");
 const authRouter = require("./routes/authentication");
@@ -57,8 +57,8 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 24 * 15,
       sameSite: "lax",
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production"
+      httpOnly: true
+      // secure: process.env.NODE_ENV === "production"
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
@@ -67,18 +67,13 @@ app.use(
   })
 );
 
-app.use(bindUserToViewLocals);
+// app.use(bindUserToViewLocals);
 
 // Passport
 require("./passport-configuration");
 const passport = require("passport");
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use((req, res, next) => {
-  res.locals.user = req.user;
-  next();
-});
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
