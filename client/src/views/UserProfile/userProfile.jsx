@@ -23,20 +23,19 @@ class userProfile extends Component {
     }
 
     try {
-      //console.log(this.state.user)
       const userTeams =  await getUserFollow(this.state.user._myTeams)
       //const getTeam = await getUserFollow("5df977ea04d5f32d3ccdb167", this.state.user._id)
       //const getEvents = await getEventsService(this.props.match.params.id)
       this.setState({
         team: userTeams,
       })        
+      //console.log(userTeams) 
     }
     catch(err) {
       console.log(err);
       throw(err);
     }
-    console.log(this.state.team) 
-    //console.log(this.state.user._myTeams)
+    console.log(this.state.team)
   }
 
   render () {
@@ -62,12 +61,12 @@ class userProfile extends Component {
           </div>
         )}
 
-        {this.state.team && (
+        {this.state.team && this.state.team.map(item => (
           <div>
-          <p>{this.state.team.name}</p>
-          <img src={this.state.team.jersey} alt=""/>
+          <p>{item.name}</p>
+          <img src={item.jersey} alt=""/>
           </div>
-        )}
+        ))}
       </div>
     );
   }
