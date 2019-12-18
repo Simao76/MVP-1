@@ -17,10 +17,11 @@ class Football extends Component {
     this.setState({
       football: footballLeagues
     });
+    //console.log(this.props.user)
   }
 
   render() {
-    //console.log(this.state.football)
+    //console.log(this.props.user)
     //console.log(this.props.history.location.pathname);
     const leagues = this.state.football;
     return (
@@ -28,7 +29,7 @@ class Football extends Component {
         {leagues &&
           leagues.map(item => (
             <LeagueCard
-              {...this.props}
+              user={this.props.user}
               mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}

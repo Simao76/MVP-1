@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { getOneTeam as geTeamService } from '../../../services/Sports';
+//import LikeBtn from '../../../components/Buttons/likeBtn';
 
 class SingleTeam extends Component {
   constructor(props) {
@@ -27,12 +28,12 @@ class SingleTeam extends Component {
 
   render() {
     const team = this.state.team;
-    console.log(team)
+    //console.log(team)
     return(
       <div>
         {team && team.map(item => (
           <div key={item.idTeam}>
-            <img src={item.banner}></img>
+            <img src={item.banner} alt=""></img>
           </div>
         ))}
       </div>

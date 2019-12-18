@@ -1,24 +1,18 @@
 import React from "react";
-import { addfollower } from "../../services/user";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { removeFollower } from "../../services/user";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function LikeBtn(props) {
-  const adddingfollowers = () => {
-    const teamsId = props.mongooseId;
-    const userId = props.user._id;
-    //console.log("USERID", userId, "teamsId", teamsId);
-    addfollower(teamsId, userId);
+export default function dislikeBtn(props) {
+  const removingFollowers = () => {
+  const teamsId = props.mongooseId;
+  const userId = props.user._id;
+  console.log("USERID", userId, "teamsId", teamsId);
+  removeFollower(teamsId, userId);
   };
   //console.log(props)
   return (
-    <div>
-      <div>
-        {props.user && (
-          <button onClick={adddingfollowers}>
-            <FontAwesomeIcon icon={["far", "thumbs-up"]} />
-          </button>
-        )}
-      </div>
+    <div>      
+      {props.user && <button onClick={removingFollowers}><FontAwesomeIcon icon={["far", "thumbs-down"]}/></button>}
     </div>
   );
 }

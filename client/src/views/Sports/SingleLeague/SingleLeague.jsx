@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { getEvents as getEventsService,  getTeams as getTeamsService  } from '../../../services/Sports';
+import TeamCard from '../../../components/teamCard/teamCard';
 import LikeBtn from '../../../components/Buttons/likeBtn';
+import './singleLeague.scss';
 
 class SingleLeague extends Component {
   constructor(props) {
@@ -32,23 +34,27 @@ class SingleLeague extends Component {
     const events = this.state.events;
     const teams = this.state.teams;
     //console.log(this.state.teams)
-    //console.log(teams)
+    //console.log(this.props.user)
     
     return (
       <div>
         <div>
-          {teams && teams.map(item => (
-            <Fragment key={item.idTeam}>
-              <Link to={`${this.props.history.location.pathname}/${item.idTeam}`}>
-                <div>
-                  <img src={item.badge} alt={item.name}></img> 
-                  <p>{item.name}</p>
-                  <LikeBtn />
-                </div>             
-              </Link>
-            </Fragment>
-            
-          ))}
+          <div className="card-container">
+            {teams && teams.map(item => (
+              <Fragment key={item.idTeam}>
+              <TeamCard
+                {...this.props}
+                key={item.idTeam}
+                mongooseId={item._id}
+                id={item.idTeam}
+                src={item.badge}
+                alt={item.name}
+                title={item.name}
+                />
+                <LikeBtn />
+                </Fragment>
+            ))}
+          </div>
 
           <h3>Latest games</h3>
             {events[0] && events[0].map(el => (

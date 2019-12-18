@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import DislikeBtn from '../../components/Buttons/dislikeBtn';
 /* import { getTeam as getTeamService} from "../../services/teams"; */
 
 class Home extends Component {
@@ -29,6 +29,7 @@ class Home extends Component {
     return (
       <div> 
         <p>Homepage</p>
+        <DislikeBtn />
    
         <p></p>
       </div>

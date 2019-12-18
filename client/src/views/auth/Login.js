@@ -36,7 +36,7 @@ class Login extends Component {
         <form onSubmit={this.formSubmitHandler}>
           <label>email:</label>
           <input
-            type="text"
+            type="emal"
             name="email"
             value={this.state.email}
             required
@@ -44,6 +44,7 @@ class Login extends Component {
           />
           <label>Password:</label>
           <input
+            type="password"
             name="password"
             value={this.state.password}
             required

@@ -47,7 +47,7 @@ export const getTeams = async id => {
       }
       return false;
     });
-    console.log(filterLeague);
+    //console.log(filterLeague);
     return filterLeague;
   } catch (error) {
     throw error;
