@@ -1,0 +1,26 @@
+@import '../../assets//style.scss';
+
+.home-container {
+  height: calc(100vh - 13vh);
+  width: 100%;
+  background-image: url("../../assets/images/project.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    .pitch {
+      width: 100%;
+      padding: 0 1em;
+      font-family: $primary-font;
+      font-size: 2em;
+      color: white;
+    }
+}
+
+@media (min-width: $min-width) {
+  .pitch {
+    width: 50%;
+  }
+}

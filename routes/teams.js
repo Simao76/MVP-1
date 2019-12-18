@@ -21,7 +21,7 @@ router.get("/listteams", (req, res, next) => {
 router.get('/teams/:teamId' , async (req, res, next) => {  
   const teamIdStr = req.params.teamId;
   const teamId = teamIdStr.split(",");
-  console.log(teamId)
+  //console.log(teamId)
  
   try {
     const getTeams = await Team.find().where('_id').in(teamId).exec();

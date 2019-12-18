@@ -30,7 +30,7 @@ export const getUserFollow = async teamId => {
   try {
     const response = await UserService.get(`/teams/${teamId}`/* , userId */);
     //teams.push(response.data.getTeam)
-    console.log(response.data.getTeams)
+    //console.log(response.data.getTeams)
     return response.data.getTeams
   } catch (error) {
     console.log(error);

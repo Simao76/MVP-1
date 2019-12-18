@@ -32,7 +32,7 @@ nav {
   }
 }
 
-@media (min-width: 767px) {
+@media (min-width: $min-width) {
   nav { 
 
     .search-form {
