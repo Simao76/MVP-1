@@ -24,14 +24,14 @@ export const removeFollower = async (teamId, userId) => {
   }
 };
 
-export const getUserFollow = async ([teamId]) => {
+export const getUserFollow = async teamId => {
   console.log(teamId);
   //let teams = []
   try {
     const response = await UserService.get(`/teams/${teamId}` /* , userId */);
     //teams.push(response.data.getTeam)
-    console.log(response.data.getTeam);
-    return response.data.getTeam;
+    console.log(response.data.getTeams);
+    return response.data.getTeams;
   } catch (error) {
     console.log(error);
     throw error;

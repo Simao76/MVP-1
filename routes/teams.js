@@ -19,12 +19,13 @@ router.get("/listteams", (req, res, next) => {
 });
 
 router.get('/teams/:teamId' , async (req, res, next) => {  
-  const teamId = req.params.teamId;
+  const teamIdStr = req.params.teamId;
+  const teamId = teamIdStr.split(",");
   console.log(teamId)
  
   try {
-    const getTeam = await Team.findById(teamId).exec();
-    res.json({ message: 'Fetched team ', getTeam});
+    const getTeams = await Team.find().where('_id').in(teamId).exec();
+    res.json({ message: 'Fetched team ', getTeams});
    }catch (err) {
     next(err);
   }
