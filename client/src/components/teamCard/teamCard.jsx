@@ -5,15 +5,22 @@ import DislikeBtn from "../Buttons/dislikeBtn";
 import "./teamCard.scss";
 
 const teamCard = props => {
-  //console.log("Team card", props);
+  const userFollow = props.user._myTeams.map(item => item);
+
   return (
-    <div className="league-card">
+    <div className="team-card">
       <Link to={`${props.history.location.pathname}/${props.id}`}>
         <img src={props.src} alt={props.alt} title={props.title}></img>
       </Link>
       <p>{props.title}</p>
-      <LikeBtn {...props} />
-      <DislikeBtn {...props} />
+      {userFollow.includes(props.mongooseId) && (
+        <DislikeBtn {...props} />
+      )}
+      {!userFollow.includes(props.mongooseId) && (
+        <LikeBtn {...props} />
+      )}
+        
+       
     </div>
   );
 };

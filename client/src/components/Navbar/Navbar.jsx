@@ -57,7 +57,7 @@ class Navbar extends Component {
   }
 
   render() {
-    //console.log(this.props)
+    console.log(this.props)
     return (
       <nav>
         <Link to="/">
@@ -78,6 +78,11 @@ class Navbar extends Component {
               {/* <button><FontAwesomeIcon icon="search"/></button> */}
             </form>        
           </div>
+          {this.props.user && (
+            <div className="profilePic-container">
+              <Link to={`/profile/${this.props.user.name}`}><img src={this.props.user.profilePic} alt="profile picture" className="profilePic"/></Link>
+            </div>
+          )}
           <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
         </div>
         {/* <button onClick={this.signOutHandler}>Logout</button> */}

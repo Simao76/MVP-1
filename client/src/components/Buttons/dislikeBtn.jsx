@@ -12,7 +12,7 @@ export default function dislikeBtn(props) {
   //console.log(props)
   return (
     <div>      
-      {props.user && <button onClick={removingFollowers}><FontAwesomeIcon icon={["far", "thumbs-down"]}/></button>}
+      {props.user && <button onClick={removingFollowers}><FontAwesomeIcon icon={["far", "thumbs-down"]}/> unfollow</button>}
     </div>
   );
 }

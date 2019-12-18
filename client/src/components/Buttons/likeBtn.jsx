@@ -15,8 +15,7 @@ export default function LikeBtn(props) {
       <div>
         {props.user && (
           <button onClick={adddingfollowers}>
-            <FontAwesomeIcon icon={["far", "thumbs-up"]} />
-          </button>
+            <FontAwesomeIcon icon={["far", "thumbs-up"]} /> follow</button>
         )}
       </div>
     </div>
