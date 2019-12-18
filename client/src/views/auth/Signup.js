@@ -35,7 +35,7 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this.props.user)
+    //console.log(this.props.user)
     return (
       <div>
         <form onSubmit={this.formSubmitHandler}>
@@ -49,7 +49,7 @@ class Signup extends Component {
           />
           <label>Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
             value={this.state.email}
             required

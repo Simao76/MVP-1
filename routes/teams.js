@@ -18,4 +18,16 @@ router.get("/listteams", (req, res, next) => {
     });
 });
 
+router.get('/teams/:teamId' , async (req, res, next) => {  
+  const teamId = req.params.teamId;
+  console.log(teamId)
+ 
+  try {
+    const getTeam = await Team.findById(teamId).exec();
+    res.json({ message: 'Fetched team ', getTeam});
+   }catch (err) {
+    next(err);
+  }
+})
+
 module.exports = router;

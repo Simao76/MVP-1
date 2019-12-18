@@ -22,10 +22,17 @@ import FighthingLeague from './views/Sports/Fighting/FighthingLeague';
 import SingleTeam from './views/Sports/SingleTeam/SingleTeam';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 
-library.add(
-  faBars,
-  faSearch);
+
+
+library.add
+  (
+    faBars,
+    faSearch,
+    faThumbsUp,
+    faThumbsDown
+  );
 
 class App extends Component {
   constructor(props) {
@@ -55,7 +62,7 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-    console.log(this.state.user)
+    //console.log(this.state.user)
   }
 
   changeAuthenticationStatus(user) {

@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import LikeBtn from "../Buttons/likeBtn";
+import DislikeBtn from "../Buttons/dislikeBtn";
 import "./teamCard.scss";
 
 const teamCard = props => {
@@ -11,6 +12,7 @@ const teamCard = props => {
         <img src={props.src} alt={props.alt} title={props.title}></img>
       </Link>
       <LikeBtn {...props} />
+      <DislikeBtn {...props} />
     </div>
   );
 };
