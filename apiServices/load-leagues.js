@@ -1,10 +1,10 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 const URI = process.env.MONGODB_URI;
-const axios = require('axios');
+const axios = require("axios");
 
 const footballService = axios.create({
-  baseURL: 'https://www.thesportsdb.com/api/v1/json/1'
+  baseURL: "https://www.thesportsdb.com/api/v1/json/1"
 });
 
 const relevantLeagueIds = [
@@ -13,26 +13,26 @@ const relevantLeagueIds = [
   //"Euroleague Basketball",
   //"EuroCup Basketball",
   //"Basketball Champions League",
-  'English Premier League',
-  'German Bundesliga',
-  'Italian Serie A',
-  'French Ligue 1',
-  'Spanish La Liga',
-  'Portuguese Primeira Liga',
-  'Brazilian Brasileirao',
- 'Argentinian Primera Division',
-  'NBA',
-  'WNBA',
-  'Spanish Liga ACB',
-  'Italian Lega Basket',
-  'British Basketball League',
-  'Greek Basket League',
-  'German BBL',
-  'FIBA Basketball World Cup',
-  'Formula 1',
-  'UFC',
-  'WWE',
-  'Boxing',
+  "English Premier League",
+  "German Bundesliga",
+  "Italian Serie A",
+  "French Ligue 1",
+  "Spanish La Liga",
+  "Portuguese Primeira Liga",
+  "Brazilian Brasileirao",
+  "Argentinian Primera Division",
+  "NBA",
+  "WNBA",
+  "Spanish Liga ACB",
+  "Italian Lega Basket",
+  "British Basketball League",
+  "Greek Basket League",
+  "German BBL",
+  "FIBA Basketball World Cup",
+  "Formula 1",
+  "UFC",
+  "WWE",
+  "Boxing",
   "ATP World Tour"
 ];
 
@@ -66,7 +66,8 @@ const listLeagueDetails = async leagueIds => {
 const getTeamsInALeague = async leagueIds => {
   let teamDetails = [];
   for (let id of leagueIds) {
-    const response = await footballService.get(`/lookup_all_teams.php?id=${id}`
+    const response = await footballService.get(
+      `/lookup_all_teams.php?id=${id}`
     );
     const details = response.data.teams;
     teamDetails.push(details);
@@ -74,8 +75,8 @@ const getTeamsInALeague = async leagueIds => {
   return teamDetails;
 };
 
-const League = require('../models/league');
-const Team = require('../models/team');
+const League = require("../models/league");
+const Team = require("../models/team");
 
 const loadAllData = async () => {
   const leagues = await listAllLeagues();
@@ -91,27 +92,30 @@ const loadAllData = async () => {
       sport: item.strSport
     };
   });
- 
-    let newArr = []
-    const formatedTeams = teamsByLeague.forEach(el => el.map(item => newArr.push ( {
-      idLeague: item.idLeague,
-      name: item.strTeam,
-      alternateName: item.strAlternate,
-      idTeam: item.idTeam,
-      intFormedYear: item.intFormedYear,
-      sport: item.strSport,
-      description: item. strDescriptionEN,
-      league: item.strLeague,
-      stadium: item.strStadium,
-      stadiumDescription: item.strStadiumDescription,
-      stadiumLocation: item.strStadiumLocation,
-      badge: item.strTeamBadge,
-      jersey: item.strTeamJersey,
-      banner: item.strTeamBanner,
-      website: item.strWebsite,
-      followersCount: 0
-    }
-  )))
+
+  let newArr = [];
+  const formatedTeams = teamsByLeague.forEach(el =>
+    el.map(item =>
+      newArr.push({
+        idLeague: item.idLeague,
+        name: item.strTeam,
+        alternateName: item.strAlternate,
+        idTeam: item.idTeam,
+        intFormedYear: item.intFormedYear,
+        sport: item.strSport,
+        description: item.strDescriptionEN,
+        league: item.strLeague,
+        stadium: item.strStadium,
+        stadiumDescription: item.strStadiumDescription,
+        stadiumLocation: item.strStadiumLocation,
+        badge: item.strTeamBadge,
+        jersey: item.strTeamJersey,
+        banner: item.strTeamBanner,
+        website: item.strWebsite,
+        followersCount: 0
+      })
+    )
+  );
   //console.log("formated teams", newArr)
   await League.deleteMany({});
   const leagueDocuments = await League.create(formatedLeagues);
@@ -119,7 +123,7 @@ const loadAllData = async () => {
   const teamDocuments = await Team.create(newArr);
   //console.log(leagueDocuments);
   //console.log(teamDocuments);
-  console.log("data loaded")
+  console.log("data loaded");
 };
 /* 
 (async () => {

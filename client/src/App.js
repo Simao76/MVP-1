@@ -16,23 +16,15 @@ import UserProfile from "./views/UserProfile/userProfile";
 import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
 import SearchResults from "./views/Search/SearchResults";
 import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
-import TennisLeague from './views/Sports/Tennis/TennisLeague';
-import MotorsportLeague from './views/Sports/Motorsports/MotorsportLeague';
-import FighthingLeague from './views/Sports/Fighting/FighthingLeague';
-import SingleTeam from './views/Sports/SingleTeam/SingleTeam';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
+import TennisLeague from "./views/Sports/Tennis/TennisLeague";
+import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
+import FighthingLeague from "./views/Sports/Fighting/FighthingLeague";
+import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
-
-
-library.add
-  (
-    faBars,
-    faSearch,
-    faThumbsUp,
-    faThumbsDown
-  );
+library.add(faBars, faSearch, faThumbsUp, faThumbsDown);
 
 class App extends Component {
   constructor(props) {
@@ -47,11 +39,11 @@ class App extends Component {
       sports: "",
       loggedInUser: null
     };
-    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(      this
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
+      this
     );
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
   }
-
   async componentDidMount() {
     try {
       const user = await loadUserInformationService();
@@ -64,17 +56,14 @@ class App extends Component {
     }
     //console.log(this.state.user)
   }
-
   changeAuthenticationStatus(user) {
     this.setState({
       user
     });
   }
-
   verifyAuthentication() {
     return this.state.user;
   }
-
   searchResults = (teams, players) => {
     this.setState({
       search: {
@@ -83,7 +72,6 @@ class App extends Component {
       }
     });
   };
-
   render() {
     return (
       <div className="App">
@@ -94,7 +82,6 @@ class App extends Component {
             getSearch={this.searchResults}
           />
         </header>
-
         <main>
           <Switch>
             <Route
@@ -112,9 +99,9 @@ class App extends Component {
               render={() => <Football user={this.state.user} />}
             />
             <Route
-            path="/basketball/:id/:id"
-            render={props => <SingleTeam {...props} user={this.state.user} />}
-          />
+              path="/basketball/:id/:id"
+              render={props => <SingleTeam {...props} user={this.state.user} />}
+            />
             <Route
               path="/basketball/:id"
               render={props => (
@@ -187,7 +174,6 @@ class App extends Component {
             <Route path="/" component={Home} />
           </Switch>
         </main>
-
         <footer>
           <Footer />
         </footer>
@@ -195,5 +181,4 @@ class App extends Component {
     );
   }
 }
-
 export default withRouter(App);

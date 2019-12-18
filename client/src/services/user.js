@@ -5,9 +5,9 @@ const UserService = axios.create({
 });
 
 export const addfollower = async (teamId, userId) => {
-  console.log(teamId, userId)
+  console.log(teamId, userId);
   try {
-    await UserService.patch(`/follow/${teamId}/${userId}`/* , userId */);
+    await UserService.patch(`/follow/${teamId}/${userId}` /* , userId */);
   } catch (error) {
     console.log(error);
     throw error;
@@ -15,9 +15,9 @@ export const addfollower = async (teamId, userId) => {
 };
 
 export const removeFollower = async (teamId, userId) => {
-  console.log(teamId, userId)
+  console.log(teamId, userId);
   try {
-    await UserService.patch(`/unfollow/${teamId}/${userId}`/* , userId */);
+    await UserService.patch(`/unfollow/${teamId}/${userId}` /* , userId */);
   } catch (error) {
     console.log(error);
     throw error;
@@ -25,10 +25,10 @@ export const removeFollower = async (teamId, userId) => {
 };
 
 export const getUserFollow = async teamId => {
-  console.log(teamId)
+  console.log(teamId);
   //let teams = []
   try {
-    const response = await UserService.get(`/teams/${teamId}`/* , userId */);
+    const response = await UserService.get(`/teams/${teamId}` /* , userId */);
     //teams.push(response.data.getTeam)
     //console.log(response.data.getTeams)
     return response.data.getTeams
@@ -37,5 +37,3 @@ export const getUserFollow = async teamId => {
     throw error;
   }
 };
-
-

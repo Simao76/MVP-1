@@ -1,6 +1,6 @@
 import React from "react";
 import { addfollower } from "../../services/user";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function LikeBtn(props) {
   const adddingfollowers = () => {
@@ -13,7 +13,11 @@ export default function LikeBtn(props) {
   return (
     <div>
       <div>
-        {props.user && <button onClick={adddingfollowers}><FontAwesomeIcon icon={["far", "thumbs-up"]}/></button>}
+        {props.user && (
+          <button onClick={adddingfollowers}>
+            <FontAwesomeIcon icon={["far", "thumbs-up"]} />
+          </button>
+        )}
       </div>
     </div>
   );
