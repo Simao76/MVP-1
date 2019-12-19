@@ -31,7 +31,7 @@ export const getUserFollow = async teamId => {
     const response = await UserService.get(`/teams/${teamId}` /* , userId */);
     //teams.push(response.data.getTeam)
     //console.log(response.data.getTeams)
-    return response.data.getTeams
+    return response.data.getTeams;
   } catch (error) {
     console.log(error);
     throw error;
@@ -43,22 +43,22 @@ export const editProfile = async (id, user) => {
   //console.log("edit FE", user);
   try {
     const response = await UserService.patch(`/edit/${id}`, userUpdate);
-    console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
     throw error;
   }
 };
 
-export const uploadImage = async (image) => {
+export const uploadImage = async image => {
   const data = new FormData();
   //console.log(image)
 
-  data.append('profilePic', image);
+  data.append("profilePic", image);
   //console.log(data);
   try {
     const response = await UserService.post(`/upload/profileImage`, data);
-    console.log('this below is response file');
+    console.log("this below is response file");
     console.dir(response.data.joinLink);
     return response.data.joinLink;
   } catch (error) {

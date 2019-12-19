@@ -42,9 +42,11 @@ class App extends Component {
       },
       sports: "",
       loggedInUser: null,
-      sideMenuOpen: false,
+      sideMenuOpen: false
     };
-    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(this);
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
+      this
+    );
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.menuToggleClickHandler = this.menuToggleClickHandler.bind(this);
@@ -84,24 +86,22 @@ class App extends Component {
   updateUser(obj) {
     this.setState({
       user: obj
-    })
+    });
   }
 
   menuToggleClickHandler() {
-    console.log("menu toggle clicked")
+    console.log("menu toggle clicked");
     this.setState({
-        sideMenuOpen: true
-      }
-    );
-    console.log(this.state.sideMenuOpen)
-  };
+      sideMenuOpen: true
+    });
+    console.log(this.state.sideMenuOpen);
+  }
 
-  backdropClickHandler() {  
+  backdropClickHandler() {
     this.setState({
       sideMenuOpen: false
     });
-  };
-
+  }
 
   render() {
     //console.log(this.state.user)
@@ -114,19 +114,20 @@ class App extends Component {
     return (
       <div className="App">
         {/* <header> */}
-          <Navbar
-            user={this.state.user}
-            changeAuthenticationStatus={this.changeAuthenticationStatus}
-            getSearch={this.searchResults}
-            menuClickedHandler={this.menuToggleClickHandler}
-          />
-          <SideMenu show={this.state.sideMenuOpen} 
-            click={this.backdropClickHandler} 
-            user={this.state.user}
-            changeAuthenticationStatus={this.changeAuthenticationStatus}
-          />
-          {backdrop}
-       { /* </header> */}
+        <Navbar
+          user={this.state.user}
+          changeAuthenticationStatus={this.changeAuthenticationStatus}
+          getSearch={this.searchResults}
+          menuClickedHandler={this.menuToggleClickHandler}
+        />
+        <SideMenu
+          show={this.state.sideMenuOpen}
+          click={this.backdropClickHandler}
+          user={this.state.user}
+          changeAuthenticationStatus={this.changeAuthenticationStatus}
+        />
+        {backdrop}
+        {/* </header> */}
         <main>
           <Switch>
             <Route path="/soccer/:id/:id" render={(props) => <Suspense fallback={<Loading />}>
@@ -169,7 +170,11 @@ class App extends Component {
               path="/profile/:name/edit"
               exact
               render={props => (
-                <EditProfile {...props} user={this.state.user} updateUser={this.updateUser}/>
+                <EditProfile
+                  {...props}
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
               )}
               /> */}
 

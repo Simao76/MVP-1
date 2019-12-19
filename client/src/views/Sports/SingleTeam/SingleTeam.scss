@@ -1,0 +1,105 @@
+@import "../../../assets/style.scss";
+
+.Banner {
+  width: 100%;
+  img {
+    width: 100%;
+  }
+}
+
+.head-description-card {
+  background-color: white;
+  box-shadow: rgb(231, 231, 220);
+  font-family: $primary-font;
+  /* text-align: center; */
+  font-size: 16px;
+  /* border: solid 1px $primary-color; */
+  border-radius: 4%;
+  box-shadow: 5px 10px $secondary-color;
+  box-shadow: 0 0.25em 1.25em -0.5em hsla(220, 20%, 30%, 0.5);
+}
+
+.team-head {
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.team-badge-description {
+  margin-top: 50px;
+  margin-left: 55px;
+  margin-right: 55px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 15em;
+    margin-top: 2em;
+    margin-bottom: 8em;
+  }
+}
+
+.team-description {
+  margin-left: 10px;
+  text-align: justify;
+  max-height: 300px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  p {
+    line-height: 2.5em;
+  }
+}
+
+.stadium-head {
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.description-stadium-card {
+  overflow: hidden;
+
+  margin-top: 50px;
+  margin-left: 55px;
+  margin-right: 55px;
+  display: flex;
+  flex-direction: row;
+  img {
+    width: 15em;
+    margin-top: 2em;
+    margin-bottom: 8em;
+  }
+}
+
+.description-stadium {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+
+  margin-left: 10px;
+  text-align: justify;
+  max-height: 300px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  p {
+    line-height: 2.5em;
+  }
+}
+
+.website-link {
+  padding: 100px;
+  background-color: green;
+  a {
+    color: inherit;
+  }
+}
+
+.results-card {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  background-color: white;
+  box-shadow: 0 0.25em 1.25em -0.5em hsla(220, 20%, 30%, 0.5);
+}
