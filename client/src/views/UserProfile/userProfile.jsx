@@ -1,44 +1,39 @@
 import React, { Component } from "react";
-import "./userProfile.scss"; 
+import "./userProfile.scss";
 import { loadUserInformation as loadUserInformationService } from "../../services/auth/auth-service";
-import { getUserFollow } from '../../services/user'
-
+import { getUserFollow } from "../../services/user";
 class userProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: "",
       team: ""
-    }
+    };
   }
-
   async componentDidMount() {
     try {
       const user = await loadUserInformationService();
       this.setState({
-        user     
+        user
       });
     } catch (error) {
       console.log(error);
     }
-
     try {
-      const userTeams =  await getUserFollow(this.state.user._myTeams)
+      const userTeams = await getUserFollow(this.state.user._myTeams);
       //const getTeam = await getUserFollow("5df977ea04d5f32d3ccdb167", this.state.user._id)
       //const getEvents = await getEventsService(this.props.match.params.id)
       this.setState({
-        team: userTeams,
-      })        
-      //console.log(userTeams) 
-    }
-    catch(err) {
+        team: userTeams
+      });
+      //console.log(userTeams)
+    } catch (err) {
       console.log(err);
-      throw(err);
+      throw err;
     }
-    console.log(this.state.team)
+    console.log(this.state.team);
   }
-
-  render () {
+  render() {
     return (
       <div>
         {!this.props.user && (
@@ -46,31 +41,44 @@ class userProfile extends Component {
             <p>You're not authorized to view this page</p>
           </div>
         )}
-  
-        {this.props.user && (
-          <div>
-            <h1>{this.props.user.name}</h1>
-            <p>{this.props.user.name}</p>
-            <p>{this.props.user.email}</p>
-            <img
-              src={this.props.user.profilePic}
-              className="profilePic"
-              alt="profile"
-            ></img>
-            <h4>Following:</h4>
-          </div>
-        )}
 
-        {this.state.team && this.state.team.map(item => (
-          <div>
-          <p>{item.name}</p>
-          <img src={item.jersey} alt=""/>
-          </div>
-        ))}
+        <div className="profilecard">
+          {this.props.user && (
+            <div>
+              <img
+                src={this.props.user.profilePic}
+                className="profilePic"
+                alt="profile"
+              ></img>
+              <h1>{this.props.user.name}</h1>
+              <p>{this.props.user.name}</p>
+              <p>{this.props.user.email}</p>
+
+              <button>edit</button>
+              <h4>Following:</h4>
+              <br />
+              <br />
+            </div>
+          )}
+        </div>
+
+        <div className="profileteams">
+          {this.state.team &&
+            this.state.team.map(item => (
+              <div>
+                <h2>{item.name}</h2>
+                <p>{item.league}</p>
+
+                <img src={item.badge} alt="" />
+                <img src={item.jersey} alt="" />
+
+                <br />
+                <br />
+              </div>
+            ))}
+        </div>
       </div>
     );
   }
-  
-};
-
+}
 export default userProfile;
