@@ -95,17 +95,17 @@ class App extends Component {
         <main>
           <Switch>
             <Route
-              path="/football/:id/:id"
+              path="/soccer/:id/:id"
               render={props => <SingleTeam {...props} user={this.state.user} />}
             />
             <Route
-              path="/football/:id"
+              path="/soccer/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
             <Route
-              path="/football"
+              path="/soccer"
               render={() => <Football user={this.state.user} />}
             />
             <Route
@@ -131,19 +131,19 @@ class App extends Component {
             <Route path="/tennis" component={Tennis} />
 
             <Route
-              path="/motorsports/:id/:id"
+              path="/motorsport/:id/:id"
               render={props => (
                 <SingleTeamMotorsports {...props} user={this.state.user} />
               )}
             />
 
             <Route
-              path="/motorsports/:id"
+              path="/motorsport/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            <Route path="/motorsports" component={Motorsports} />
+            <Route path="/motorsport" component={Motorsports} />
 
             <Route
               path="/fighting/:id/:id"

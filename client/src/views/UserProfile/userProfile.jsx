@@ -36,7 +36,7 @@ class userProfile extends Component {
   }
 
   render() {
-    //console.log(this.props.user.profilePic)
+    console.log(this.state.user._myTeams)
     return (
       <div>
         {!this.props.user && (

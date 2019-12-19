@@ -6,8 +6,9 @@ export default function dislikeBtn(props) {
   const removingFollowers = () => {
   const teamsId = props.mongooseId;
   const userId = props.user._id;
-  console.log("USERID", userId, "teamsId", teamsId);
+  //console.log("USERID", userId, "teamsId", teamsId);
   removeFollower(teamsId, userId);
+  props.unfollow();
   };
   //console.log(props)
   return (

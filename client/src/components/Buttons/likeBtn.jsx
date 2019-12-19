@@ -8,6 +8,7 @@ export default function LikeBtn(props) {
     const userId = props.user._id;
     //console.log("USERID", userId, "teamsId", teamsId);
     addfollower(teamsId, userId);
+    props.follow();
   };
   //console.log(props)
   return (

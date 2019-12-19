@@ -7,7 +7,7 @@ const Team = require("../models/team");
 //require("../apiServices/load-teams");
 
 router.get("/listteams", (req, res, next) => {
-  console.log("BE teams.js list teams");
+  //console.log("BE teams.js list teams");
   Team.find()
     .then(teams => {
       //console.log("leagues.js", leagues)

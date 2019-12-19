@@ -5,7 +5,7 @@ import NavigationItems from "./NavigationItems/NavigationItems";
 import SessionBtn from "./SessionBtn/SessionBtn";
 import {signOut as signOutService} from "../../services/auth/auth-service";
 import {
-  getTeam as getTeamService,
+  getTeamsfromDB as getTeamService,
   getPlayer as getPlayerService
 } from "../../services/Search";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,12 +32,13 @@ class Navbar extends Component {
   async formSubmissionHandler(e) {
     e.preventDefault();
     const { search } = this.state;
+    //console.log(search)
     try {
-      const teams = await getTeamService({ search });
+      const teams = await getTeamService(search);
       const players = await getPlayerService({ search });
       const searchFor = this.state.search;
       this.props.getSearch(teams, players);
-      this.props.history.push(`/search/${searchFor}`);
+      this.props.history.push(`/search/${searchFor}`);      
     } catch (error) {
       console.log(error);
     }
