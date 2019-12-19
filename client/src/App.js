@@ -25,7 +25,7 @@ import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighti
 import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
 import SideMenu from "./components/Navbar/SideMenu/SideMenu";
 import Backdrop from "./components/UI/Backdrop/Backdrop";
-import ErrorPage from './views/ErrorPage/Error'
+import ErrorPage from "./views/ErrorPage/Error";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
@@ -44,9 +44,11 @@ class App extends Component {
       },
       sports: "",
       loggedInUser: null,
-      sideMenuOpen: false,
+      sideMenuOpen: false
     };
-    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(this);
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
+      this
+    );
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.menuToggleClickHandler = this.menuToggleClickHandler.bind(this);
@@ -84,24 +86,22 @@ class App extends Component {
   updateUser(obj) {
     this.setState({
       user: obj
-    })
+    });
   }
 
   menuToggleClickHandler() {
-    console.log("menu toggle clicked")
+    console.log("menu toggle clicked");
     this.setState({
-        sideMenuOpen: true
-      }
-    );
-    console.log(this.state.sideMenuOpen)
-  };
+      sideMenuOpen: true
+    });
+    console.log(this.state.sideMenuOpen);
+  }
 
-  backdropClickHandler() {  
+  backdropClickHandler() {
     this.setState({
       sideMenuOpen: false
     });
-  };
-
+  }
 
   render() {
     //console.log(this.state.user)
@@ -114,19 +114,20 @@ class App extends Component {
     return (
       <div className="App">
         {/* <header> */}
-          <Navbar
-            user={this.state.user}
-            changeAuthenticationStatus={this.changeAuthenticationStatus}
-            getSearch={this.searchResults}
-            menuClickedHandler={this.menuToggleClickHandler}
-          />
-          <SideMenu show={this.state.sideMenuOpen} 
-            click={this.backdropClickHandler} 
-            user={this.state.user}
-            changeAuthenticationStatus={this.changeAuthenticationStatus}
-          />
-          {backdrop}
-       { /* </header> */}
+        <Navbar
+          user={this.state.user}
+          changeAuthenticationStatus={this.changeAuthenticationStatus}
+          getSearch={this.searchResults}
+          menuClickedHandler={this.menuToggleClickHandler}
+        />
+        <SideMenu
+          show={this.state.sideMenuOpen}
+          click={this.backdropClickHandler}
+          user={this.state.user}
+          changeAuthenticationStatus={this.changeAuthenticationStatus}
+        />
+        {backdrop}
+        {/* </header> */}
         <main>
           <Switch>
             <Route
@@ -167,9 +168,7 @@ class App extends Component {
 
             <Route
               path="/motorsport/:id/:id"
-              render={props => (
-                <SingleTeamMotorsports {...props} user={this.state.user} />
-              )}
+              render={props => <SingleTeam {...props} user={this.state.user} />}
             />
 
             <Route
@@ -193,14 +192,18 @@ class App extends Component {
             />
 
             <Route path="/fighting" component={Fighting} />
-           
+
             <Route
               path="/profile/:name/edit"
               exact
               render={props => (
-                <EditProfile {...props} user={this.state.user} updateUser={this.updateUser}/>
+                <EditProfile
+                  {...props}
+                  user={this.state.user}
+                  updateUser={this.updateUser}
+                />
               )}
-              />
+            />
 
             <Route
               path="/profile/:name"
@@ -242,7 +245,7 @@ class App extends Component {
               render={() => <SearchResults search={this.state.search} />}
             />
             <Route path="/" exact component={Home} />
-            <Route render={() => <ErrorPage/>} />
+            <Route render={() => <ErrorPage />} />
           </Switch>
         </main>
         <footer>

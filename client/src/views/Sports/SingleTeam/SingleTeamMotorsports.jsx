@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { getOneTeam as geTeamService } from "../../../services/Sports";
 import { getEventsByTeamId } from "../../../services/Sports";
 //import LikeBtn from '../../../components/Buttons/likeBtn';
+import "./SingleTeam.scss";
 
 class SingleTeamMotorsports extends Component {
   constructor(props) {
@@ -60,6 +61,7 @@ class SingleTeamMotorsports extends Component {
               </Fragment>
             ))}
         </div>
+
         <div>
           <h3>Next games</h3>
           {events[1] &&
@@ -116,6 +118,7 @@ class SingleTeamMotorsports extends Component {
 
                   <div>{item.stadiumDescription}</div>
                 </div>
+
                 <br></br>
                 <br></br>
                 <div>
