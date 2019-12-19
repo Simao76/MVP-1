@@ -5,10 +5,10 @@ import NavigationItems from "./NavigationItems/NavigationItems";
 import SessionBtn from "./SessionBtn/SessionBtn";
 import {signOut as signOutService} from "../../services/auth/auth-service";
 import {
-  getTeam as getTeamService,
+  getTeamsfromDB as getTeamService,
   getPlayer as getPlayerService
 } from "../../services/Search";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ToggleButton from "./SideMenu/ToggleButton"
 import "./navbar.scss";
 
 class Navbar extends Component {
@@ -22,8 +22,6 @@ class Navbar extends Component {
   }
 
   onChangeHandler = e => {
-    //console.log(this.state.search)
-    //console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -33,11 +31,11 @@ class Navbar extends Component {
     e.preventDefault();
     const { search } = this.state;
     try {
-      const teams = await getTeamService({ search });
+      const teams = await getTeamService(search);
       const players = await getPlayerService({ search });
       const searchFor = this.state.search;
       this.props.getSearch(teams, players);
-      this.props.history.push(`/search/${searchFor}`);
+      this.props.history.push(`/search/${searchFor}`);      
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +55,6 @@ class Navbar extends Component {
   }
 
   render() {
-    //console.log(this.props)
     return (
       <nav>
         <Link to="/">
@@ -75,7 +72,7 @@ class Navbar extends Component {
                 placeholder="search clubs or players"
                 onChange={this.onChangeHandler}
               ></input>
-                          </form>        
+            </form>        
           </div>
           {this.props.user && (
             <div className="profilePic-container">
@@ -84,7 +81,7 @@ class Navbar extends Component {
           )}
           <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
         </div>        
-        <div className="burger-menu"><FontAwesomeIcon icon="bars"/></div>
+        <ToggleButton click={this.props.menuClickedHandler} />
       </nav>
     );
   }

@@ -1,15 +1,19 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import TeamCard from "../../components/teamCard/searchTeamCard";
+import PlayerCard from "../../components/PlayerCard/PlayerCard";
+import './searchResults.scss';
 
 const SearchResults = props => {
-  //console.log(props.search);
+  console.log(props.search);
 
   // All teams from all sports
-  let teams = props.search.teams.teams
+  let teams = props.search.teams
   // All players from all sports
   let players = props.search.players.player;
 
   // Filter sports: teams
-  let filteredTeams;
+/*   let filteredTeams;
   if (teams) {
     filteredTeams = teams.filter(el => {
       if (el.strSport === "Soccer" 
@@ -21,7 +25,7 @@ const SearchResults = props => {
       };
       return true
     });
-  };
+  }; */
 
   // Filter sports: players
   let filteredPlayers;
@@ -39,31 +43,43 @@ const SearchResults = props => {
   }
 
   return (
-    <div>
+    <div className="card-container">
       {
         filteredPlayers && (
           filteredPlayers.map(item => (
-            <div key={item.idPlayer}>            
-            <img src={item.strThumb} alt={item.strPlayer} title={item.strPlayer}></img>
-            <button>Like</button>
-            <p>{item.strPlayer}</p>
-            </div>
+            <PlayerCard
+              key={item.idPlayer}
+              img={item.strCutout}           
+              name={item.strPlayer}   
+              team={item.strTeam}           
+            />
           )))
       }
-      {
-          filteredTeams && (
-            filteredTeams.map(item => (
-              <div key={item.idTeam}>            
-                <img src={item.strTeamBadge} alt="club logo"/>
-                <button>Like</button>
-                <p>{item.strTeam}</p>
-                <p>{item.strLeague}</p>
-                <p>{item.strStadium}</p>
-              </div>
-          )))
-        }
+        {
+         teams && (
+           teams.map(item => (            
+             <TeamCard
+               {...props}
+               key={item.idTeam}
+               mongooseId={item._id}
+               badge={item.badge}
+               id={item.idTeam} 
+               idLeague={item.idLeague}               
+               name={item.name}
+               league={item.league}
+               sport={item.sport}
+               />
+             )
+         ))
+        } 
+        {
+          !teams && !players && (
+            <p>No result was found</p>
+          )
+        } 
+
     </div>
   )
 }
 
-export default SearchResults;
+export default withRouter(SearchResults);

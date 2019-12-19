@@ -1,0 +1,64 @@
+@import '../../../assets//style';
+
+.side_menu {
+    display: block;
+    height: 100%;
+    padding-top: 1.5em;
+    background: $secondary-color;
+    box-shadow: 1px 8px 7px rgba(0, 0, 0, 0.5);    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;    
+    max-width: 400px;   
+    z-index: 200;
+    transform: translateX(-105%);
+    transition: transform 0.3s ease-out;
+
+    &.open {
+        transform: translateX(0%);        
+    }
+
+    .side_menu_logo {
+        width: 8em;   
+        margin-left: 1em;       
+
+        img {
+            width: 100%;
+            align-self: center;              
+        }
+    }
+
+    ul {
+        height: 30%;
+        margin-top: 2em;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;         
+    }
+
+    li {
+        margin: 0.5rem 1em;        
+    }
+
+    a {        
+        color: $primary-color;
+        text-decoration: none;
+        font-family: $primary-font;
+        font-size: 1.15em;
+    }    
+
+    a:hover,
+    a:active {
+        font-weight: bold;         
+    }
+  
+  }
+
+
+@media (min-width: $min-width) {
+    .side_menu {
+        display: none;
+    } 
+}

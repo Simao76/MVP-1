@@ -23,6 +23,9 @@ import FighthingLeague from "./views/Sports/Fighting/FighthingLeague"; */
 import SingleTeamMotorsports from "./views/Sports/SingleTeam/SingleTeamMotorsports";
 import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighting";
 import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
+import SideMenu from "./components/Navbar/SideMenu/SideMenu";
+import Backdrop from "./components/UI/Backdrop/Backdrop";
+import ErrorPage from './views/ErrorPage/Error'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
@@ -40,11 +43,14 @@ class App extends Component {
         players: ""
       },
       sports: "",
-      loggedInUser: null
+      loggedInUser: null,
+      sideMenuOpen: false,
     };
     this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(this);
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.menuToggleClickHandler = this.menuToggleClickHandler.bind(this);
+    this.backdropClickHandler = this.backdropClickHandler.bind(this);
   }
   async componentDidMount() {
     try {
@@ -81,8 +87,30 @@ class App extends Component {
     })
   }
 
+  menuToggleClickHandler() {
+    console.log("menu toggle clicked")
+    this.setState({
+        sideMenuOpen: true
+      }
+    );
+    console.log(this.state.sideMenuOpen)
+  };
+
+  backdropClickHandler() {  
+    this.setState({
+      sideMenuOpen: false
+    });
+  };
+
+
   render() {
     //console.log(this.state.user)
+
+    let backdrop;
+    if (this.state.sideMenuOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />;
+    }
+
     return (
       <div className="App">
         {/* <header> */}
@@ -90,22 +118,29 @@ class App extends Component {
             user={this.state.user}
             changeAuthenticationStatus={this.changeAuthenticationStatus}
             getSearch={this.searchResults}
+            menuClickedHandler={this.menuToggleClickHandler}
           />
+          <SideMenu show={this.state.sideMenuOpen} 
+            click={this.backdropClickHandler} 
+            user={this.state.user}
+            changeAuthenticationStatus={this.changeAuthenticationStatus}
+          />
+          {backdrop}
        { /* </header> */}
         <main>
           <Switch>
             <Route
-              path="/football/:id/:id"
+              path="/soccer/:id/:id"
               render={props => <SingleTeam {...props} user={this.state.user} />}
             />
             <Route
-              path="/football/:id"
+              path="/soccer/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
             <Route
-              path="/football"
+              path="/soccer"
               render={() => <Football user={this.state.user} />}
             />
             <Route
@@ -131,19 +166,19 @@ class App extends Component {
             <Route path="/tennis" component={Tennis} />
 
             <Route
-              path="/motorsports/:id/:id"
+              path="/motorsport/:id/:id"
               render={props => (
                 <SingleTeamMotorsports {...props} user={this.state.user} />
               )}
             />
 
             <Route
-              path="/motorsports/:id"
+              path="/motorsport/:id"
               render={props => (
                 <SingleLeague {...props} user={this.state.user} />
               )}
             />
-            <Route path="/motorsports" component={Motorsports} />
+            <Route path="/motorsport" component={Motorsports} />
 
             <Route
               path="/fighting/:id/:id"
@@ -158,8 +193,7 @@ class App extends Component {
             />
 
             <Route path="/fighting" component={Fighting} />
-
-            
+           
             <Route
               path="/profile/:name/edit"
               exact
@@ -207,7 +241,8 @@ class App extends Component {
               exact
               render={() => <SearchResults search={this.state.search} />}
             />
-            <Route path="/" component={Home} />
+            <Route path="/" exact component={Home} />
+            <Route render={() => <ErrorPage/>} />
           </Switch>
         </main>
         <footer>
