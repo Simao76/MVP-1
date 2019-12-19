@@ -94,11 +94,17 @@ nav {
         height: 7vh;
         display: flex;
         align-items: center;
+        
 
-        .profilePic {
+        .profilePicNav {
           height: 5vh;
           width: 5vh;
           margin-left: 1em;
+          border-radius: 50%;
+
+          &:hover {
+            transform: scale(1.2);
+          }
         }
       }
   }

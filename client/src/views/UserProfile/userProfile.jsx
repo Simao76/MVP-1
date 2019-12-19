@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, withRouter } from 'react-router-dom';
 import "./userProfile.scss"; 
 import { loadUserInformation as loadUserInformationService } from "../../services/auth/auth-service";
 import { getUserFollow } from '../../services/user'
@@ -35,10 +36,11 @@ class userProfile extends Component {
       console.log(err);
       throw(err);
     }
-    console.log(this.state.team)
+    //console.log(this.state.team)
   }
 
   render () {
+    //console.log(this.props.user.profilePic)
     return (
       <div>
         {!this.props.user && (
@@ -57,6 +59,7 @@ class userProfile extends Component {
               className="profilePic"
               alt="profile"
             ></img>
+            <Link to={`/profile/${this.props.user.name}/edit`}>Edit profile</Link>
             <h4>Following:</h4>
           </div>
         )}
@@ -73,4 +76,4 @@ class userProfile extends Component {
   
 };
 
-export default userProfile;
+export default withRouter(userProfile);

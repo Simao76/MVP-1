@@ -13,18 +13,19 @@ import Signup from "./views/auth/Signup";
 import Login from "./views/auth/Login";
 import Confirmation from "./views/auth/Confirmation";
 import UserProfile from "./views/UserProfile/userProfile";
+import EditProfile from "./views/UserProfile/EditProfile";
 import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
 import SearchResults from "./views/Search/SearchResults";
 import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
 import TennisLeague from "./views/Sports/Tennis/TennisLeague";
-import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
-import FighthingLeague from "./views/Sports/Fighting/FighthingLeague";
+/* import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
+import FighthingLeague from "./views/Sports/Fighting/FighthingLeague"; */
+import SingleTeamMotorsports from "./views/Sports/SingleTeam/SingleTeamMotorsports";
+import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighting";
 import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import SingleTeamMotorsports from "./views/Sports/SingleTeam/SingleTeamMotorsports";
-import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighting";
 
 library.add(faBars, faSearch, faThumbsUp, faThumbsDown);
 
@@ -41,10 +42,9 @@ class App extends Component {
       sports: "",
       loggedInUser: null
     };
-    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
-      this
-    );
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(this);
     this.verifyAuthentication = this.verifyAuthentication.bind(this);
+    this.updateUser = this.updateUser.bind(this);
   }
   async componentDidMount() {
     try {
@@ -74,7 +74,15 @@ class App extends Component {
       }
     });
   };
+
+  updateUser(obj) {
+    this.setState({
+      user: obj
+    })
+  }
+
   render() {
+    //console.log(this.state.user)
     return (
       <div className="App">
         {/* <header> */}
@@ -150,6 +158,15 @@ class App extends Component {
             />
 
             <Route path="/fighting" component={Fighting} />
+
+            
+            <Route
+              path="/profile/:name/edit"
+              exact
+              render={props => (
+                <EditProfile {...props} user={this.state.user} updateUser={this.updateUser}/>
+              )}
+              />
 
             <Route
               path="/profile/:name"

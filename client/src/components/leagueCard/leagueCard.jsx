@@ -5,9 +5,9 @@ import DislikeBtn from "../Buttons/dislikeBtn";
 import "./leagueCard.scss";
 
 class leagueCard extends Component {
-  constructor(props) {
+/*   constructor(props) {
     super(props);
-  }
+  } */
 
   render() {
     return (
