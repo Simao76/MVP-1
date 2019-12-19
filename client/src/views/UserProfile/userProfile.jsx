@@ -45,23 +45,6 @@ class userProfile extends Component {
           </div>
         )}
 
-        {this.props.user && (
-          <div>
-            <h1>{this.props.user.name}</h1>
-            <p>{this.props.user.name}</p>
-            <p>{this.props.user.email}</p>
-            <img
-              src={this.props.user.profilePic}
-              className="profilePic"
-              alt="profile"
-            ></img>
-            <Link to={`/profile/${this.props.user.name}/edit`}>
-              Edit profile
-            </Link>
-            <h4>Following:</h4>
-          </div>
-        )}
-
         <div className="profilecard">
           {this.props.user && (
             <div>
@@ -74,7 +57,9 @@ class userProfile extends Component {
               <p>{this.props.user.name}</p>
               <p>{this.props.user.email}</p>
 
-              <button>edit</button>
+              <Link to={`/profile/${this.props.user.name}/edit`}>
+                Edit profile
+              </Link>
               <h4>Following:</h4>
               <br />
               <br />
