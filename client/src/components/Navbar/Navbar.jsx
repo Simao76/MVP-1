@@ -8,7 +8,7 @@ import {
   getTeamsfromDB as getTeamService,
   getPlayer as getPlayerService
 } from "../../services/Search";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ToggleButton from "./SideMenu/ToggleButton"
 import "./navbar.scss";
 
 class Navbar extends Component {
@@ -22,8 +22,6 @@ class Navbar extends Component {
   }
 
   onChangeHandler = e => {
-    //console.log(this.state.search)
-    //console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -32,7 +30,6 @@ class Navbar extends Component {
   async formSubmissionHandler(e) {
     e.preventDefault();
     const { search } = this.state;
-    //console.log(search)
     try {
       const teams = await getTeamService(search);
       const players = await getPlayerService({ search });
@@ -58,7 +55,6 @@ class Navbar extends Component {
   }
 
   render() {
-    //console.log(this.props)
     return (
       <nav>
         <Link to="/">
@@ -76,7 +72,7 @@ class Navbar extends Component {
                 placeholder="search clubs or players"
                 onChange={this.onChangeHandler}
               ></input>
-                          </form>        
+            </form>        
           </div>
           {this.props.user && (
             <div className="profilePic-container">
@@ -85,7 +81,7 @@ class Navbar extends Component {
           )}
           <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
         </div>        
-        <div className="burger-menu"><FontAwesomeIcon icon="bars"/></div>
+        <ToggleButton click={this.props.menuClickedHandler} />
       </nav>
     );
   }

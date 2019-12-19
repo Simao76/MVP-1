@@ -42,8 +42,7 @@ class teamCard extends Component {
     }  
     
   render() {
-
-    console.log(this.state.follow)    
+    //console.log(this.state.follow)    
     let userFollow;
     this.props.user ? userFollow = this.props.user._myTeams.map(item => item) : userFollow = "";
   
@@ -52,29 +51,15 @@ class teamCard extends Component {
         <Link to={`${this.props.history.location.pathname}/${this.props.id}`}>
           <img src={this.props.src} alt={this.props.alt} title={this.props.title}></img>
         </Link>
-        <p>{this.props.title}</p>
-  {/*       {userFollow.includes(props.mongooseId) && (
-          <DislikeBtn {...props} />
-        )}
-        {!userFollow.includes(props.mongooseId) && (
-          <LikeBtn {...props} />
-        )} */}
-        
+        <p>{this.props.title}</p>        
         { !this.state.follow /* && !userFollow.includes(this.props.mongooseId) */ && (
           <LikeBtn {...this.props} follow={this.followStateTrue}/>
         )}
         
         { this.state.follow /* && userFollow.includes(this.props.mongooseId) */ && (
           <DislikeBtn {...this.props} unfollow={this.followStateFalse}/>
-        )}
-        
-     
-        
-          
-         
+        )}         
       </div>
-  
- 
     );
   };
 };

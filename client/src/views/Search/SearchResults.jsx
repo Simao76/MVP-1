@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TeamCard from "../../components/teamCard/searchTeamCard";
+import PlayerCard from "../../components/PlayerCard/PlayerCard";
 import './searchResults.scss';
 
 const SearchResults = props => {
@@ -46,29 +47,30 @@ const SearchResults = props => {
       {
         filteredPlayers && (
           filteredPlayers.map(item => (
-            <div key={item.idPlayer}>            
-            <img src={item.strThumb} alt={item.strPlayer} title={item.strPlayer}></img>
-            <button>Like</button>
-            <p>{item.strPlayer}</p>
-            </div>
+            <PlayerCard
+              key={item.idPlayer}
+              img={item.strCutout}           
+              name={item.strPlayer}   
+              team={item.strTeam}           
+            />
           )))
       }
-         {
-          teams && (
-            teams.map(item => (            
-              <TeamCard
-                {...props}
-                key={item.idTeam}
-                mongooseId={item._id}
-                badge={item.badge}
-                id={item.idTeam} 
-                idLeague={item.idLeague}               
-                name={item.name}
-                league={item.league}
-                sport={item.sport}
-                />
-              )
-          ))
+        {
+         teams && (
+           teams.map(item => (            
+             <TeamCard
+               {...props}
+               key={item.idTeam}
+               mongooseId={item._id}
+               badge={item.badge}
+               id={item.idTeam} 
+               idLeague={item.idLeague}               
+               name={item.name}
+               league={item.league}
+               sport={item.sport}
+               />
+             )
+         ))
         } 
         {
           !teams && !players && (
