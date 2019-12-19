@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema(
     },
     profilePic: {
       type: String,
-      default: "/images/mvp_logo_round.png"
+      //default: "/images/mvp_logo_round.png"
     },
     passwordHash: {
       type: String

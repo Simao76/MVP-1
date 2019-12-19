@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiService = axios.create({
-  baseURL: "http://localhost:3020",
+  baseURL: "", // tirar http://localhost:3020 para funcionar no heroku
   withCredentials: true
 });
 

@@ -39,6 +39,7 @@ app.use(
   })
 );
 app.use(express.static(join(__dirname, "public")));
+app.use(express.static(join(__dirname, "client/build")));
 app.use(logger("dev"));
 //app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -52,7 +53,7 @@ app.use(
       maxAge: 60 * 60 * 24 * 15,
       sameSite: "lax",
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production"
+      //secure: process.env.NODE_ENV === "production"
     },
     store: new (connectMongo(expressSession))({
       mongooseConnection: mongoose.connection,
@@ -75,11 +76,17 @@ app.use("/", authRouter);
 app.use("/", teamsRouter);
 app.use("/", leaguesRouter);
 app.use("/", userRouter);
-/* app.use("/", basketballLeaguesRouter); */
+
+app.get("*", (req, res, next) => {
+  res.sendFile(join(__dirname, "client/build/index.html"))
+});
+
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
+
+
 // Catch all error handler
 app.use((error, req, res, next) => {
   // Set error information, with stack only available in development
@@ -88,4 +95,5 @@ app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.render("error");
 });
+
 module.exports = app;

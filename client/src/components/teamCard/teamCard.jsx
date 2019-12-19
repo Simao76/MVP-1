@@ -5,7 +5,8 @@ import DislikeBtn from "../Buttons/dislikeBtn";
 import "./teamCard.scss";
 
 const teamCard = props => {
-  const userFollow = props.user._myTeams.map(item => item);
+  let userFollow;
+  props.user ? userFollow = props.user._myTeams.map(item => item) : userFollow = "";
 
   return (
     <div className="team-card">

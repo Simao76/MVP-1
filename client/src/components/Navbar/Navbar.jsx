@@ -7,7 +7,7 @@ import {signOut as signOutService} from "../../services/auth/auth-service";
 import {
   getTeam as getTeamService,
   getPlayer as getPlayerService
-} from "../../services/Seach";
+} from "../../services/Search";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "./navbar.scss";
 
@@ -57,7 +57,7 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props)
+    //console.log(this.props)
     return (
       <nav>
         <Link to="/">
@@ -75,17 +75,15 @@ class Navbar extends Component {
                 placeholder="search clubs or players"
                 onChange={this.onChangeHandler}
               ></input>
-              {/* <button><FontAwesomeIcon icon="search"/></button> */}
-            </form>        
+                          </form>        
           </div>
           {this.props.user && (
             <div className="profilePic-container">
-              <Link to={`/profile/${this.props.user.name}`}><img src={this.props.user.profilePic} alt="profile picture" className="profilePic"/></Link>
+              <Link to={`/profile/${this.props.user.name}`}><img src={this.props.user.profilePic} alt="" className="profilePicNav"/></Link>
             </div>
           )}
           <SessionBtn user={this.props.user} signOut={this.signOutHandler}/>
-        </div>
-        {/* <button onClick={this.signOutHandler}>Logout</button> */}
+        </div>        
         <div className="burger-menu"><FontAwesomeIcon icon="bars"/></div>
       </nav>
     );
