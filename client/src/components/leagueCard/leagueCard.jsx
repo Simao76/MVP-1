@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import LikeBtn from "../Buttons/likeBtn";
-import DislikeBtn from "../Buttons/dislikeBtn";
 import "./leagueCard.scss";
 
 class leagueCard extends Component {
@@ -19,8 +17,6 @@ class leagueCard extends Component {
             title={this.props.title}
           ></img>
         </Link>
-        <LikeBtn {...this.props} />
-        <DislikeBtn {...this.props} />
       </div>
     );
   }

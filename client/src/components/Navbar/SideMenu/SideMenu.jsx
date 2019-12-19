@@ -40,7 +40,7 @@ class sideMenu extends Component {
                   <ul>
                       <li onClick={this.props.click}><NavLink to="/soccer">Soccer</NavLink></li>
                       <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                  
-                      <li onClick={this.props.click}><NavLink to="/tennis">Tennis</NavLink></li>                                   
+                      {/* <li onClick={this.props.click}><NavLink to="/tennis">Tennis</NavLink></li>   */   }                              
                       <li onClick={this.props.click}><NavLink to="/motorsport">Motosports</NavLink></li>
                       <li onClick={this.props.click}><NavLink to="/fighting">Fighting</NavLink></li>                                            
                   </ul>     

@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./userProfile.scss";
 import { loadUserInformation as loadUserInformationService } from "../../services/auth/auth-service";
 import { getUserFollow } from "../../services/user";
-import UserTeamCard from "./UserTeamCard";
+import UserTeamCard from "./userTeamCard";
 
 class userProfile extends Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class userProfile extends Component {
         <div className="results-container">
           {teams &&
             teams.map(item => (
-              <Fragment key={item.idTeam}>
+              
                 <UserTeamCard
                   {...this.props}
                   key={item.idTeam}
@@ -91,7 +91,7 @@ class userProfile extends Component {
                   title={item.name}
                   team={item}
                 />
-              </Fragment>
+              
             ))}
         </div>
       </div>

@@ -34,15 +34,13 @@ class teamCard extends Component {
         <p>{this.props.league}</p>        
         { this.state.follow === false && (
           <LikeBtn {...this.props} follow={this.followUnfollowHandler}/>
-        )}
+        || <DislikeBtn {...this.props} follow={this.followUnfollowHandler}/>
+          )}
         
-        { this.state.follow === true && (
+{/*         { this.state.follow === true && (
           <DislikeBtn {...this.props} follow={this.followUnfollowHandler}/>
-        )}          
-         
-      </div>
-  
- 
+        )}  */}
+      </div> 
     );
   };
 };

@@ -35,7 +35,7 @@ const SearchResults = props => {
       || el.strSport === "Basketball" 
       || el.strSport === "Formula 1" 
       || el.strSport === "Fighting"
-      || el.strSport === "Tennis") {
+      /* || el.strSport === "Tennis" */) {
         return true;
       };
       return true

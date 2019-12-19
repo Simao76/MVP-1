@@ -8,7 +8,7 @@ class teamCard extends Component {
   constructor(props) {
     super(props) 
       this.state = {
-        follow: ""
+        follow: null
       }
       this.followStateTrue = this.followStateTrue.bind(this);
       this.followStateFalse = this.followStateFalse.bind(this);
@@ -43,8 +43,8 @@ class teamCard extends Component {
     
   render() {
     //console.log(this.state.follow)    
-    let userFollow;
-    this.props.user ? userFollow = this.props.user._myTeams.map(item => item) : userFollow = "";
+/*     let userFollow;
+    this.props.user ? userFollow = this.props.user._myTeams.map(item => item) : userFollow = ""; */
   
     return (
       <div className="team-card">

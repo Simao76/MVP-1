@@ -1,5 +1,9 @@
 @import "../../assets/style.scss";
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
 .user-team-card {
   // background-color: yellowgreen;
   display: flex;

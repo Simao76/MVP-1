@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from "react";
-import { withRouter } from "react-router-dom";
-import { getOneTeam as getTeamService } from "../../services/Sports";
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+//import { getOneTeam as getTeamService } from "../../services/Sports";
 import { getEventsByTeamId } from "../../services/Sports";
 import "./userTeamCard.scss";
 //import LikeBtn from '../../../components/Buttons/likeBtn';
@@ -36,7 +36,9 @@ class UserTeamCard extends Component {
   render() {
     const events = this.state.events;
     const team = this.props.team;
+    //console.log(this.props)
     return (
+      <Link to={`/${team.sport.toLowerCase()}/${team.idLeague}/${team._id}`}>
       <div className="user-team-card">
         <div class="team-badge">
           <img src={team.badge} alt=""></img>
@@ -59,6 +61,7 @@ class UserTeamCard extends Component {
           </div>
         </div>
       </div>
+      </Link>
     );
   }
 }

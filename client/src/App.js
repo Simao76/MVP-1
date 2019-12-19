@@ -1,36 +1,34 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import "./App.scss";
-import Home from "./views/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Football from "./views/Sports/Football/Football";
-import Basketball from "./views/Sports/Basketball/Basketball";
-import Tennis from "./views/Sports/Tennis/Tennis";
-import Motorsports from "./views/Sports/Motorsports/Motorsports";
-import Fighting from "./views/Sports/Fighting/Fighting";
-import Signup from "./views/auth/Signup";
-import Login from "./views/auth/Login";
-import Confirmation from "./views/auth/Confirmation";
-import UserProfile from "./views/UserProfile/userProfile";
-import EditProfile from "./views/UserProfile/EditProfile";
+import Loading from './components/UI/Loading/loading';
 import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
 import SearchResults from "./views/Search/SearchResults";
-import SingleLeague from "./views/Sports/SingleLeague/SingleLeague";
-import TennisLeague from "./views/Sports/Tennis/TennisLeague";
-/* import MotorsportLeague from "./views/Sports/Motorsports/MotorsportLeague";
-import FighthingLeague from "./views/Sports/Fighting/FighthingLeague"; */
-import SingleTeamMotorsports from "./views/Sports/SingleTeam/SingleTeamMotorsports";
-import SingleLeagueFighting from "./views/Sports/SingleLeague/SingleLeagueFighting";
-import SingleTeam from "./views/Sports/SingleTeam/SingleTeam";
 import SideMenu from "./components/Navbar/SideMenu/SideMenu";
 import Backdrop from "./components/UI/Backdrop/Backdrop";
-import ErrorPage from './views/ErrorPage/Error'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
 library.add(faBars, faSearch, faThumbsUp, faThumbsDown);
+
+
+const Home = React.lazy(() => import("./views/Home/Home"));
+const Football = React.lazy(() => import("./views/Sports/Football/Football"));
+const Basketball = React.lazy(() => import("./views/Sports/Basketball/Basketball"));
+const Motorsports = React.lazy(() => import("./views/Sports/Motorsports/Motorsports"));
+const Fighting = React.lazy(() => import("./views/Sports/Fighting/Fighting"));
+const Signup = React.lazy(() => import("./views/auth/Signup"));
+const Login = React.lazy(() => import("./views/auth/Login"));
+const SingleLeague = React.lazy(() => import("./views/Sports/SingleLeague/SingleLeague"));
+const SingleTeam = React.lazy(() => import("./views/Sports/SingleTeam/SingleTeam"));
+const SingleTeamMotorsports = React.lazy(() => import("./views/Sports/SingleTeam/SingleTeamMotorsports"));
+const SingleLeagueFighting = React.lazy(() => import("./views/Sports/SingleLeague/SingleLeagueFighting"));
+const UserProfile = React.lazy(() => import("./views/UserProfile/userProfile"));
+const EditProfile = React.lazy(() => import("./views/UserProfile/EditProfile"));
+const ErrorPage = React.lazy(() => import('./views/ErrorPage/Error'));
 
 class App extends Component {
   constructor(props) {
@@ -69,9 +67,11 @@ class App extends Component {
       user
     });
   }
+
   verifyAuthentication() {
     return this.state.user;
   }
+
   searchResults = (teams, players) => {
     this.setState({
       search: {
@@ -129,94 +129,65 @@ class App extends Component {
        { /* </header> */}
         <main>
           <Switch>
-            <Route
-              path="/soccer/:id/:id"
-              render={props => <SingleTeam {...props} user={this.state.user} />}
-            />
-            <Route
-              path="/soccer/:id"
-              render={props => (
-                <SingleLeague {...props} user={this.state.user} />
-              )}
-            />
-            <Route
-              path="/soccer"
-              render={() => <Football user={this.state.user} />}
-            />
-            <Route
-              path="/basketball/:id/:id"
-              render={props => <SingleTeam {...props} user={this.state.user} />}
-            />
-            <Route
-              path="/basketball/:id"
-              render={props => (
-                <SingleLeague {...props} user={this.state.user} />
-              )}
-            />
-            <Route
-              path="/basketball"
-              render={() => <Basketball user={this.state.user} />}
-            />
-            <Route
-              path="/tennis/:id"
-              render={props => (
-                <TennisLeague {...props} user={this.state.user} />
-              )}
-            />
-            <Route path="/tennis" component={Tennis} />
+            <Route path="/soccer/:id/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleTeam {...props} user={this.state.user} /></Suspense>} /> 
 
-            <Route
-              path="/motorsport/:id/:id"
-              render={props => (
-                <SingleTeamMotorsports {...props} user={this.state.user} />
-              )}
-            />
+            <Route path="/soccer/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleLeague {...props} user={this.state.user} /></Suspense>} /> 
 
-            <Route
-              path="/motorsport/:id"
-              render={props => (
-                <SingleLeague {...props} user={this.state.user} />
-              )}
-            />
-            <Route path="/motorsport" component={Motorsports} />
+            <Route path="/soccer" render={() => <Suspense fallback={<Loading />}>
+            <Football user={this.state.user} /></Suspense>} />   
 
-            <Route
-              path="/fighting/:id/:id"
-              render={props => <SingleTeam {...props} user={this.state.user} />}
-            />
+            <Route path="/basketball/:id/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleTeam {...props} user={this.state.user} /></Suspense>} /> 
 
-            <Route
-              path="/fighting/:id"
-              render={props => (
-                <SingleLeagueFighting {...props} user={this.state.user} />
-              )}
-            />
-
-            <Route path="/fighting" component={Fighting} />
+            <Route path="/basketball/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleLeague {...props} user={this.state.user} /></Suspense>} />
            
-            <Route
+            <Route path="/basketball" render={() => <Suspense fallback={<Loading />}>
+            <Basketball user={this.state.user} /></Suspense>} />  
+
+            <Route path="/motorsport/:id/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleTeamMotorsports {...props} user={this.state.user} /></Suspense>} />
+
+            <Route path="/motorsport/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleLeague {...props} user={this.state.user} /></Suspense>} />
+
+            <Route path="/motorsport" render={() => <Suspense fallback={<Loading />}>
+            <Motorsports user={this.state.user} /></Suspense>} /> 
+            
+            <Route path="/fighting/:id/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleTeam {...props} user={this.state.user} /></Suspense>} />
+            
+            <Route path="/fighting/:id" render={(props) => <Suspense fallback={<Loading />}>
+            <SingleLeagueFighting {...props} user={this.state.user} /></Suspense>} />
+            
+            <Route path="/fighting" render={() => <Suspense fallback={<Loading />}>
+            <Fighting user={this.state.user} /></Suspense>} /> 
+           
+            {/* <Route
               path="/profile/:name/edit"
               exact
               render={props => (
                 <EditProfile {...props} user={this.state.user} updateUser={this.updateUser}/>
               )}
-              />
+              /> */}
 
-            <Route
+            <Route path="/profile/:name/edit" render={(props) => <Suspense fallback={<Loading />}>
+            <EditProfile {...props} user={this.state.user} updateUser={this.updateUser}/>/></Suspense>} /> 
+
+            {/* <Route
               path="/profile/:name"
               exact
               render={props => (
                 <UserProfile {...props} user={this.state.user} />
               )}
-            />
-            <Route
-              path="/confirmation/:token"
-              exact
-              render={props => (
-                <Confirmation {...props} user={this.state.user} />
-              )}
-            />
-            <Route
+            /> */}
+
+            <Route path="/profile/:name" render={(props) => <Suspense fallback={<Loading />}>
+            <UserProfile {...props} user={this.state.user} /></Suspense>} /> 
+
+            {/* <Route
               path="/signup"
               render={props => (
                 <Signup
@@ -225,8 +196,14 @@ class App extends Component {
                   user={this.state.user}
                 />
               )}
+            /> */}
+
+            <Route path="/signup" render={(props) => <Suspense fallback={<Loading />}>
+              <Signup {...props}changeAuthenticationStatus={this.changeAuthenticationStatus}
+              user={this.state.user} /></Suspense>} 
             />
-            <Route
+
+            {/* <Route
               path="/login"
               render={() => (
                 <Login
@@ -234,15 +211,32 @@ class App extends Component {
                   user={this.state.user}
                 />
               )}
+            /> */}
+
+            <Route path="/login" render={() => <Suspense fallback={<Loading />}>
+            <Login changeAuthenticationStatus={this.changeAuthenticationStatus}
+              user={this.state.user}/></Suspense>} 
             />
-            <Route path="/fighting" component={Fighting} />
-            <Route
+                
+           
+            {/* <Route
               path="/search/:name"
               exact
               render={() => <SearchResults search={this.state.search} />}
+            /> */}
+
+            <Route path="/search/:name" render={() => <Suspense fallback={<Loading />}>
+            <SearchResults search={this.state.search} /></Suspense>} 
             />
-            <Route path="/" exact component={Home} />
-            <Route render={() => <ErrorPage/>} />
+           
+            <Route render={() => <Suspense fallback={<Loading />}>
+            <Home/></Suspense>} 
+            />
+            
+            <Route render={() => <Suspense fallback={<Loading />}>
+            <ErrorPage/></Suspense>} 
+            />
+
           </Switch>
         </main>
         <footer>
