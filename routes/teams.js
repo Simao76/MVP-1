@@ -18,17 +18,21 @@ router.get("/listteams", (req, res, next) => {
     });
 });
 
-router.get('/teams/:teamId' , async (req, res, next) => {  
+router.get("/teams/:teamId", async (req, res, next) => {
   const teamIdStr = req.params.teamId;
   const teamId = teamIdStr.split(",");
   //console.log(teamId)
- 
+
   try {
-    const getTeams = await Team.find().where('_id').in(teamId).exec();
-    res.json({ message: 'Fetched team ', getTeams});
-   }catch (err) {
+    const getTeams = await Team.find()
+      .where("_id")
+      .in(teamId)
+      .exec();
+
+    res.json({ message: "Fetched team ", getTeams });
+  } catch (err) {
     next(err);
   }
-})
+});
 
 module.exports = router;

@@ -77,6 +77,10 @@ export const getEvents = async id => {
     response.push(responseNext.data.events);
     //console.log(response);
     return response;
+    // return {
+    //   next: responseNext.data.events,
+    //   last: responseLast.data.events
+    // }
   } catch (error) {
     throw error;
   }

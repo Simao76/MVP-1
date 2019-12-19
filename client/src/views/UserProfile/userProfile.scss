@@ -1,22 +1,63 @@
+@import "../../assets/style.scss";
+
 .profilecard {
   /*  border: solid green; */
 
   width: 400px;
+  height: 200px;
   margin: 95px auto 0;
   margin-bottom: 20px;
-  background-color: rgb(235, 231, 231);
-
-  text-align: center;
+  background-color: white;
+  box-shadow: rgb(231, 231, 220);
+  font-family: $primary-font;
+  /* text-align: center; */
   font-size: 16px;
+  /* border: solid 1px $primary-color; */
+  border-radius: 4%;
+  box-shadow: 5px 10px $secondary-color;
+  box-shadow: 0 0.25em 1.25em -0.5em hsla(220, 20%, 30%, 0.5);
+
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .profilecardinfo {
+    text-justify: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .profilePic {
+    width: 10em;
+    /*  border: solid $primary-color; */
+    /* transform: translate(075%, -25%); */
+    height: 10em;
+    border-radius: 50%;
+    margin: 15px auto;
+  }
 }
 
-.profilePic {
-  width: 10em;
-  transform: translate(0%, -50%);
-  height: 10em;
-  border-radius: 50%;
+h1 {
+  margin-bottom: 15px;
+}
+
+.editprofilebtn {
+  background-color: white;
+  padding: 8px;
+  font-family: $primary-font;
+  border: solid 1px $primary-color;
+  border-radius: 8px;
+  text-decoration: white;
+  margin-bottom: 15px;
 }
 
 .profileteams {
-  border: solid green;
+  margin-top: 200px;
+
+  /* border: solid green; */
+}
+
+.results-container {
+  // border: solid green;
+
+  display: flex;
+  flex-direction: column;
 }

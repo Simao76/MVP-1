@@ -47,9 +47,8 @@ const loadLeagues = require("./apiServices/load-leagues");
 
 //const loadTeams = require("./apiServices/load-teams");
 
-const onListening = async server => {
+const onListening = server => {
   const { port } = server.address();
-    await loadLeagues.populateDB();  
   //await loadTeams.populateDB();
   //console.log(loadLeagues)
   debug(`Node server listening on ${port}`);
@@ -57,7 +56,9 @@ const onListening = async server => {
     debug(`Visit http://localhost:3000 while developing`);
 };
 
-const initiate = () => {
+const initiate = async () => {
+  await loadLeagues.populateDB();
+
   app.set("port", PORT);
 
   const server = app.listen(PORT);

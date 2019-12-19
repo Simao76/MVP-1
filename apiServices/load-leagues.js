@@ -97,6 +97,7 @@ const loadAllData = async () => {
   const formatedTeams = teamsByLeague.forEach(el =>
     el.map(item =>
       newArr.push({
+        _id: item.idTeam,
         idLeague: item.idLeague,
         name: item.strTeam,
         alternateName: item.strAlternate,

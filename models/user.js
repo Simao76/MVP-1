@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
       trim: true
     },
     profilePic: {
-      type: String,
+      type: String
       //default: "/images/mvp_logo_round.png"
     },
     passwordHash: {
@@ -43,7 +43,8 @@ const userSchema = new mongoose.Schema(
     },
     _myTeams: [
       {
-        type: mongoose.Types.ObjectId,
+        // type: mongoose.Types.ObjectId,
+        type: String,
         ref: "Team"
       }
     ]
