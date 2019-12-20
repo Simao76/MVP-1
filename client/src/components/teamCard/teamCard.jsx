@@ -41,11 +41,7 @@ class teamCard extends Component {
       })
     }  
     
-  render() {
-    //console.log(this.state.follow)    
-/*     let userFollow;
-    this.props.user ? userFollow = this.props.user._myTeams.map(item => item) : userFollow = ""; */
-  
+  render() {  
     return (
       <div className="team-card">
         <Link to={`${this.props.history.location.pathname}/${this.props.id}`}>

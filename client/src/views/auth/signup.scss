@@ -1,0 +1,111 @@
+@import '../../assets//style.scss';
+
+.signup-form-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: calc(100vh - 14vh);
+
+  .signup-form {
+    height: 80%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    //border: 1px solid $primary-color;
+    border-radius: 12px;
+    box-shadow: 0 0 15px 2px $primary-color;
+    
+    .signup-image {
+      width: 12em; 
+    }
+
+    label {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+    input {
+      height: 4vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;     
+      border: 1px solid $primary-color;
+      border-radius: 5px; 
+      margin-top: .25em;
+      margin-bottom: 1em;
+      width: 200px;
+      font-family: $primary-font;
+      font-size: .85em;   
+
+        &:focus {
+          outline: none; 
+        }
+    }
+
+    .extra {
+      margin-top: 1em;
+
+      p {
+        font-size: 1em;
+      }
+
+      a {
+        text-decoration: none;
+        color: orange;
+        font-style: italic;
+      }
+    }
+
+  }
+}
+
+@media (min-width: $min-width) {
+  .signup-form-container {
+    width: 30em;
+
+    .signup-form {
+      height: 90%;
+      .signup-button {
+        color: $primary-color;
+        width: 5em;
+        background: #ffffff;
+        padding: .3em;
+        margin: 1em .5em;
+        border: 2px solid $primary-color;
+        border-radius: 6px;
+        display: inline-block;      ;
+        transition: all 0.3s ease 0s;
+  
+        &:hover {
+          color: $primary-color ;
+          border-radius: 50px;
+          border-color: orange ;
+          transition: all 0.3s ease 0s;
+        }
+      }
+
+      .signup-image {
+        width: 15em; 
+      }
+
+      label {
+        font-size: .85em;
+      }
+
+      .extra {
+        p {
+          font-size: .85em;
+        }
+      }
+    }
+  }
+}

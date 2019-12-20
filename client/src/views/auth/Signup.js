@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { signUp as signUpService } from '../../services/auth/auth-service';
 import { Link, withRouter } from "react-router-dom";
+import SignupImage from '../../assets/images/signup.png';
+import "./signup.scss";
 
 class Signup extends Component {
   constructor(props) {
@@ -37,38 +39,47 @@ class Signup extends Component {
   render() {
     //console.log(this.props.user)
     return (
-      <div>
+      <div className="signup-form-container">
+        <div className="signup-form">
+        <img src={SignupImage} alt="" className="signup-image"/>
         <form onSubmit={this.formSubmitHandler}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            required
-            onChange={e => this.formChangeHandler(e)}
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            required
-            onChange={e => this.formChangeHandler(e)}
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            required
-            onChange={e => this.formChangeHandler(e)}
-          />          
-          <button type="submit">Sign Up</button>
+          <div>          
+            <label>username</label>
+            <input
+              type="text"
+              name="username"
+              value={this.state.username}
+              required
+              onChange={e => this.formChangeHandler(e)}
+            />
+          </div>
+          <div>
+            <label>email</label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.email}
+              required
+              onChange={e => this.formChangeHandler(e)}
+            />          
+          </div>
+          <div>
+            <label>password</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.password}
+              required
+              onChange={e => this.formChangeHandler(e)}
+            />  
+          </div>
+          <button type="submit" className="signup-button">Sign Up</button>
         </form>
-        <p>
-          Already have account?
-          <Link to={"/login"}> Login</Link>
-        </p>
+        <div className="extra">
+          <p>Already have account?</p>
+          <span><Link to={"/login"}> Login</Link></span>         
+        </div>
+        </div>
       </div>
     );
   }

@@ -1,26 +1,61 @@
 @import '../../assets//style.scss';
 
 .home-container {
-  height: calc(100vh - 13vh);
+  height: calc(100vh - 14vh);
   width: 100%;
   background-image: url("../../assets/images/project.gif");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
     .pitch {
-      width: 100%;
+      width: 80%;
+      background-color: rgba(0, 102, 153, 0.4);
       padding: 0 1em;
       font-family: $primary-font;
-      font-size: 2em;
+      font-size: 1.5em;
       color: white;
+      border-radius: 12px;
+
+      p {
+        margin: .5em 0;
+      }
+    }
+
+    a {
+      text-decoration: none;
+    }
+    .home-button {
+      color: $primary-color;
+      width: 5em;
+      background: #ffffff;
+      padding: .3em;
+      margin: 1em .5em;
+      border: 2px solid $primary-color;
+      border-radius: 6px;
+      display: inline-block;      ;
+      transition: all 0.3s ease 0s;
+
+      &:hover {
+        color: $primary-color ;
+        border-radius: 50px;
+        border-color: orange ;
+        transition: all 0.3s ease 0s;
+      }
     }
 }
 
-@media (min-width: $min-width) {
-  .pitch {
-    width: 50%;
+@media (min-width: 720px) {
+
+  .home-container {
+    .pitch {
+      width: 15em;
+      padding: 2em;
+      box-shadow: 0 0 5px 2px #fff;
+      font-size: 1.25em;  
+    }
   }
 }

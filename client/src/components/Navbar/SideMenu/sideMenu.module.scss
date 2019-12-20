@@ -35,25 +35,59 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        justify-content: center;         
+        justify-content: center;     
+        
+        li {
+            margin: 0.5rem 1em;        
+        }
     }
 
-    li {
-        margin: 0.5rem 1em;        
-    }
+
 
     a {        
         color: $primary-color;
         text-decoration: none;
         font-family: $primary-font;
         font-size: 1.15em;
+
+        a:hover,
+        a:active {
+            font-weight: bold;         
+        }
     }    
 
-    a:hover,
-    a:active {
-        font-weight: bold;         
+    .side_searchBox {
+        margin-top: 2em;
+        padding-left: 1em;
+        text-align: left;
+
+        .side_searchInput {
+            border-radius: 5px;  
+            border: none;
+            cursor: pointer;
+            height: 5vh;
+            font-family: $primary-font;
+            font-size: .85em;  
+            
+            &:focus {
+                background-color: white;
+                cursor: text;
+                outline: 0;
+            }
+        }
+
+        .side_menu_button {
+            height: 5vh;
+            width: 5vh;
+            margin-left: .75em;
+            color: $primary-color;
+            border-radius: 50px;
+            border: none;
+            background-color: white;
+        }
+
+        
     }
-  
   }
 
 

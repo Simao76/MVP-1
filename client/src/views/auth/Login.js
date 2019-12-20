@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { signIn as signInService } from '../../services/auth/auth-service';
 import { Link, withRouter } from "react-router-dom";
+import LoginImage from '../../assets/images/login.png';
+import "./login.scss";
 
 class Login extends Component {
   constructor(props) {
@@ -32,30 +34,37 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.formSubmitHandler}>
-          <label>email:</label>
-          <input
-            type="emal"
-            name="email"
-            value={this.state.email}
-            required
-            onChange={e => this.formChangeHandler(e)}
-          />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            required
-            onChange={e => this.formChangeHandler(e)}
-          />
-          <button type="submit">Login</button>
-        </form>
-        <p>
-          Don't have account?
-          <Link to={"/signup"}> Signup</Link>
-        </p>
+      <div className="login-form-container">
+        <div className="login-form">
+        <img src={LoginImage} alt="" className="login-image"/>
+          <form onSubmit={this.formSubmitHandler}>
+            <div>
+              <label>email</label>
+              <input
+                type="emal"
+                name="email"
+                value={this.state.email}
+                required
+                onChange={e => this.formChangeHandler(e)}
+              />
+            </div>
+            <div>
+              <label>password</label>
+              <input
+                type="password"
+                name="password"
+                value={this.state.password}
+                required
+                onChange={e => this.formChangeHandler(e)}
+              />
+              <button type="submit" className="login-button">Login</button>
+            </div>          
+          </form>
+          <div className="extra">
+            <p>Don't have an account?</p>            
+            <span><Link to={"/signup"}> Signup</Link></span>
+          </div>
+        </div>
       </div>
     );
   }

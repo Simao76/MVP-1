@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import Logo from "../../../assets/images/mvp_logo_full.png";
 import {signOut as signOutService} from "../../../services/auth/auth-service";
+import { getTeamsfromDB as getTeamService, getPlayer as getPlayerService} from "../../../services/Search";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classes from "./sideMenu.module.scss";
 
 class sideMenu extends Component {
@@ -10,12 +12,36 @@ class sideMenu extends Component {
         this.state = {
           search: ""
         };
-        //this.formSubmissionHandler = this.formSubmissionHandler.bind(this);
+        this.formSubmissionHandler = this.formSubmissionHandler.bind(this);
         this.signOutHandler = this.signOutHandler.bind(this);
       }
 
+      onChangeHandler = e => {
+        this.setState({
+          [e.target.name]: e.target.value
+        });
+      };
+
+     async formSubmissionHandler(e) {
+        e.preventDefault();
+        const { search } = this.state;
+        try {
+          const teams = await getTeamService(search);
+          const players = await getPlayerService({ search });
+          const searchFor = this.state.search;
+          this.props.getSearch(teams, players);
+          this.props.history.push(`/search/${searchFor}`);      
+        } catch (error) {
+          console.log(error);
+        }        
+        this.props.click();
+        this.setState({
+          search: ""
+        })
+      }
+
       async signOutHandler() {
-        console.log('signout handler')
+        //console.log('signout handler')
         try {
           await signOutService();
           this.props.changeAuthenticationStatus(null);
@@ -39,12 +65,25 @@ class sideMenu extends Component {
               <div>
                   <ul>
                       <li onClick={this.props.click}><NavLink to="/soccer">Soccer</NavLink></li>
-                      <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                  
-                      {/* <li onClick={this.props.click}><NavLink to="/tennis">Tennis</NavLink></li>   */   }                              
+                      <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                         
                       <li onClick={this.props.click}><NavLink to="/motorsport">Motosports</NavLink></li>
                       <li onClick={this.props.click}><NavLink to="/fighting">Fighting</NavLink></li>                                            
                   </ul>     
               </div>
+
+              <div className={classes.side_search}>
+                <form onSubmit={this.formSubmissionHandler} className={classes.side_searchBox}>
+                  <input className={classes.side_searchInput}
+                    type="search"
+                    name="search"
+                    value={this.state.search}
+                    placeholder="search clubs or players"
+                    onChange={this.onChangeHandler}
+                  ></input>
+                  <button className={classes.side_menu_button}><FontAwesomeIcon icon="search"/></button>
+                </form>        
+              </div>
+
               {!this.props.user && (
                 <div>
                     <ul>
@@ -68,4 +107,4 @@ class sideMenu extends Component {
     
 };
 
-export default sideMenu;
+export default withRouter(sideMenu);

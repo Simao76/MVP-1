@@ -28,11 +28,12 @@ class Home extends Component {
       <div className="home-container"> 
         <div className="pitch">
           <p>Stop wasting time searching for your favorite teams!</p>       
-          <p>Join us and have access to the hottest stats</p> 
-          <button>Login</button>
-          <button>Sign Up</button>
+          <p>Join us and have access to the hottest stats</p>
         </div>   
-        <p></p>
+        <div>
+          <a href="/login" className="home-button">login</a>
+          <a href="/signup" className="home-button">sign up</a>
+        </div>
       </div>
     )
   }

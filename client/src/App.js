@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Loading from './components/UI/Loading/loading';
 import { loadUserInformation as loadUserInformationService } from "./services/auth/auth-service";
-import SearchResults from "./views/Search/SearchResults";
 import SideMenu from "./components/Navbar/SideMenu/SideMenu";
 import Backdrop from "./components/UI/Backdrop/Backdrop";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -28,6 +27,7 @@ const SingleTeamMotorsports = React.lazy(() => import("./views/Sports/SingleTeam
 const SingleLeagueFighting = React.lazy(() => import("./views/Sports/SingleLeague/SingleLeagueFighting"));
 const UserProfile = React.lazy(() => import("./views/UserProfile/userProfile"));
 const EditProfile = React.lazy(() => import("./views/UserProfile/EditProfile"));
+const SearchResults = React.lazy(() => import("./views/Search/SearchResults"));
 const ErrorPage = React.lazy(() => import('./views/ErrorPage/Error'));
 
 class App extends Component {
@@ -90,11 +90,11 @@ class App extends Component {
   }
 
   menuToggleClickHandler() {
-    console.log("menu toggle clicked");
+    //console.log("menu toggle clicked");
     this.setState({
       sideMenuOpen: true
     });
-    console.log(this.state.sideMenuOpen);
+    //console.log(this.state.sideMenuOpen);
   }
 
   backdropClickHandler() {
@@ -122,8 +122,9 @@ class App extends Component {
         />
         <SideMenu
           show={this.state.sideMenuOpen}
-          click={this.backdropClickHandler}
           user={this.state.user}
+          click={this.backdropClickHandler}
+          getSearch={this.searchResults}
           changeAuthenticationStatus={this.changeAuthenticationStatus}
         />
         {backdrop}
@@ -221,23 +222,16 @@ class App extends Component {
             <Route path="/login" render={() => <Suspense fallback={<Loading />}>
             <Login changeAuthenticationStatus={this.changeAuthenticationStatus}
               user={this.state.user}/></Suspense>} 
-            />
-                
-           
-            {/* <Route
-              path="/search/:name"
-              exact
-              render={() => <SearchResults search={this.state.search} />}
-            /> */}
+            />           
 
             <Route path="/search/:name" render={() => <Suspense fallback={<Loading />}>
             <SearchResults search={this.state.search} /></Suspense>} 
             />
            
-            <Route render={() => <Suspense fallback={<Loading />}>
+            <Route path="/" exact render={() => <Suspense fallback={<Loading />}>
             <Home/></Suspense>} 
             />
-            
+          
             <Route render={() => <Suspense fallback={<Loading />}>
             <ErrorPage/></Suspense>} 
             />
