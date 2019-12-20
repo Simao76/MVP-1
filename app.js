@@ -21,7 +21,7 @@ const userRouter = require('./routes/user');
 const app = express();
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.use(serveFavicon(join(__dirname, 'client/build', 'favicon.ico')));
+//app.use(serveFavicon(join(__dirname, 'client/build', 'favicon.ico')));
 app.use(
   cors({
     credentials: true,
