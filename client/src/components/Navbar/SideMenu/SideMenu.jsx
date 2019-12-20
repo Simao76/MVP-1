@@ -62,14 +62,6 @@ class sideMenu extends Component {
               <div className={classes.side_menu_logo}>
                   <img src={Logo} alt="logo" />
               </div>
-              <div>
-                  <ul>
-                      <li onClick={this.props.click}><NavLink to="/soccer">Soccer</NavLink></li>
-                      <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                         
-                      <li onClick={this.props.click}><NavLink to="/motorsport">Motosports</NavLink></li>
-                      <li onClick={this.props.click}><NavLink to="/fighting">Fighting</NavLink></li>                                            
-                  </ul>     
-              </div>
 
               <div className={classes.side_search}>
                 <form onSubmit={this.formSubmissionHandler} className={classes.side_searchBox}>
@@ -83,6 +75,17 @@ class sideMenu extends Component {
                   <button className={classes.side_menu_button}><FontAwesomeIcon icon="search"/></button>
                 </form>        
               </div>
+
+              <div>
+                  <ul>
+                      <li onClick={this.props.click}><NavLink to="/soccer">Soccer</NavLink></li>
+                      <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                         
+                      <li onClick={this.props.click}><NavLink to="/motorsport">Motosports</NavLink></li>
+                      <li onClick={this.props.click}><NavLink to="/fighting">Fighting</NavLink></li>                                            
+                  </ul>     
+              </div>
+
+
 
               {!this.props.user && (
                 <div>

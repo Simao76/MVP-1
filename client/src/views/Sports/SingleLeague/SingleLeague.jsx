@@ -108,28 +108,3 @@ class SingleLeague extends Component {
 }
 
 export default withRouter(SingleLeague);
-
-{
-  /* 
-          <h3>Latest games</h3>
-            {events[0] && events[0].map(el => (
-              <Fragment key={el.idEvent}>
-                <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>                
-                <div>                  
-                </div>          
-              </Fragment>
-            ))}
-        </div>
-        <div>
-          <h3>Next games</h3>
-            {events[1] && events[1].map(el => (
-              <Fragment key={el.idEvent}>
-              <p><strong>{el.strEvent}</strong></p>
-                <div><p>{el.strHomeTeam} {el.intHomeScore}</p><p>{el.strAwayTeam} {el.intHomeScore}</p></div>
-                <div>                  
-                </div>          
-              </Fragment>
-            ))}
-        </div> */
-}

@@ -30,9 +30,7 @@ const SingleLeague = React.lazy(() =>
 const SingleTeam = React.lazy(() =>
   import("./views/Sports/SingleTeam/SingleTeam")
 );
-const SingleTeamMotorsports = React.lazy(() =>
-  import("./views/Sports/SingleTeam/SingleTeamMotorsports")
-);
+
 const SingleLeagueFighting = React.lazy(() =>
   import("./views/Sports/SingleLeague/SingleLeagueFighting")
 );

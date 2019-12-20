@@ -9,7 +9,7 @@ const SessionBtn = props => {
         {!props.user && (
           <Fragment>
             <NavLink to="/login">
-              <span className="navigation-link">
+              <span className="session-link">
                 <li>Login</li>
               </span>
             </NavLink>
@@ -24,7 +24,7 @@ const SessionBtn = props => {
 
         {props.user && (
           <NavLink to="/" onClick={props.signOut}>
-            <span className="session-link">
+            <span className="logout-link">
               <li>Logout</li>
             </span>
           </NavLink>

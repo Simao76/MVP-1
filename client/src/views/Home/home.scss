@@ -13,15 +13,21 @@
 
     .pitch {
       width: 80%;
+      height: 10em;
       background-color: rgba(0, 102, 153, 0.4);
       padding: 0 1em;
       font-family: $primary-font;
       font-size: 1.5em;
       color: white;
       border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
       p {
         margin: .5em 0;
+        line-height: 1.5em;
       }
     }
 
@@ -30,11 +36,11 @@
     }
     .home-button {
       color: $primary-color;
-      width: 5em;
+      width: 6em;
       background: #ffffff;
       padding: .3em;
       margin: 1em .5em;
-      border: 2px solid $primary-color;
+      border: 2px solid orange;
       border-radius: 6px;
       display: inline-block;      ;
       transition: all 0.3s ease 0s;
@@ -42,7 +48,7 @@
       &:hover {
         color: $primary-color ;
         border-radius: 50px;
-        border-color: orange ;
+        border-color: $primary-color;
         transition: all 0.3s ease 0s;
       }
     }
@@ -52,7 +58,8 @@
 
   .home-container {
     .pitch {
-      width: 15em;
+      width: 30em;
+      height: 7.5em;
       padding: 2em;
       box-shadow: 0 0 5px 2px #fff;
       font-size: 1.25em;  

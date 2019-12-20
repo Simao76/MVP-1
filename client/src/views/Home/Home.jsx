@@ -27,8 +27,7 @@ class Home extends Component {
     return (
       <div className="home-container"> 
         <div className="pitch">
-          <p>Stop wasting time searching for your favorite teams!</p>       
-          <p>Join us and have access to the hottest stats</p>
+          <p>Follow your favorite teams<br /> and get updated on the go!</p>
         </div>   
         <div>
           <a href="/login" className="home-button">login</a>
