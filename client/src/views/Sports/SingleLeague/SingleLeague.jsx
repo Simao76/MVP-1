@@ -71,7 +71,7 @@ class SingleLeague extends Component {
                       <p>
                         {el.strHomeTeam} {el.intHomeScore}
                         <strong> vs </strong>
-                        {el.strAwayTeam} {el.intHomeScore}
+                        {el.strAwayTeam} {el.intAwayScore}
                       </p>
 
                       {/* <br></br> */}
@@ -92,7 +92,7 @@ class SingleLeague extends Component {
                       <p>
                         {el.strHomeTeam} {el.intHomeScore}
                         <strong> vs </strong>
-                        {el.strAwayTeam} {el.intHomeScore}
+                        {el.strAwayTeam} {el.intAwayScore}
                       </p>
 
                       {/* <br></br> */}
