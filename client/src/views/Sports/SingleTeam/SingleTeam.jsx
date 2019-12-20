@@ -94,8 +94,8 @@ class SingleTeam extends Component {
                   </div>
                 </div>
 
-                <div className="website-link">
-                  <a href={item.website}>
+                <div className="getTickets-link">
+                  <a href={"http://" + item.website}>
                     <h2>Get tickets</h2>
                   </a>
                 </div>
@@ -105,40 +105,41 @@ class SingleTeam extends Component {
 
         <div className="results-card">
           <div>
-            <h3>Next Events</h3>
+            {events && <h3>Next Events</h3>}
             {events[0] &&
               events[0].map(el => (
                 <Fragment key={el.idEvent}>
-                  <p>
-                    <strong>{el.strEvent}</strong>
-                  </p>
+                  <p>{/* <strong>{el.strEvent}</strong> */}</p>
                   <div>
+                    <br></br>
                     <p>
                       {el.strHomeTeam} {el.intHomeScore}
-                    </p>
-                    <p>
+                      <em> vs </em>
                       {el.strAwayTeam} {el.intHomeScore}
                     </p>
+                    <hr></hr>
+                    {/* <br></br> */}
                   </div>
                   <div></div>
                 </Fragment>
               ))}
           </div>
           <div>
-            <h3>Latest Events</h3>
+            {events && <h3>Latest Events</h3>}
+
             {events[1] &&
               events[1].map(el => (
                 <Fragment key={el.idEvent}>
-                  <p>
-                    <strong>{el.strEvent}</strong>
-                  </p>
+                  <p>{/* <strong>{el.strEvent}</strong> */}</p>
                   <div>
+                    <br></br>
                     <p>
                       {el.strHomeTeam} {el.intHomeScore}
-                    </p>
-                    <p>
+                      <em> vs </em>
                       {el.strAwayTeam} {el.intHomeScore}
                     </p>
+                    <hr></hr>
+                    {/* <br></br> */}
                   </div>
                 </Fragment>
               ))}
