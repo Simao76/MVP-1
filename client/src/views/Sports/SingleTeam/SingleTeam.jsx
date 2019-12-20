@@ -115,7 +115,7 @@ class SingleTeam extends Component {
                     <p>
                       {el.strHomeTeam} {el.intHomeScore}
                       <em> vs </em>
-                      {el.strAwayTeam} {el.intHomeScore}
+                      {el.strAwayTeam} {el.intAwayScore}
                     </p>
                     <hr></hr>
                     {/* <br></br> */}
@@ -136,7 +136,7 @@ class SingleTeam extends Component {
                     <p>
                       {el.strHomeTeam} {el.intHomeScore}
                       <em> vs </em>
-                      {el.strAwayTeam} {el.intHomeScore}
+                      {el.strAwayTeam} {el.intAwayScore}
                     </p>
                     <hr></hr>
                     {/* <br></br> */}
