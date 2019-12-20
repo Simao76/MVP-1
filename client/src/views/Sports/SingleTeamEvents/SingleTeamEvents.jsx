@@ -29,6 +29,7 @@ class SingleTeamEvents extends Component {
   }
 
   render() {
+    console.log("singleteamevents");
     const events = this.state.events;
     //console.log(this.props.match)
     console.log(events);

@@ -39,6 +39,7 @@
 }
 
 .team-description {
+  margin-right: 20px;
   margin-left: 10px;
   text-align: justify;
   max-height: 300px;
@@ -46,6 +47,7 @@
   overflow-x: hidden;
   p {
     line-height: 2.5em;
+    padding: 0 2.5em;
   }
 }
 
@@ -74,6 +76,7 @@
   height: 100%;
   overflow-y: scroll;
 
+  margin-right: 20px;
   margin-left: 10px;
   text-align: justify;
   max-height: 300px;
@@ -81,18 +84,21 @@
   overflow-x: hidden;
   p {
     line-height: 2.5em;
+    padding: 0 2.5em;
   }
 }
 
-.website-link {
+.getTickets-link {
   padding: 100px;
-  background-color: green;
+  font-style: bold;
+  /* background-color: green; */
   a {
     color: inherit;
   }
 }
 
 .results-card {
+  padding: 2em 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;

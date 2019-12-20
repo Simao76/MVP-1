@@ -1,3 +1,5 @@
+@import "../../../assets/style.scss";
+
 .card-container {
   margin-top: 1em;
   display: flex;
@@ -5,6 +7,19 @@
   justify-content: center;
 
   .singleLeague-badge {
-    width: 10em; 
+    width: 10em;
   }
+}
+
+.results-card {
+  padding: 2em 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 0.5em;
+  margin-bottom: 1em;
+  background-color: white;
+  box-shadow: 0 0.25em 1.25em -0.5em hsla(220, 20%, 30%, 0.5);
 }
