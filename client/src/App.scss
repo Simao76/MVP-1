@@ -14,6 +14,16 @@ body {
   max-width: 1160px;
   margin: 0 auto;
   font-family: $primary-font;
+  
+    &::-webkit-scrollbar {
+      width: .5rem;  
+   }
+    
+    &::-webkit-scrollbar-thumb { 
+      border-radius: 30px;
+      background: $primary-color;                       
+    }
+
 }
 
 .App {
@@ -24,6 +34,7 @@ body {
 
   main {
     width: 100%;
-    flex: 1;
+    flex: 1;                 
+
   }
 }

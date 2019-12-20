@@ -45,10 +45,21 @@
   max-height: 300px;
   overflow-y: hidden;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: .5rem;  
+ }
+  
+ &::-webkit-scrollbar-thumb { 
+  border-radius: 30px;
+  background: $primary-color;                       
+}
+
   p {
     line-height: 2.5em;
     padding: 0 2.5em;
   }
+  
 }
 
 .stadium-head {
@@ -75,13 +86,24 @@
   width: 100%;
   height: 100%;
   overflow-y: scroll;
-
   margin-right: 20px;
   margin-left: 10px;
   text-align: justify;
   max-height: 300px;
   overflow-y: hidden;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: .5rem;  
+ }
+  
+  &::-webkit-scrollbar-thumb { 
+    border-radius: 30px;
+    background: $primary-color;                       
+  }
+
+  
+
   p {
     line-height: 2.5em;
     padding: 0 2.5em;
