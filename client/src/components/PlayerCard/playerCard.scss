@@ -1,0 +1,36 @@
+@import "../../assets/style.scss";
+
+.player-container {
+  width: 12em;
+  margin: 1em;
+  box-shadow: 5px 10px $secondary-color;
+  box-shadow: 0 0.25em 1.25em -0.5em hsla(220, 20%, 30%, 0.5);
+
+  img {
+    width: 100%;
+  }
+
+  .a {
+    text-decoration: none;
+  }
+
+  .premium-button {
+    color: $primary-color;
+    width: 6em;
+    background: #ffffff;
+    padding: .3em;
+    margin: 1em .5em;
+    border: 2px solid $primary-color;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color ;
+      border-radius: 50px;
+      border-color: orange ;
+      transition: all 0.3s ease 0s;
+    }
+}
+}

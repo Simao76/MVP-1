@@ -1,6 +1,6 @@
 @import '../../assets//style.scss';
 
-.login-form-container {
+.edit-form-container {
   display: flex;
   width: 90%;
   margin: 0 auto;
@@ -10,7 +10,7 @@
   text-align: center;
   height: calc(100vh - 14vh);
 
-  .login-form {
+  .edit-form {
     height: 80%;
     width: 90%;
     display: flex;
@@ -21,12 +21,13 @@
     //border: 1px solid $primary-color;
     border-radius: 12px;
     box-shadow: 0 0 15px 2px $primary-color;
-    outline: none;
-    
-    .login-image {
+  
+    .edit-image {
       width: 12em; 
     }
-    .login-button {
+
+    .edit-button,
+    .upload-button {
       color: $primary-color;
       width: 5em;
       background: #ffffff;
@@ -34,8 +35,9 @@
       margin: 1em .5em;
       border: 2px solid $primary-color;
       border-radius: 6px;
-      display: inline-block;      ;
+      display: inline-block;     
       transition: all 0.3s ease 0s;
+      outline: none;
 
       &:hover {
         color: $primary-color ;
@@ -44,6 +46,7 @@
         transition: all 0.3s ease 0s;
       }
     }
+    
 
     label {
       font-size: 1em;
@@ -66,11 +69,15 @@
       font-size: .85em;   
 
         &:focus {
-          outline: none;
+          outline: none; 
         }
     }
 
-    .extra {
+    .choose-file {
+      border: none;
+    }
+
+    /* .extra {
       margin-top: 1em;
 
       p {
@@ -81,22 +88,21 @@
         text-decoration: none;
         color: orange;
         font-style: italic;
-      }
-    }
-
+      }*/
+    
   }
 }
 
 @media (min-width: $min-width) {
-  .login-form-container {
+  .edit-form-container {
     width: 30em;
 
-    .login-form {
+    .edit-form {
       height: 90%;
-      
 
-      .login-image {
-        width: 20em; 
+
+      .edit-image {
+        width: 16em; 
       }
 
       label {

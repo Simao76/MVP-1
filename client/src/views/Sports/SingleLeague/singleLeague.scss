@@ -1,5 +1,8 @@
 .card-container {
   margin-top: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   .singleLeague-badge {
     width: 10em; 

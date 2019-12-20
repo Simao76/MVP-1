@@ -29,6 +29,7 @@ const UserProfile = React.lazy(() => import("./views/UserProfile/userProfile"));
 const EditProfile = React.lazy(() => import("./views/UserProfile/EditProfile"));
 const SearchResults = React.lazy(() => import("./views/Search/SearchResults"));
 const ErrorPage = React.lazy(() => import('./views/ErrorPage/Error'));
+const Premium = React.lazy(() => import('./views/Premium/Premium'));
 
 class App extends Component {
   constructor(props) {
@@ -228,6 +229,9 @@ class App extends Component {
             <SearchResults search={this.state.search} /></Suspense>} 
             />
            
+            <Route path="/premium" render={() => <Suspense fallback={<Loading />}>
+            <Premium /></Suspense>} />
+
             <Route path="/" exact render={() => <Suspense fallback={<Loading />}>
             <Home/></Suspense>} 
             />

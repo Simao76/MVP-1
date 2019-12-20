@@ -1,0 +1,20 @@
+@import '../../assets/style.scss';
+
+.unfollow-button {
+    color: $primary-color;
+    width: 6em;
+    background: #ffffff;
+    padding: .3em;
+    margin: 1em .5em;
+    border: 2px solid orange;
+    border-radius: 50px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: $primary-color ;
+      border-radius: 6px;
+      border-color: $primary-color ;
+      transition: all 0.3s ease 0s;
+    }
+}

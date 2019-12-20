@@ -1,6 +1,7 @@
 import React from "react";
 import { addfollower } from "../../services/user";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './likeBtn.scss';
 
 export default function LikeBtn(props) {
   const adddingfollowers = () => {
@@ -15,7 +16,7 @@ export default function LikeBtn(props) {
     <div>
       <div>
         {props.user && (
-          <button onClick={adddingfollowers}>
+          <button onClick={adddingfollowers} className="follow-button">
             <FontAwesomeIcon icon={["far", "thumbs-up"]} /> follow</button>
         )}
       </div>

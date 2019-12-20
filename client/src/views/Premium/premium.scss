@@ -1,0 +1,51 @@
+@import '../../assets//style.scss';
+
+.premium-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: calc(100vh - 14vh);
+
+  .premium-image {
+    width: 60%;
+  }   
+
+  h4 {
+    width: 80%;
+  }
+
+  h5 {
+    width: 60%;
+  }
+
+  .join-button {
+    color: $primary-color;
+    width: 5em;
+    background: #ffffff;
+    padding: .3em;
+    margin: 1em .5em;
+    border: 2px solid $primary-color;
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color ;
+      border-radius: 50px;
+      border-color: orange ;
+      transition: all 0.3s ease 0s;
+    }
+  }
+}
+
+@media (min-width: $min-width) {
+  .premium-container {
+    .premium-image {
+      width: 25em;
+    }
+  }
+}

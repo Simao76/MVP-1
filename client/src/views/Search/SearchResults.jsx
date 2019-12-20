@@ -72,11 +72,11 @@ const SearchResults = props => {
              )
          ))
         } 
-        {/* {
+       {
           !teams || teams.length === 0 && !players && (
             <p>No result was found</p>
           )
-        } */ }
+        } 
 
     </div>
   )

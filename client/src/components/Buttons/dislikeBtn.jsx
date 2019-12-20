@@ -1,6 +1,7 @@
 import React from "react";
 import { removeFollower } from "../../services/user";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './dislikeBtn.scss';
 
 export default function dislikeBtn(props) {
   const removingFollowers = () => {
@@ -13,7 +14,7 @@ export default function dislikeBtn(props) {
   //console.log(props)
   return (
     <div>      
-      {props.user && <button onClick={removingFollowers}><FontAwesomeIcon icon={["far", "thumbs-down"]}/> unfollow</button>}
+      {props.user && <button onClick={removingFollowers} className="unfollow-button"><FontAwesomeIcon icon={["far", "thumbs-down"]}/> unfollow</button>}
     </div>
   );
 }

@@ -1,0 +1,20 @@
+@import '../../assets/style.scss';
+
+.follow-button {
+    color: $primary-color;
+    width: 5em;
+    background: #ffffff;
+    padding: .3em;
+    margin: 1em .5em;
+    border: 2px solid $primary-color;
+    border-radius: 6px;
+    display: inline-block;      ;
+    transition: all 0.3s ease 0s;
+
+    &:hover {
+      color: $primary-color ;
+      border-radius: 50px;
+      border-color: orange ;
+      transition: all 0.3s ease 0s;
+    }
+}

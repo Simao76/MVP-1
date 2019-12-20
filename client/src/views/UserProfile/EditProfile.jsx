@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { editProfile,  uploadImage } from './../../services/user';
 import { loadUserInformation } from "./../../services/auth/auth-service";
-// import ImageUpload from '../../Components/ImageUpload';
+import EditImage from '../../assets/images/edit.png';
+import './editProfile.scss';
 
 export class EditProfile extends Component {
   constructor(props) {
@@ -57,29 +58,35 @@ export class EditProfile extends Component {
   render() {
     //console.log(this.state.user._id)
     return (
-      <div>
+      <div className="edit-form-container">
         <div className="edit-form">
+        <img src={EditImage} alt="" className="edit-image"/>
           <form onSubmit={this.submitFormHandler}>
-            <input
+            <div>
+              <input
               type="text"
               name="name"
               onChange={this.formChangeHandler}
               placeholder="Name"
-            />
-            <input
+              />
+            </div>
+
+            <div>
+              <input
               type="email"
               name="email"
               onChange={this.formChangeHandler}
               placeholder="email"
-            />
-            <button>update</button>
+              />
+            </div>
+            <button className="edit-button">update</button>
           </form>
-        </div>
-        <div className="upload-container">
-          <form encType="multipart/form-data" onSubmit={this.imageUploadHandler}>
-            <input type="file" name="profilePic" />
-            <button type="submit">upload picture</button>
-          </form>
+          <div className="upload-container">
+            <form encType="multipart/form-data" onSubmit={this.imageUploadHandler}>
+              <input type="file" name="profilePic" className="choose-file"/>
+              <button type="submit" className="upload-button">upload picture</button>
+            </form>
+          </div>
         </div>
       </div>
     );

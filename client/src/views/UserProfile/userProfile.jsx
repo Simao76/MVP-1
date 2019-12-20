@@ -54,8 +54,7 @@ class userProfile extends Component {
           <div>
             <p>You're not authorized to view this page</p>
           </div>
-        )}
-
+        )}       
         {this.props.user && (
           <div className="profilecard">
             <img
@@ -80,8 +79,8 @@ class userProfile extends Component {
         <div className="results-container">
           {teams &&
             teams.map(item => (
+              <UserTeamCard
               
-                <UserTeamCard
                   {...this.props}
                   key={item.idTeam}
                   mongooseId={item._id}

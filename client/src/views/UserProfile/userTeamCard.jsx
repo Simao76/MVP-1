@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 //import { getOneTeam as getTeamService } from "../../services/Sports";
 import { getEventsByTeamId } from "../../services/Sports";
 import "./userTeamCard.scss";
-//import LikeBtn from '../../../components/Buttons/likeBtn';
+//import DislikeBtn from '../../components/Buttons/dislikeBtn';
 
 const EventItem = item =>
   (item.strHomeTeam && item.strAwayTeam && (
@@ -38,9 +38,10 @@ class UserTeamCard extends Component {
     const team = this.props.team;
     //console.log(this.props)
     return (
+      
       <Link to={`/${team.sport.toLowerCase()}/${team.idLeague}/${team._id}`}>
       <div className="user-team-card">
-        <div class="team-badge">
+        <div className="team-badge">
           <img src={team.badge} alt=""></img>
         </div>
         <div className="team-info">
@@ -56,8 +57,9 @@ class UserTeamCard extends Component {
             </div>
             <div>
               <h3>Latest Events</h3>
-              {events[1] && events[1].map(item => <EventItem {...item} />)}
+              {events[1] && events[1].map(item => <EventItem {...item} key={item.idEvent} />)}
             </div>
+            
           </div>
         </div>
       </div>
