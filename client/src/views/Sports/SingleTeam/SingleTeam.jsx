@@ -21,7 +21,7 @@ class SingleTeam extends Component {
         team: getTeam,
         events: getEvents
       });
-      console.log(this.state.events);
+      //console.log(this.state.events);
     } catch (err) {
       console.log(err);
       throw err;

@@ -21,7 +21,7 @@ class teamCard extends Component {
 
   render() {
 
-    console.log(this.props)    
+    //console.log(this.props)    
     /*     let userFollow;
     this.props.user ? userFollow = this.props.user._myTeams.map(item => item) : userFollow = ""; */
   

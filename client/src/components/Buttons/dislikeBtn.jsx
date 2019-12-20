@@ -18,28 +18,3 @@ export default function dislikeBtn(props) {
     </div>
   );
 }
-
-/* export default class LikeBtn extends Component {
-  constructor(props) {
-    super(props);
-    this.adddingfollowers = this.adddingfollowers.bind(this);
-  }
-
-  adddingfollowers() {
-    const userId = this.props.user;
-    const teamsId = this.props.mongooseId;
-    addfollower(teamsId);
-  }
-
-  render() {
-    console.log("USER IN LIKE BUTTON", this.props.user);
-    return (
-      <div>
-        {this.props.user && (
-          <button onClick={this.adddingfollowers}>Like</button>
-        )}
-      </div>
-    );
-  }
-}
- */

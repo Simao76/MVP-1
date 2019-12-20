@@ -71,8 +71,8 @@ passport.use(
           });          
         })
         .then(user => {
-          console.log(user)
-          console.log(user.email)
+          //console.log(user)
+          //console.log(user.email)
           sendMail(user)
           callback(null, user);
         })

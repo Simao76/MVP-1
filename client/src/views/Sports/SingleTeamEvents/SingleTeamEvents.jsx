@@ -5,7 +5,7 @@ import { getEventsByTeamId as getEventsByTeamIdService } from "../../../services
 class SingleTeamEvents extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    //console.log(props);
     this.state = {
       events: ""
     };
@@ -21,7 +21,7 @@ class SingleTeamEvents extends Component {
         //teams: getTeams
         events: getEvents
       });
-      console.log(this.state.events);
+      //console.log(this.state.events);
     } catch (err) {
       console.log(err);
       throw err;
@@ -29,7 +29,7 @@ class SingleTeamEvents extends Component {
   }
 
   render() {
-    console.log("singleteamevents");
+    //console.log("singleteamevents");
     const events = this.state.events;
     //console.log(this.props.match)
     console.log(events);

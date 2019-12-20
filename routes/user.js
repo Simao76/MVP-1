@@ -60,7 +60,7 @@ router.patch("/edit/:id", async (req, res, next) => {
       password,
       profilePic
     } = req.body; 
-    console.log("edit BE", req.body)
+    //console.log("edit BE", req.body)
     const user = await User.findByIdAndUpdate(userId, {
       ...(name ? { name } : {}),
       ...(email ? { email } : {}),
@@ -83,7 +83,7 @@ router.post(
     let joinLink = link[0].replace('http', 'https').concat("//").concat(link[2]).concat("/").concat(link[3]).concat("/")
     .concat(link[4]).concat("/").concat(link[5]).concat("/").concat(link[6]).concat("/")
     .concat(link[7]).concat("/").concat(link[8])
-    console.log("joinLink", joinLink)
+    //console.log("joinLink", joinLink)
     res.json({ joinLink });
   }
 );

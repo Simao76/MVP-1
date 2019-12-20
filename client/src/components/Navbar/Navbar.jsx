@@ -45,7 +45,6 @@ class Navbar extends Component {
   }
 
   async signOutHandler() {
-    console.log('signout handler')
     try {
       await signOutService();
       this.props.changeAuthenticationStatus(null);

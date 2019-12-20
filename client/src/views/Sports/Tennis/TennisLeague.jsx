@@ -29,7 +29,7 @@ class SingleLeague extends Component {
 
   render() { 
     const events = this.state.events
-    console.log(this.state.events)
+    //console.log(this.state.events)
     
     return (
       <div>

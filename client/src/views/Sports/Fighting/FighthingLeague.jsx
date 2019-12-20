@@ -32,7 +32,7 @@ class SingleLeague extends Component {
   render() {
     const events = this.state.events;
     const teams = this.state.teams;
-    console.log(this.state.events);
+    //console.log(this.state.events);
 
     return (
       <div>

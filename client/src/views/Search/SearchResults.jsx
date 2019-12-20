@@ -5,7 +5,7 @@ import PlayerCard from "../../components/PlayerCard/PlayerCard";
 import './searchResults.scss';
 
 const SearchResults = props => {
-  console.log(props.search);
+  //console.log(props.search);
 
   // All teams from all sports
   let teams = props.search.teams

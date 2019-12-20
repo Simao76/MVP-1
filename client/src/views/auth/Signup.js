@@ -25,7 +25,7 @@ class Signup extends Component {
     } catch (error) {
       console.log(error);
     }
-    console.log("handleFormSubmit", this.state)
+    //console.log("handleFormSubmit", this.state)
   }
 
   formChangeHandler = e => {

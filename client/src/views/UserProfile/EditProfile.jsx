@@ -26,7 +26,7 @@ export class EditProfile extends Component {
   async submitFormHandler(e) {
     e.preventDefault();
     const updateUser = this.state.user;
-    console.log(updateUser)
+    //console.log(updateUser)
     await editProfile(this.state.user._id, {updateUser} );
     await this.props.updateUser(updateUser);
     this.props.history.push(`/profile/${this.state.user.name}`);
@@ -45,7 +45,7 @@ export class EditProfile extends Component {
     const image = e.target[0].files[0];
     //console.log(image)
     const imageUrl = await uploadImage(image);
-    console.log(imageUrl)
+    //console.log(imageUrl)
     this.setState({
       user: {
         ...this.state.user,

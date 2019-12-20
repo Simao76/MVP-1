@@ -87,7 +87,7 @@ export const getEvents = async id => {
 };
 
 export const getEventsByTeamId = async id => {
-  console.log(id);
+  //console.log(id);
 
   try {
     let response = [];

@@ -26,9 +26,9 @@ class userProfile extends Component {
       console.log(error);
     }
     try {
-      console.log("Loading user teams");
+      //console.log("Loading user teams");
       const userTeams = await getUserFollow(this.state.user._myTeams);
-      console.log("LoadEd user teams", userTeams);
+      //console.log("LoadEd user teams", userTeams);
       //const getTeam = await getUserFollow("5df977ea04d5f32d3ccdb167", this.state.user._id)
       //const getEvents = await getEventsByTeamId(this.props.match.params.id);
       this.setState({
@@ -46,8 +46,8 @@ class userProfile extends Component {
     const teams = this.state.teams;
     /* const events = this.state.events; */
     //console.log(this.props.user.profilePic)
-    console.log("here", this.state.events);
-    console.log("here user", this.state.userTeams);
+    //console.log("here", this.state.events);
+    //console.log("here user", this.state.userTeams);
     return (
       <div>
         {!this.props.user && (

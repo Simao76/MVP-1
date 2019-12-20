@@ -17,7 +17,7 @@ class Tennis extends Component {
     this.setState({
       tennis: tennis
     })
-    console.log(this.state)
+    //console.log(this.state)
   }  
 
   render() {    

@@ -4,7 +4,7 @@ import Logo from "../../assets/images/mvp_logo_round.png";
 import './playerCard.scss';
 
 const PlayerCard = props => {
-  console.log(props.img)
+  //console.log(props.img)
   let playerPic; 
   props.img ? playerPic = props.img : playerPic = <Logo />
   return (
