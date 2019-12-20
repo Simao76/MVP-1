@@ -59,48 +59,50 @@ class SingleLeague extends Component {
               ))}
           </div>
 
-          <div className="results-card">
-            <div>
-              {events && <h3>Latest Events</h3>}
-              {events[0] &&
-                events[0].map(el => (
-                  <Fragment key={el.idEvent}>
-                    <p>{/* <strong>{el.strEvent}</strong> */}</p>
-                    <div>
-                      <br></br>
-                      <p>
-                        {el.strHomeTeam} {el.intHomeScore}
-                        <strong> vs </strong>
-                        {el.strAwayTeam} {el.intAwayScore}
-                      </p>
+          {events && (
+            <div className="results-card">
+              <div>
+                <h3>Latest Events</h3>
+                {events[0] &&
+                  events[0].map(el => (
+                    <Fragment key={el.idEvent}>
+                      <p>{/* <strong>{el.strEvent}</strong> */}</p>
+                      <div>
+                        <br></br>
+                        <p>
+                          {el.strHomeTeam} {el.intHomeScore}
+                          <strong> vs </strong>
+                          {el.strAwayTeam} {el.intAwayScore}
+                        </p>
 
-                      {/* <br></br> */}
-                    </div>
-                    <div></div>
-                  </Fragment>
-                ))}
+                        {/* <br></br> */}
+                      </div>
+                      <div></div>
+                    </Fragment>
+                  ))}
+              </div>
+              <div>
+                {events && <h3>Next Events</h3>}
+
+                {events[1] &&
+                  events[1].map(el => (
+                    <Fragment key={el.idEvent}>
+                      <p>{/* <strong>{el.strEvent}</strong> */}</p>
+                      <div>
+                        <br></br>
+                        <p>
+                          {el.strHomeTeam} {el.intHomeScore}
+                          <strong> vs </strong>
+                          {el.strAwayTeam} {el.intAwayScore}
+                        </p>
+
+                        {/* <br></br> */}
+                      </div>
+                    </Fragment>
+                  ))}
+              </div>
             </div>
-            <div>
-              {events && <h3>Next Events</h3>}
-
-              {events[1] &&
-                events[1].map(el => (
-                  <Fragment key={el.idEvent}>
-                    <p>{/* <strong>{el.strEvent}</strong> */}</p>
-                    <div>
-                      <br></br>
-                      <p>
-                        {el.strHomeTeam} {el.intHomeScore}
-                        <strong> vs </strong>
-                        {el.strAwayTeam} {el.intAwayScore}
-                      </p>
-
-                      {/* <br></br> */}
-                    </div>
-                  </Fragment>
-                ))}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     );
