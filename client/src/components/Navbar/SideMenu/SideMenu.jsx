@@ -41,7 +41,6 @@ class sideMenu extends Component {
       }
 
       async signOutHandler() {
-        //console.log('signout handler')
         try {
           await signOutService();
           this.props.changeAuthenticationStatus(null);
@@ -80,12 +79,10 @@ class sideMenu extends Component {
                   <ul>
                       <li onClick={this.props.click}><NavLink to="/soccer">Soccer</NavLink></li>
                       <li onClick={this.props.click}><NavLink to="/basketball">Basketball</NavLink></li>                         
-                      <li onClick={this.props.click}><NavLink to="/motorsport">Motosports</NavLink></li>
-                      <li onClick={this.props.click}><NavLink to="/fighting">Fighting</NavLink></li>                                            
+                      <li onClick={this.props.click}><NavLink to="/baseball">Baseball</NavLink></li>
+                      <li onClick={this.props.click}><NavLink to="/americanfootball">American Football</NavLink></li>                                            
                   </ul>     
               </div>
-
-
 
               {!this.props.user && (
                 <div>

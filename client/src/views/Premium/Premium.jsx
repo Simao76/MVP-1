@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PremiumImage from "../../assets/images/premium.png";
 import './premium.scss';
 
-export default function Premium() {
+const Premium = () => {
   return (
     <div className="premium-container">
       <img src={PremiumImage} alt="page not found" className="premium-image"/>
@@ -11,3 +12,5 @@ export default function Premium() {
     </div>
   )
 }
+
+export default withRouter(Premium);

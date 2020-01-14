@@ -2,6 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TeamCard from "../../components/teamCard/searchTeamCard";
 import PlayerCard from "../../components/PlayerCard/PlayerCard";
+import Logo from "../../assets/images/mvp_logo_round.png";
 import './searchResults.scss';
 
 const SearchResults = props => {
@@ -12,30 +13,14 @@ const SearchResults = props => {
   // All players from all sports
   let players = props.search.players.player;
 
-  // Filter sports: teams
-/*   let filteredTeams;
-  if (teams) {
-    filteredTeams = teams.filter(el => {
-      if (el.strSport === "Soccer" 
-        || el.strSport === "Basketball" 
-        || el.strSport === "Formula 1" 
-        || el.strSport === "Fighting" 
-        || el.strSport === "Tennis") {
-        return true;
-      };
-      return true
-    });
-  }; */
-
-  // Filter sports: players
   let filteredPlayers;
   if (players) {
     filteredPlayers = players.filter(el => {
       if (el.strSport === "Soccer" 
       || el.strSport === "Basketball" 
-      || el.strSport === "Formula 1" 
-      || el.strSport === "Fighting"
-      /* || el.strSport === "Tennis" */) {
+      || el.strSport === "Baseball" 
+      || el.strSport === "American Football"
+      ) {
         return true;
       };
       return true

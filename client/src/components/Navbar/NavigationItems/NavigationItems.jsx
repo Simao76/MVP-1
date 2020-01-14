@@ -7,10 +7,9 @@ const navigationItems = props => {
         <div className="navigationItems">
             <ul>            
                 <NavLink to="/soccer" activeClassName="active"><span className="navigation-links"><li>Football</li></span></NavLink>
-                <NavLink to="/basketball" activeClassName="active"><span className="navigation-links"><li>Basketball</li></span></NavLink>
-                {/* <NavLink to="/tennis" activeClassName="active"><span className="navigation-links"><li>Tennis</li></span></NavLink> */}
-                <NavLink to="/motorsport" activeClassName="active"><span className="navigation-links"><li>Motorsports</li></span></NavLink>
-                <NavLink to="/fighting" activeClassName="active"><span className="navigation-links"><li>Fighting</li></span></NavLink>
+                <NavLink to="/basketball" activeClassName="active"><span className="navigation-links"><li>Basketball</li></span></NavLink>                
+                <NavLink to="/baseball" activeClassName="active"><span className="navigation-links"><li>Baseball</li></span></NavLink>
+                <NavLink to="/americanfootball" activeClassName="active"><span className="navigation-links"><li>American Football</li></span></NavLink>
             </ul>
         </div>
     )

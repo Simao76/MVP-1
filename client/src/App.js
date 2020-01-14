@@ -18,10 +18,13 @@ const Football = React.lazy(() => import("./views/Sports/Football/Football"));
 const Basketball = React.lazy(() =>
   import("./views/Sports/Basketball/Basketball")
 );
-const Motorsports = React.lazy(() =>
-  import("./views/Sports/Motorsports/Motorsports")
+const Baseball = React.lazy(() =>
+  import("./views/Sports/Baseball/Baseball")
 );
-const Fighting = React.lazy(() => import("./views/Sports/Fighting/Fighting"));
+const AmericanFootball = React.lazy(() =>
+  import("./views/Sports/AmericanFootball/AmericanFootball")
+);
+
 const Signup = React.lazy(() => import("./views/auth/Signup"));
 const Login = React.lazy(() => import("./views/auth/Login"));
 const SingleLeague = React.lazy(() =>
@@ -31,9 +34,6 @@ const SingleTeam = React.lazy(() =>
   import("./views/Sports/SingleTeam/SingleTeam")
 );
 
-const SingleLeagueFighting = React.lazy(() =>
-  import("./views/Sports/SingleLeague/SingleLeagueFighting")
-);
 const UserProfile = React.lazy(() => import("./views/UserProfile/userProfile"));
 const EditProfile = React.lazy(() => import("./views/UserProfile/EditProfile"));
 const SearchResults = React.lazy(() => import("./views/Search/SearchResults"));
@@ -72,7 +72,6 @@ class App extends Component {
     } catch (error) {
       console.log(error);
     }
-    //console.log(this.state.user)
   }
   changeAuthenticationStatus(user) {
     this.setState({
@@ -100,11 +99,9 @@ class App extends Component {
   }
 
   menuToggleClickHandler() {
-    //console.log("menu toggle clicked");
     this.setState({
       sideMenuOpen: true
     });
-    //console.log(this.state.sideMenuOpen);
   }
 
   backdropClickHandler() {
@@ -113,9 +110,7 @@ class App extends Component {
     });
   }
 
-  render() {
-    //console.log(this.state.user)
-
+  render() {  
     let backdrop;
     if (this.state.sideMenuOpen) {
       backdrop = <Backdrop click={this.backdropClickHandler} />;
@@ -196,7 +191,7 @@ class App extends Component {
             />
 
             <Route
-              path="/motorsport/:id/:id"
+              path="/baseball/:id/:id"
               render={props => (
                 <Suspense fallback={<Loading />}>
                   <SingleTeam {...props} user={this.state.user} />
@@ -205,7 +200,7 @@ class App extends Component {
             />
 
             <Route
-              path="/motorsport/:id"
+              path="/baseball/:id"
               render={props => (
                 <Suspense fallback={<Loading />}>
                   <SingleLeague {...props} user={this.state.user} />
@@ -214,16 +209,16 @@ class App extends Component {
             />
 
             <Route
-              path="/motorsport"
+              path="/baseball"
               render={() => (
                 <Suspense fallback={<Loading />}>
-                  <Motorsports user={this.state.user} />
+                  <Baseball user={this.state.user} />
                 </Suspense>
               )}
             />
 
             <Route
-              path="/fighting/:id/:id"
+              path="/americanfootball/:id/:id"
               render={props => (
                 <Suspense fallback={<Loading />}>
                   <SingleTeam {...props} user={this.state.user} />
@@ -232,34 +227,22 @@ class App extends Component {
             />
 
             <Route
-              path="/fighting/:id"
+              path="/americanfootball/:id"
               render={props => (
                 <Suspense fallback={<Loading />}>
-                  <SingleLeagueFighting {...props} user={this.state.user} />
+                  <SingleLeague {...props} user={this.state.user} />
                 </Suspense>
               )}
             />
 
             <Route
-              path="/fighting"
+              path="/americanfootball"
               render={() => (
                 <Suspense fallback={<Loading />}>
-                  <Fighting user={this.state.user} />
+                  <AmericanFootball user={this.state.user} />
                 </Suspense>
               )}
             />
-
-            {/* <Route
-              path="/profile/:name/edit"
-              exact
-              render={props => (
-                <EditProfile
-                  {...props}
-                  user={this.state.user}
-                  updateUser={this.updateUser}
-                />
-              )}
-              /> */}
 
             <Route
               path="/profile/:name/edit"
@@ -275,14 +258,6 @@ class App extends Component {
               )}
             />
 
-            {/* <Route
-              path="/profile/:name"
-              exact
-              render={props => (
-                <UserProfile {...props} user={this.state.user} />
-              )}
-            /> */}
-
             <Route
               path="/profile/:name"
               render={props => (
@@ -291,17 +266,6 @@ class App extends Component {
                 </Suspense>
               )}
             />
-
-            {/* <Route
-              path="/signup"
-              render={props => (
-                <Signup
-                  {...props}
-                  changeAuthenticationStatus={this.changeAuthenticationStatus}
-                  user={this.state.user}
-                />
-              )}
-            /> */}
 
             <Route
               path="/signup"
@@ -315,16 +279,6 @@ class App extends Component {
                 </Suspense>
               )}
             />
-
-            {/* <Route
-              path="/login"
-              render={() => (
-                <Login
-                  changeAuthenticationStatus={this.changeAuthenticationStatus}
-                  user={this.state.user}
-                />
-              )}
-            /> */}
 
             <Route
               path="/login"

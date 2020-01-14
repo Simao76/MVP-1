@@ -29,11 +29,15 @@ const relevantLeagueIds = [
   "Greek Basket League",
   "German BBL",
   "FIBA Basketball World Cup",
-  "Formula 1",
-  "UFC",
-  "WWE",
-  "Boxing",
-  "ATP World Tour"
+  //"Formula 1",
+  //"UFC",
+  //"WWE",
+  //"Boxing",
+  //"ATP World Tour",
+  "MLB",
+  "Nippon Baseball League",
+  "NFL",
+  "CFL",
 ];
 
 // Search teams from API

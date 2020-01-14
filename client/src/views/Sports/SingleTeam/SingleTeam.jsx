@@ -107,8 +107,8 @@ class SingleTeam extends Component {
           <div className="results-card">
             <div>
               <h3>Latest Events</h3>
-              {events[0] &&
-                events[0].map(el => (
+              {events[1] &&
+                events[1].map(el => (
                   <Fragment key={el.idEvent}>
                     <p>{/* <strong>{el.strEvent}</strong> */}</p>
                     <div>
@@ -128,8 +128,8 @@ class SingleTeam extends Component {
             <div>
               {events && <h3>Next Events</h3>}
 
-              {events[1] &&
-                events[1].map(el => (
+              {events[0] &&
+                events[0].map(el => (
                   <Fragment key={el.idEvent}>
                     <p>{/* <strong>{el.strEvent}</strong> */}</p>
                     <div>

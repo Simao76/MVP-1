@@ -4,30 +4,29 @@ import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
-class Motorsports extends Component {
+class baseball extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      motorsport: ""
+      baseball: ""
     };
   }
 
   async componentDidMount() {
-    const motorsport = await getSportService("Motorsport");
+    const baseballLeagues = await getSportService("Baseball");
     this.setState({
-      motorsport: motorsport
+      baseball: baseballLeagues
     });
-    //console.log(this.state)
   }
 
   render() {
-    const motorsport = this.state.motorsport;
-
+    const leagues = this.state.baseball;
     return (
       <div className="card-container">
-        {motorsport &&
-          motorsport.map(item => (
+        {leagues &&
+          leagues.map(item => (
             <LeagueCard
+              {...this.props}
               mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}
@@ -41,4 +40,4 @@ class Motorsports extends Component {
   }
 }
 
-export default withRouter(Motorsports);
+export default withRouter(baseball);

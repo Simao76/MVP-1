@@ -4,39 +4,40 @@ import { getSport as getSportService } from "../../../services/Sports";
 import LeagueCard from "../../../components/leagueCard/leagueCard";
 import "../sports.scss";
 
-class Tennis extends Component {
+class AmericanFootball extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tennis: ""
+      americanFootball: ""
     };
   }
 
-  async componentDidMount() {  
-    const tennis = await getSportService("Tennis");
+  async componentDidMount() {
+    const americanFootballLeagues = await getSportService("American Football");
     this.setState({
-      tennis: tennis
-    })
-    //console.log(this.state)
-  }  
+      americanFootball: americanFootballLeagues
+    });
+  }
 
-  render() {    
-    const tennis = this.state.tennis;    
+  render() {
+    const leagues = this.state.americanFootball;
     return (
       <div className="card-container">
-        {tennis &&
-          tennis.map(item => (
+        {leagues &&
+          leagues.map(item => (
             <LeagueCard
+              {...this.props}
+              mongooseId={item._id}
               key={item.idLeague}
               id={item.idLeague}
               src={item.badge}
               alt={item.name}
-              title={item.name}        
-            />            
-          ))}                 
+              title={item.name}
+            />
+          ))}
       </div>
     );
-  } 
+  }
 }
 
-export default withRouter(Tennis);
+export default withRouter(AmericanFootball);
